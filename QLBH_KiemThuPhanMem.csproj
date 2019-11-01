@@ -88,6 +88,9 @@
     <EmbeddedResource Include="Frm_ChangePassword.resx">
       <DependentUpon>Frm_ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_ForgotPassword.resx">
+      <DependentUpon>Frm_ForgotPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_List_Cus_Emp.resx">
       <DependentUpon>Frm_List_Cus_Emp.cs</DependentUpon>
     </EmbeddedResource>
