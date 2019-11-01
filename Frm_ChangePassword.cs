@@ -21,7 +21,7 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_ChangePassword()
 		{
 			InitializeComponent();
-			string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
+			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 		}
 		public Frm_ChangePassword(String id) : this()
 		{
@@ -199,16 +199,16 @@ namespace QLBH_KiemThuPhanMem
 		private void checkBox2_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox2.Checked)
-				txtNpw.UseSystemPasswordChar = false;
-			else
 				txtNpw.UseSystemPasswordChar = true;
+			else
+				txtNpw.UseSystemPasswordChar = false;
 		}
 		private void checkBox3_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox3.Checked)
-				txtCNpw.UseSystemPasswordChar = false;
-			else
 				txtCNpw.UseSystemPasswordChar = true;
+			else
+				txtCNpw.UseSystemPasswordChar = false;
 		}
 	}
 }

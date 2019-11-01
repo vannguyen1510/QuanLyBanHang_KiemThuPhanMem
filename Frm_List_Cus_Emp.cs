@@ -24,7 +24,7 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_List_Cus_Emp()
 		{
 			InitializeComponent();
-			string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
+			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 			//WaterMark
 			this.txtTimKiem.Leave += new System.EventHandler(this.txtTimKiem_Leave);
 			this.txtTimKiem.Enter += new System.EventHandler(this.txtTimKiem_Enter);

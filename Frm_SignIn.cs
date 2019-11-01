@@ -20,7 +20,7 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_SignIn()
 		{
 			InitializeComponent();
-			string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
+			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 		}
 		//-------------------------------------------------------------------------------------------------------------
 		// kiểm tra form ForgotPassword và ChangePassword đã mở hay chưa 
