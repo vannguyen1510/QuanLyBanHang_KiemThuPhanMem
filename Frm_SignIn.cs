@@ -139,22 +139,37 @@ namespace QLBH_KiemThuPhanMem
 			try
 			{
 				sqlcon.Open();
-				string hoten = txtTenDangNhap.Text;
+				string user = txtTenDangNhap.Text;
 				string pass = txtMatKhau.Text;
-				string sql = "Select Count(*) From [QLBH].[dbo].[Info_SignIn] Where ID_Sin=@id And Pass_Sin=@pass";
+				// Dò tìm SĐT khách hàng và ID nhân viên
+				string sql = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone AND Password=@pass) OR (ID_Emp=@id AND Password=@pass)";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				cmd.Parameters.Add(new SqlParameter("@id", hoten));
+				cmd.Parameters.Add(new SqlParameter("@phone", user));
+				cmd.Parameters.Add(new SqlParameter("@id", user));
 				cmd.Parameters.Add(new SqlParameter("@pass", pass));
 				int x = (int)cmd.ExecuteScalar();
 				if (x == 1)
 				{
-					this.Hide();
-					Frm_List_Cus_Emp f = new Frm_List_Cus_Emp();
-					f.Show();
+					string sql_Permision = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Secret] WHERE Permision=@per";
+					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
+					cmd_Permision.Parameters.AddWithValue("@per","Guess");
+					int y = (int)cmd_Permision.ExecuteScalar();
+					if (y == 1)
+					{
+						this.Hide();
+						Frm_Main_Customers cus = new Frm_Main_Customers();
+						cus.Show();
+					}
+					else
+					{
+						this.Hide();
+						Frm_List_Cus_Emp f = new Frm_List_Cus_Emp();
+						f.Show();
+					}
 				}
 				else
 				{
-					MessageBox.Show("Thông tin đăng nhập không đúng. \n Vui lòng nhập lại!", "ERROR");
+					MessageBox.Show(" User or Password is incorrect . \n Please try again!", "ERROR");
 				}
 			}
 			catch (Exception)
