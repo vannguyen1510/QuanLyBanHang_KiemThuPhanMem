@@ -87,6 +87,42 @@ namespace QLBH_KiemThuPhanMem
 			btnForgotPW.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
 		}
 
+		// Chỉ nhận ký tự chữ
+		private void txtFName_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+			string Ten = txtFName.Text.Trim();
+			while (Ten.IndexOf("  ") != -1)
+			{
+				Ten = Ten.Replace("  ", " ");
+			}
+		}
+		private void txtLName_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+			string Ho = txtLName.Text.Trim();
+			while (Ho.IndexOf("  ") != -1)
+			{
+				Ho = Ho.Replace("  ", " ");
+			}
+		}
+
+		// Chỉ nhận ký tự số
+		private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+				|| (e.KeyChar == (char)8)) // backspace
+			{
+				txtPhone.ShortcutsEnabled = false;
+				e.Handled = false;
+			}
+			else
+			{
+				errorProvider1.SetError(txtPhone, "Accept only numbers!");
+				e.Handled = true;
+			}
+		}
+
 		// ẨN HIỆN PASSWORD
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
 		{
@@ -96,6 +132,7 @@ namespace QLBH_KiemThuPhanMem
 				txtMatKhau.UseSystemPasswordChar = false;
 		}
 
+		//-----------------------------------------------------------------------------------------------
 		// ĐĂNG NHẬP - SIGN IN
 		public void DangNhap()
 		{
@@ -132,12 +169,6 @@ namespace QLBH_KiemThuPhanMem
 		private void btnDangNhap_Click(object sender, EventArgs e)
 		{
 			DangNhap();
-		}
-
-		// ĐÓNG FORM
-		private void btnDong_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
 		}
 
 		// ĐỔI MẬT KHẨU - CHANGE PASSWORD
@@ -192,43 +223,7 @@ namespace QLBH_KiemThuPhanMem
 			forgot.Show();
 		}
 
-
-		// Chỉ nhận ký tự chữ
-		private void txtFName_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
-			string Ten = txtFName.Text.Trim();
-			while (Ten.IndexOf("  ") != -1)
-			{
-				Ten = Ten.Replace("  ", " ");
-			}
-		}
-		private void txtLName_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			e.Handled = !(Char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
-			string Ho = txtLName.Text.Trim();
-			while (Ho.IndexOf("  ") != -1)
-			{
-				Ho = Ho.Replace("  ", " ");
-			}
-		}
-
-		// Chỉ nhận ký tự số
-		private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
-				|| (e.KeyChar == (char)8)) // backspace
-			{
-				txtPhone.ShortcutsEnabled = false;
-				e.Handled = false;
-			}
-			else
-			{
-				errorProvider1.SetError(txtPhone, "Accept only numbers!");
-				e.Handled = true;
-			}
-		}
-
+		//-----------------------------------------------------------------------------------------------
 		// ĐĂNG KÝ - SIGN UP
 		public void DangKy()
 		{
@@ -253,18 +248,117 @@ namespace QLBH_KiemThuPhanMem
 								if (A != "")
 								{
 									// vào SQL kiểm tra SĐT 
-										// nếu SĐT trùng thì báo lỗi + VÔ HIỆU HÓA nút ĐĂNG KÝ
-										// nếu SĐT không trùng thì kiểm tra tiếp MẬT KHẨU
-											// Kiểm soát chiều dài PW 6-8
-												// nếu sai quy định (PW < 6 || PW > 8) thì VÔ HIỆU HÓA nút ĐĂNG KÝ
-												// nếu hợp lệ thì kiểm tra ký tự bên trong
-													// Ít nhất: 1 chữ Hoa + 1 chữ Thường + 1 Số + 1 Ký tự đặc biệt
-														// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công 
-														// không thỏa điều kiện trên thì :
-															// nếu không thỏa ký tự -> báo lỗi PW
-															// nếu bỏ trống txtCpw -> báo lỗi Cpw
-															// nếu txtCpw không trùng với PW -> báo lỗi Cpw
-												
+									try
+									{
+										sqlcon.Open();
+										string sql = "Select Count(*) From [QLBH].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
+										SqlCommand cmd = new SqlCommand(sql, sqlcon);
+										cmd.Parameters.Add(new SqlParameter("@sdt", P));
+										int x = (int)cmd.ExecuteScalar();
+										if (x == 1) // nếu SĐT trùng thì báo lỗi + VÔ HIỆU HÓA nút ĐĂNG KÝ
+										{
+											errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
+											P = string.Empty;
+											
+										}
+										else // nếu SĐT không trùng thì kiểm tra tiếp MẬT KHẨU
+										{
+											try
+											{
+												sqlcon.Open();
+												int countSo = 0;
+												int countHoa = 0;
+												int countThuong = 0;
+												int countDB = 0;
+												int i = 0;
+												// Kiểm soát chiều dài PW
+												if (pw.Length < 6 || pw.Length > 8)
+												{
+													errorProvider1.SetError(txtPw, "Password must be at least 6 character and no more than 8 !"); // [6,8]
+													txtPw.Text = string.Empty;
+													txtCPw.Text = string.Empty;
+													btnDangKy.Enabled = false; // chiều dài không hợp lệ VÔ HIỆU HÓA nút ĐĂNG KÝ
+												}
+												else // Mật khẩu hợp lệ thì kiểm tra ký tự bên trong
+												{
+													while (i < pw.Length)
+													{
+														if (pw[i] >= 'a' && pw[i] <= 'z')
+														{
+															countThuong++;
+														}
+														else if (pw[i] >= 'A' && pw[i] <= 'Z')
+														{
+															countHoa++;
+														}
+														else if (pw[i] >= '0' && pw[i] <= '9')
+														{
+															countSo++;
+														}
+														else
+														{
+															countDB++;
+														}
+														i++;
+													}
+													// Ít nhất: 1 chữ Hoa +1 chữ Thường +1 Số + 1 Ký tự đặc biệt
+													if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1 )
+													{
+														btnDangKy.Enabled = true;
+													}
+													if (cpw != "" && pw != "")
+													{
+														if (String.Compare(cpw, pw, false) == 0)
+														{
+															btnDangKy.Enabled = true;
+															string id_pw = "INSERT INTO [QLBH].[dbo].[Info_SignIn] (ID_Sin, Pass_Sin,)"
+																			+ "VALUES (@id,@pass)";
+															SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
+															cmd_id_pw.Parameters.AddWithValue("@id", );
+															cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
+															cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
+															MessageBox.Show(" WELLCOME "+ L+ " " + P +" !");
+															sqlcon.Close();
+														}
+														else
+														{
+															errorProvider1.SetError(txtCPw, "You need to confirm excactly!");
+															cpw = string.Empty;
+														}
+													}
+													else
+													{
+														errorProvider1.SetError(txtCPw, "Please enter the password and confirm password!");
+													}
+												}
+
+											}
+											catch (Exception)
+											{
+												MessageBox.Show("Error Connection!", "Please Try Again");
+											}
+											finally
+											{
+												sqlcon.Close();
+											}
+										}
+									}
+									catch (Exception)
+									{
+										MessageBox.Show("Error Connection!", "Try Again");
+									}
+									finally
+									{
+										sqlcon.Close();
+									}
+									
+									
+									// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công 
+									// không thỏa điều kiện trên thì :
+									// nếu không thỏa ký tự -> báo lỗi PW
+									// nếu bỏ trống txtCpw -> báo lỗi Cpw
+									// nếu txtCpw không trùng với PW -> báo lỗi Cpw
+
 								}
 								else
 								{
@@ -297,6 +391,13 @@ namespace QLBH_KiemThuPhanMem
 			}
 		}
 
+		//-------------------------------------------------------------------------------------------------
+		// ĐÓNG FORM
+		private void btnDong_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
 		// BẮT PHÍM
 		protected override bool ProcessDialogKey(Keys keyData)
 		{
@@ -317,6 +418,9 @@ namespace QLBH_KiemThuPhanMem
 			return base.ProcessDialogKey(keyData);
 		}
 
-		
+		private void btnDangKy_Click(object sender, EventArgs e)
+		{
+			DangKy();
+		}
 	}
 }

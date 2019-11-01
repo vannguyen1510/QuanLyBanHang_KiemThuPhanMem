@@ -99,6 +99,7 @@
 			btnDangKy.TabIndex = 36;
 			btnDangKy.Text = "Sign Up";
 			btnDangKy.UseVisualStyleBackColor = false;
+			btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
 			// 
 			// tabControl1
 			// 
