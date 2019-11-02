@@ -472,7 +472,9 @@
 			this.Controls.Add(this.tabControl1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Frm_SignIn";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "WELCOME ";
+			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Frm_SignIn_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage_SignIn.ResumeLayout(false);
