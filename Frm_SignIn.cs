@@ -259,7 +259,6 @@ namespace QLBH_KiemThuPhanMem
 						try
 						{
 							// vào SQL kiểm tra SĐT 
-							sqlcon.Open();
 							string sql = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
 							SqlCommand cmd = new SqlCommand(sql, sqlcon);
 							cmd.Parameters.Add(new SqlParameter("@sdt", P));
@@ -269,7 +268,7 @@ namespace QLBH_KiemThuPhanMem
 								errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
 								P = string.Empty;
 							}
-							else // nếu SĐT không trùng thì kiểm tra tiếp MẬT KHẨU
+							else // nếu SĐT trùng thì kiểm tra tiếp MẬT KHẨU
 							{
 								if (pw != "")
 								{
@@ -292,6 +291,7 @@ namespace QLBH_KiemThuPhanMem
 											// Chiều dài hợp lệ thì kiểm tra ký tự bên trong
 											else
 											{
+											
 												while (i < pw.Length)
 												{
 													if (pw[i] >= 'a' && pw[i] <= 'z')
@@ -315,14 +315,15 @@ namespace QLBH_KiemThuPhanMem
 												// Ít nhất: 1 chữ Hoa +1 chữ Thường + 1 Số + 1 Ký tự đặc biệt
 												if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1 && (pw.Length >= 6 || pw.Length <= 8))
 												{
-													// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
+												
+												// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
 													if (pw != "" && cpw != "" && String.Compare(cpw, pw, false) == 0)
 													{
 														string id_pw = "INSERT INTO [QLBH].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
-																		+ " VALUES (@phone, @pass, @per)";
+																		+ " VALUES (@sdt,@pass,@per)";
 														SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
-														cmd_id_pw.Parameters.Add(new SqlParameter("@phone", P));
-														cmd_id_pw.Parameters.Add(new SqlParameter("@pass", cpw));
+														cmd_id_pw.Parameters.AddWithValue("@sdt", P);
+														cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
 														cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
 														cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
 														MessageBox.Show(" WELCOME " + L + " " + P + " !");
@@ -359,7 +360,6 @@ namespace QLBH_KiemThuPhanMem
 								{
 									errorProvider1.SetError(txtPw, "Enter your Password please !");
 								}
-
 							}
 						}
 						catch (Exception)
@@ -389,6 +389,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnDangKy_Click(object sender, EventArgs e)
 		{
+			sqlcon.Open();
 			DangKy();
 		}
 
