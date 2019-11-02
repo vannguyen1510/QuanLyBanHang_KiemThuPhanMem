@@ -16,5 +16,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
+
+		
 	}
 }
