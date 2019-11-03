@@ -12,74 +12,85 @@ using System.Windows.Forms;
 
 namespace QLBH_KiemThuPhanMem
 {
+	public static class PanelExtension
+	{
+		public static void ScrollBack(this Panel pnl, int pos)
+		{
+			using (Control c = new Control() { Parent = pnl, Height = 1, Width = pnl.ClientSize.Width + pos })
+			{
+				pnl.ScrollControlIntoView(c);
+			}
+		}
+		public static void ScrollNext(this Panel pnl, int pos)
+		{
+			using (Control c = new Control() { Parent = pnl, Height = 1, Width = pos })
+			{
+				pnl.ScrollControlIntoView(c);
+			}
+		}
+	}
 	public partial class Frm_Main_Customers : Form
 	{
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		private const int VerticalStep = 40;
+		private int location = 0;
 		public Frm_Main_Customers()
 		{
 			InitializeComponent();
-			panel4.HorizontalScroll.Maximum = 50000;
+			//pnl_SunG.AutoScrollPosition = new Point(0,0);
+			//pnl_SunG.VerticalScroll.Maximum = 200;
 		}
 
 		private void Frm_Main_Customers_Load(object sender, EventArgs e)
 		{
 
 		}
-		//public int scrollValue = 0;
-		//public int ScrollValue
-		//{
-		//	get
-		//	{
-		//		return scrollValue;
-		//	}
-		//	set 
-		//	{
-		//		scrollValue = value;
-			
-		//		if(scrollValue < flpSunG.VerticalScroll.Minimum)
-		//		{
-		//			scrollValue = flpSunG.VerticalScroll.Minimum;
-		//		}
-		//		if(scrollValue > flpSunG.VerticalScroll.Maximum)
-		//		{
-		//			scrollValue = flpSunG.VerticalScroll.Maximum;
-		//		}
-		//		flpSunG.VerticalScroll.Value = scrollValue;
-		//		flpSunG.PerformLayout();
-		//	}
-		//}
-
-		private const int VerticalStep = 40;
+		
 		
 
+
+		int i = 0;
 		private void btnNext_SunG_Click(object sender, EventArgs e)
 		{
-			//int change = flpSunG.VerticalScroll.Value + flpSunG.VerticalScroll.SmallChange * 30;
-			//flpSunG.AutoScrollPosition = new Point(0,change);
+			//if ((pnl_SunG.HorizontalScroll.Value + pnl_SunG.HorizontalScroll.SmallChange) >= pnl_SunG.HorizontalScroll.Maximum)
+			//	pnl_SunG.HorizontalScroll.Value = pnl_SunG.HorizontalScroll.Maximum;
+			//else
+			//	pnl_SunG.HorizontalScroll.Value += pnl_SunG.HorizontalScroll.SmallChange;
+			//if (location - 20 > 0)
+			//{
+			//	location -= 20;
+			//	pnl_SunG.VerticalScroll.Value = location;
+			//}
+			//else
+			//{
+			//	location = 0;
+			//	pnl_SunG.AutoScrollPosition = new Point(0, 0);
+			//}
 
-			//scrollValue -= flpSunG.VerticalScroll.LargeChange;
-
-			//flpSunG.Right -= VerticalStep;
-
-			if ((panel4.HorizontalScroll.Value + panel4.HorizontalScroll.SmallChange) >= panel4.HorizontalScroll.Maximum)
-				panel4.HorizontalScroll.Value = panel4.HorizontalScroll.Maximum;
-			else
-				panel4.HorizontalScroll.Value += panel4.HorizontalScroll.SmallChange;
+			if (i >= 0)
+				i = -1;
+			pnl_SunG.ScrollNext(i--);
 		}
 
 		private void btnBack_SunG_Click(object sender, EventArgs e)
 		{
-			//int change = flpSunG.VerticalScroll.Value - flpSunG.VerticalScroll.SmallChange * 30;
-			//flpSunG.AutoScrollPosition = new Point(0, change);
-
-			//scrollValue += flpSunG.VerticalScroll.LargeChange;
-
-			//flpSunG.Right += VerticalStep;
-
-			if ((panel4.HorizontalScroll.Value + panel4.HorizontalScroll.SmallChange) < panel4.HorizontalScroll.Maximum)
-				panel4.HorizontalScroll.Value = panel4.HorizontalScroll.Maximum;
-			else
-				panel4.HorizontalScroll.Value -= panel4.HorizontalScroll.SmallChange;
+			//if ((pnl_SunG.HorizontalScroll.Value + pnl_SunG.HorizontalScroll.SmallChange) < pnl_SunG.HorizontalScroll.Maximum)
+			//	pnl_SunG.HorizontalScroll.Value = pnl_SunG.HorizontalScroll.Maximum;
+			//else
+			//	pnl_SunG.HorizontalScroll.Value -= pnl_SunG.HorizontalScroll.SmallChange;
+			//if (location + 20 < pnl_SunG.VerticalScroll.Maximum)
+			//{
+			//	location += 100;
+			//	pnl_SunG.VerticalScroll.Value = location;
+			//}
+			//else
+			//{
+			//	location = pnl_SunG.VerticalScroll.Maximum;
+			//	pnl_SunG.AutoScrollPosition = new Point(0, location);
+			//}
+			if (i < 0)
+				i = 0;
+			pnl_SunG.ScrollBack(i++);
 		}
 
 	}
