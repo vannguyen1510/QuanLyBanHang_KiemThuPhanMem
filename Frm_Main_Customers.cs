@@ -15,7 +15,7 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_Main_Customers()
 		{
 			InitializeComponent();
-			flpSunG.AutoScroll = false;
+			panel4.HorizontalScroll.Maximum = 50000;
 		}
 
 		private void Frm_Main_Customers_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace QLBH_KiemThuPhanMem
 		//	set 
 		//	{
 		//		scrollValue = value;
-		//		flpSunG.VerticalScroll.Maximum = 100;
+			
 		//		if(scrollValue < flpSunG.VerticalScroll.Minimum)
 		//		{
 		//			scrollValue = flpSunG.VerticalScroll.Minimum;
@@ -56,7 +56,12 @@ namespace QLBH_KiemThuPhanMem
 
 			//scrollValue -= flpSunG.VerticalScroll.LargeChange;
 
-			flpSunG.Top -= VerticalStep;
+			//flpSunG.Right -= VerticalStep;
+
+			if ((panel4.HorizontalScroll.Value + panel4.HorizontalScroll.SmallChange) >= panel4.HorizontalScroll.Maximum)
+				panel4.HorizontalScroll.Value = panel4.HorizontalScroll.Maximum;
+			else
+				panel4.HorizontalScroll.Value += panel4.HorizontalScroll.SmallChange;
 		}
 
 		private void btnBack_SunG_Click(object sender, EventArgs e)
@@ -66,7 +71,13 @@ namespace QLBH_KiemThuPhanMem
 
 			//scrollValue += flpSunG.VerticalScroll.LargeChange;
 
-			flpSunG.Top += VerticalStep;
+			//flpSunG.Right += VerticalStep;
+
+			if ((panel4.HorizontalScroll.Value + panel4.HorizontalScroll.SmallChange) < panel4.HorizontalScroll.Maximum)
+				panel4.HorizontalScroll.Value = panel4.HorizontalScroll.Maximum;
+			else
+				panel4.HorizontalScroll.Value -= panel4.HorizontalScroll.SmallChange;
 		}
+
 	}
 }
