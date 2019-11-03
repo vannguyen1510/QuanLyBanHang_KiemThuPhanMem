@@ -22,7 +22,6 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_ChangePassword()
 		{
 			InitializeComponent();
-			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 		}
 		public Frm_ChangePassword(String id) : this()
 		{

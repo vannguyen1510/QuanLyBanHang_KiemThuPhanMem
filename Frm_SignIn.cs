@@ -138,7 +138,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			try
 			{
-				sqlcon.Open();
+				
 				string user = txtTenDangNhap.Text;
 				string pass = txtMatKhau.Text;
 				// Dò tìm SĐT khách hàng và ID nhân viên
@@ -184,6 +184,7 @@ namespace QLBH_KiemThuPhanMem
 		}
 		private void btnDangNhap_Click(object sender, EventArgs e)
 		{
+			sqlcon.Open();
 			DangNhap();
 		}
 

@@ -12,28 +12,28 @@ using System.Windows.Forms;
 
 namespace QLBH_KiemThuPhanMem
 {
-	public static class PanelExtension
-	{
-		public static void ScrollBack(this Panel pnl, int pos)
-		{
-			using (Control c = new Control() { Parent = pnl, Height = 1, Width = pnl.ClientSize.Width + pos })
-			{
-				pnl.ScrollControlIntoView(c);
-			}
-		}
-		public static void ScrollNext(this Panel pnl, int pos)
-		{
-			using (Control c = new Control() { Parent = pnl, Height = 1, Width = pos })
-			{
-				pnl.ScrollControlIntoView(c);
-			}
-		}
-	}
+	//public static class PanelExtension
+	//{
+	//	public static void ScrollBack(this Panel pnl, int pos)
+	//	{
+	//		using (Control c = new Control() { Parent = pnl, Height = 1, Width = pnl.ClientSize.Width + pos })
+	//		{
+	//			pnl.ScrollControlIntoView(c);
+	//		}
+	//	}
+	//	public static void ScrollNext(this Panel pnl, int pos)
+	//	{
+	//		using (Control c = new Control() { Parent = pnl, Height = 1, Width = pos })
+	//		{
+	//			pnl.ScrollControlIntoView(c);
+	//		}
+	//	}
+	//}
 	public partial class Frm_Main_Customers : Form
 	{
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-		private const int VerticalStep = 40;
-		private int location = 0;
+		//private const int VerticalStep = 40;
+		//private int location = 0;
 		public Frm_Main_Customers()
 		{
 			InitializeComponent();
@@ -69,7 +69,7 @@ namespace QLBH_KiemThuPhanMem
 
 			if (i >= 0)
 				i = -1;
-			pnl_SunG.ScrollNext(i--);
+			//pnl_SunG.ScrollNext(i--);
 		}
 
 		private void btnBack_SunG_Click(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace QLBH_KiemThuPhanMem
 			//}
 			if (i < 0)
 				i = 0;
-			pnl_SunG.ScrollBack(i++);
+			//pnl_SunG.ScrollBack(i++);
 		}
 
 	}
