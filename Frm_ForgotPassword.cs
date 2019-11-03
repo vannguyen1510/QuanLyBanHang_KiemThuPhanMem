@@ -17,7 +17,8 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_ForgotPassword : Form
 	{
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		public Frm_ForgotPassword()
 		{
 			InitializeComponent();

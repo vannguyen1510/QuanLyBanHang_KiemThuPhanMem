@@ -19,8 +19,8 @@ namespace QLBH_KiemThuPhanMem
 	{
 		string gender = string.Empty;
 		// ĐƯỜNG DẪN SQL
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
-
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		public Frm_List_Cus_Emp()
 		{
 			InitializeComponent();

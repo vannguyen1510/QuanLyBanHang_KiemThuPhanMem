@@ -15,8 +15,8 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
-
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		public Frm_SignIn()
 		{
 			InitializeComponent();
