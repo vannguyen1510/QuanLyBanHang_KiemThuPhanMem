@@ -82,6 +82,7 @@
 			this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.btnThoat = new System.Windows.Forms.Button();
 			this.btnXem = new System.Windows.Forms.Button();
+			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.tabControl_Emp.SuspendLayout();
 			this.tabPage_Emp.SuspendLayout();
 			this.tabPage_Cus.SuspendLayout();
@@ -316,9 +317,12 @@
 			// btnThem
 			// 
 			this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnThem.ForeColor = System.Drawing.Color.GhostWhite;
+			this.errorProvider2.SetIconAlignment(this.btnThem, System.Windows.Forms.ErrorIconAlignment.TopLeft);
+			this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnThem.Location = new System.Drawing.Point(36, 303);
 			this.btnThem.Name = "btnThem";
 			this.btnThem.Size = new System.Drawing.Size(212, 42);
@@ -702,6 +706,12 @@
 			this.btnXem.UseVisualStyleBackColor = false;
 			this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
 			// 
+			// imageList2
+			// 
+			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList2.Images.SetKeyName(0, "user_add_21977.ico");
+			// 
 			// Frm_List_Cus_Emp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -780,6 +790,7 @@
 		private System.Windows.Forms.ErrorProvider errorProvider2;
 		private System.Windows.Forms.Button btnXem;
 		private System.Windows.Forms.Button btnThoat;
+		private System.Windows.Forms.ImageList imageList2;
 	}
 }
 

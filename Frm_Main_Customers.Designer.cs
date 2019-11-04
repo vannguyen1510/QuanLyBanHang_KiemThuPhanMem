@@ -36,22 +36,22 @@
 			this.btnBack_SunG = new System.Windows.Forms.Button();
 			this.btnNext_SunG = new System.Windows.Forms.Button();
 			this.pnl_SunG = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.btnShopNow = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.btnShopNow = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.toolStrip1.SuspendLayout();
 			this.pnl_SunG.SuspendLayout();
-			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// toolStrip1
@@ -68,7 +68,7 @@
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.toolStrip1.Size = new System.Drawing.Size(1191, 31);
+			this.toolStrip1.Size = new System.Drawing.Size(932, 31);
 			this.toolStrip1.TabIndex = 0;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -138,59 +138,6 @@
 			this.pnl_SunG.TabIndex = 4;
 			this.pnl_SunG.TabStop = true;
 			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.btnShopNow);
-			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.pictureBox1);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Location = new System.Drawing.Point(15, 16);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(716, 281);
-			this.panel1.TabIndex = 0;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(267, 275);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 3;
-			this.pictureBox1.TabStop = false;
-			// 
-			// label1
-			// 
-			this.label1.Font = new System.Drawing.Font("Franklin Gothic Demi Cond", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(401, 71);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(141, 36);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "M.PRI$$ 01";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// label3
-			// 
-			this.label3.Font = new System.Drawing.Font("Franklin Gothic Book", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(278, 107);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(390, 69);
-			this.label3.TabIndex = 5;
-			this.label3.Text = "Sleek black acetate frame with metal snake details in gold color surrounding the " +
-    "front";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// btnShopNow
-			// 
-			this.btnShopNow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnShopNow.Font = new System.Drawing.Font("Franklin Gothic Book", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnShopNow.Location = new System.Drawing.Point(369, 179);
-			this.btnShopNow.Name = "btnShopNow";
-			this.btnShopNow.Size = new System.Drawing.Size(220, 38);
-			this.btnShopNow.TabIndex = 5;
-			this.btnShopNow.Text = "SHOP NOW";
-			this.btnShopNow.UseVisualStyleBackColor = true;
-			// 
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.button1);
@@ -244,12 +191,65 @@
 			this.label4.Text = "M.PRI$$ 01";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.btnShopNow);
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.pictureBox1);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Location = new System.Drawing.Point(15, 16);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(716, 281);
+			this.panel1.TabIndex = 0;
+			// 
+			// btnShopNow
+			// 
+			this.btnShopNow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnShopNow.Font = new System.Drawing.Font("Franklin Gothic Book", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnShopNow.Location = new System.Drawing.Point(369, 179);
+			this.btnShopNow.Name = "btnShopNow";
+			this.btnShopNow.Size = new System.Drawing.Size(220, 38);
+			this.btnShopNow.TabIndex = 5;
+			this.btnShopNow.Text = "SHOP NOW";
+			this.btnShopNow.UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this.label3.Font = new System.Drawing.Font("Franklin Gothic Book", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(278, 107);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(390, 69);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "Sleek black acetate frame with metal snake details in gold color surrounding the " +
+    "front";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(267, 275);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 3;
+			this.pictureBox1.TabStop = false;
+			// 
+			// label1
+			// 
+			this.label1.Font = new System.Drawing.Font("Franklin Gothic Demi Cond", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(401, 71);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(141, 36);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "M.PRI$$ 01";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// Frm_Main_Customers
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.ClientSize = new System.Drawing.Size(1191, 497);
+			this.ClientSize = new System.Drawing.Size(932, 497);
 			this.Controls.Add(this.pnl_SunG);
 			this.Controls.Add(this.btnNext_SunG);
 			this.Controls.Add(this.btnBack_SunG);
@@ -264,10 +264,10 @@
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.pnl_SunG.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			this.panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

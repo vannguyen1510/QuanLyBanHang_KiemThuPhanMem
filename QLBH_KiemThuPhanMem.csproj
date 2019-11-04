@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Bill.Designer.cs">
+      <DependentUpon>Frm_Bill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
