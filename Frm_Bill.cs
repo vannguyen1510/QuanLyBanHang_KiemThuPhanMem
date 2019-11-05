@@ -20,7 +20,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
-
+txtBillNo.Text = "Hello";
 		}
 		
 		private string RandomString(int count)
