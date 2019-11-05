@@ -20,17 +20,30 @@ namespace QLBH_KiemThuPhanMem
 		string gender = string.Empty;
 		// ĐƯỜNG DẪN SQL
 		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
-		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+        SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 		public Frm_List_Cus_Emp()
 		{
 			InitializeComponent();
-			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 			//WaterMark
 			this.txtTimKiem.Leave += new System.EventHandler(this.txtTimKiem_Leave);
 			this.txtTimKiem.Enter += new System.EventHandler(this.txtTimKiem_Enter);
 			this.txtTimKiem_KH.Leave += new System.EventHandler(this.txtTimKiem_KH_Leave);
 			this.txtTimKiem_KH.Enter += new System.EventHandler(this.txtTimKiem_KH_Enter);
 		}
+        // Open tab Employee
+        //protected override void OnShown(EventArgs e)
+        //{
+        //    base.OnShown(e);
+        //    Frm_Main_Admin admin = new Frm_Main_Admin();
+        //    admin.OnOpenTab_Emp += admin_OnOpenTab_Emp;
+        //    admin.ShowDialog(this);
+        //}
+        //void admin_OnOpenTab_Emp(Object sender, EventArgs e)
+        //{
+        //    tabControl_Emp.SelectedTab = tabPage_Emp;
+        //}
+
 		private void txtTimKiem_Leave(object sender, EventArgs e)
 		{
 			if (txtTimKiem.Text == "")

@@ -89,6 +89,11 @@
     <Compile Include="Frm_SignIn.Designer.cs">
       <DependentUpon>Frm_SignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="KTPMDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KTPMDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Frm_Bill.resx">
@@ -122,6 +127,27 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="KTPMDataSet.xsc">
+      <DependentUpon>KTPMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KTPMDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KTPMDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KTPMDataSet.xss">
+      <DependentUpon>KTPMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\Frm_Bill.datasource" />
+    <None Include="Properties\DataSources\Frm_ChangePassword.datasource" />
+    <None Include="Properties\DataSources\Frm_ForgotPassword.datasource" />
+    <None Include="Properties\DataSources\Frm_List_Cus_Emp.datasource" />
+    <None Include="Properties\DataSources\Frm_Main_Admin.datasource" />
+    <None Include="Properties\DataSources\Frm_Main_Customers.datasource" />
+    <None Include="Properties\DataSources\Frm_SignIn.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\QLBH_KiemThuPhanMem.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\QLBH_KiemThuPhanMem.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

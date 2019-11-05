@@ -16,7 +16,9 @@ namespace QLBH_KiemThuPhanMem
 	public partial class Frm_SignIn : Form
 	{
 		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
-		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+        SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+        
 		public Frm_SignIn() 
 		{
 			InitializeComponent();
@@ -153,7 +155,6 @@ namespace QLBH_KiemThuPhanMem
 				if (x == 1)
 				//if(rd.Read() == true)
 				{
-					MessageBox.Show("Here1");
 					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
