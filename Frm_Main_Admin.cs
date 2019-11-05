@@ -20,5 +20,11 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
+
+		private void btnBill_Click(object sender, EventArgs e)
+		{
+			Frm_Bill bill = new Frm_Bill();
+			bill.Show();
+		}
 	}
 }

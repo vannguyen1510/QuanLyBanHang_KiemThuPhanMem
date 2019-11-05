@@ -168,8 +168,8 @@ namespace QLBH_KiemThuPhanMem
 					else
 					{
 						this.Hide();
-						Frm_List_Cus_Emp f = new Frm_List_Cus_Emp();
-						f.Show();
+						Frm_Main_Admin admin = new Frm_Main_Admin();
+						admin.Show();
 					}
 				}
 				else

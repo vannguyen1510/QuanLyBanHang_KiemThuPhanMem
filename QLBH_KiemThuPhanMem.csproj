@@ -103,6 +103,9 @@
     <EmbeddedResource Include="Frm_List_Cus_Emp.resx">
       <DependentUpon>Frm_List_Cus_Emp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Main_Admin.resx">
+      <DependentUpon>Frm_Main_Admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main_Customers.resx">
       <DependentUpon>Frm_Main_Customers.cs</DependentUpon>
     </EmbeddedResource>
