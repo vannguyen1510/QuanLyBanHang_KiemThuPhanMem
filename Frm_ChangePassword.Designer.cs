@@ -175,6 +175,7 @@
 			this.txtNpw.PasswordChar = '*';
 			this.txtNpw.Size = new System.Drawing.Size(242, 42);
 			this.txtNpw.TabIndex = 6;
+			this.txtNpw.TextChanged += new System.EventHandler(this.txtNpw_TextChanged);
 			// 
 			// txtEpw
 			// 
@@ -186,6 +187,7 @@
 			this.txtEpw.PasswordChar = '*';
 			this.txtEpw.Size = new System.Drawing.Size(242, 44);
 			this.txtEpw.TabIndex = 5;
+			this.txtEpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtEpw_Validating);
 			// 
 			// lbMatKhau
 			// 
@@ -361,6 +363,7 @@
 			this.Controls.Add(this.btnDoipw);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Frm_ChangePassword";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Change The Password";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panel1.ResumeLayout(false);

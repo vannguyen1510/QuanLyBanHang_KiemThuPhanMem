@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Frm_Bill.resx">
+      <DependentUpon>Frm_Bill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_ChangePassword.resx">
       <DependentUpon>Frm_ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +117,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -127,6 +131,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_123048.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_123048 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_123048 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-can_115312.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_add_256_icon-icons.com_75994.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_102332.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_102351.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart_120144.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8medical-report_102120.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

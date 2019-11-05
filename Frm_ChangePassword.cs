@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Globalization;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace QLBH_KiemThuPhanMem
 {
@@ -36,19 +37,21 @@ namespace QLBH_KiemThuPhanMem
 				sqlcon.Open();
 				string pass = txtEpw.Text;
 				string id = txtTenDangNhap.Text;
-				if (pass != null) // textbox không bỏ trống
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id AND Password=@pass";
+				SqlCommand cmd = new SqlCommand(sql, sqlcon);
+				cmd.Parameters.Add("@id", id);
+				cmd.Parameters.Add("@pass", pass);
+				int x = (int)cmd.ExecuteScalar();
+				// textbox không bỏ trống
+				if(ValidateChildren(ValidationConstraints.Enabled))
 				{
-					string sql = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_SignIn] Where ID_Sin=@id AND Pass_Sin=@pass";
-					SqlCommand cmd = new SqlCommand(sql, sqlcon);
-					cmd.Parameters.Add("@id", id);
-					cmd.Parameters.Add("@pass", pass);
-					int x = (int)cmd.ExecuteScalar();
 					if (x == 1)// đúng id và password cũ
 					{
 						txtNpw.ReadOnly = false;
 						txtCNpw.ReadOnly = false;
 						string Newpw = txtNpw.Text.Trim();
 						string Cfpw = txtCNpw.Text.Trim();
+						string pattern = @"^[ \s]+|[ \s]+$ ";
 						int countSo = 0;
 						int countHoa = 0;
 						int countThuong = 0;
@@ -60,7 +63,6 @@ namespace QLBH_KiemThuPhanMem
 							errorProvider1.SetError(txtNpw, "Password must be at least 6 character and no more than 8 !"); // [6,8]
 							txtNpw.Text = string.Empty;
 							txtCNpw.Text = string.Empty;
-							btnDoipw.Enabled = false; // vô hiệu hóa nút đổi Mật khẩu
 						}
 						else // chưa bắt được lỗi nhập Khoảng trắng đầu cuối
 						{
@@ -78,56 +80,62 @@ namespace QLBH_KiemThuPhanMem
 								{
 									countSo++;
 								}
-								//else
-								//{
-								//	countDB++;
-								//}
+								else
+								{
+									Regex checkWhitespace = new Regex(pattern);
+									if(checkWhitespace.IsMatch(Newpw))
+									{
+										errorProvider1.SetError(txtNpw,"Your password can't start or end with a blank space");
+										txtNpw.Text = string.Empty;
+									}
+									if (checkWhitespace.IsMatch(Cfpw))
+									{
+										errorProvider1.SetError(txtCNpw, "Your password can't start or end with a blank space");
+										txtCNpw.Text = string.Empty;
+									}
+									countDB++;
+								}
 								i++;
 							}
 							if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1)
 							{
-								btnDoipw.Enabled = true;
-							}
-							if (txtCNpw.Text != "" && txtNpw.Text != "")
-							{
-								if (String.Compare(Newpw, Cfpw, false) == 0)
+								if (txtCNpw.Text != "" && txtNpw.Text != "")
 								{
-									btnDoipw.Enabled = true;
-									string sqlUpdatePW = "UPDATE [QLBH].[dbo].[Info_SignIn] SET Pass_Sin='" + txtCNpw.Text + "' WHERE ID_Sin='" + txtTenDangNhap.Text + "'";
-									SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
-									SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
-									DataTable dt = new DataTable();
-									dap.Fill(dt);
-									cmdUpDatePW.ExecuteNonQuery();
-									MessageBox.Show("Your password has been changed successfully !");
-									sqlcon.Close();
+									// So sánh PW mới với xác nhận PW
+									if (String.Compare(Newpw, Cfpw, false) == 0)
+									{
+										btnDoipw.Enabled = false;
+										string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] SET Password='" + txtCNpw.Text + "' WHERE Phone_Cus='" + txtTenDangNhap.Text + "'";
+										SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
+										SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
+										DataTable dt = new DataTable();
+										dap.Fill(dt);
+										cmdUpDatePW.ExecuteNonQuery();
+										MessageBox.Show("Your password has been changed successfully !");
+										sqlcon.Close();
+									}
+									else
+									{
+										errorProvider1.SetError(txtCNpw, "You need to confirm excactly!");
+										Cfpw = string.Empty;
+									}
 								}
 								else
 								{
-									errorProvider1.SetError(txtCNpw, "You need to confirm excactly!");
-									Cfpw = string.Empty;
+									errorProvider1.SetError(txtCNpw, "Please enter new password and confirm password!");
 								}
 							}
-							else
-							{
-								errorProvider1.SetError(txtCNpw, "Please enter new password and confirm password!");
-							}
+							
 						}
-						// So sánh PW mới với xác nhận PW
 					}
 					else // nếu sai password
 					{
-						txtNpw.ReadOnly = true;
-						txtCNpw.ReadOnly = true;
 						MessageBox.Show("You have entered the WRONG PASSWORD !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 				}
 				else
 				{
-					if (txtEpw.Text == "")
-					{
-						errorProvider1.SetError(txtEpw, " Enter the password !");
-					}
+					errorProvider1.SetError(txtEpw, " Enter the password !");
 				}
 			}
 			catch (Exception)
@@ -162,11 +170,19 @@ namespace QLBH_KiemThuPhanMem
 		// btn ĐÓNG
 		private void btnDong_Click(object sender, EventArgs e)
 		{
-			DialogResult = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-			if (DialogResult == DialogResult.OK)
+			DialogResult = MessageBox.Show(" Do you want to Sign In?", "Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (DialogResult == DialogResult.No)
 			{
 				this.Close();
 			}
+			else
+			{
+				this.Hide();
+				Frm_SignIn sin = new Frm_SignIn();
+				sin.Show();
+			}
+				
+				
 		}
 
 		// BẮT SỰ KIỆN PHÍM
@@ -209,6 +225,26 @@ namespace QLBH_KiemThuPhanMem
 				txtCNpw.UseSystemPasswordChar = true;
 			else
 				txtCNpw.UseSystemPasswordChar = false;
+		}
+
+		private void txtEpw_Validating(object sender, CancelEventArgs e)
+		{
+			if(string.IsNullOrEmpty(txtEpw.Text))
+			{
+				e.Cancel = true;
+				txtEpw.Focus();
+				errorProvider1.SetError(txtEpw, " Enter the password !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(txtEpw,null);
+			}
+		}
+
+		private void txtNpw_TextChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

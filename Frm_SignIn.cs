@@ -15,13 +15,14 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
-		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
-		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-		public Frm_SignIn()
+		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		public Frm_SignIn() 
 		{
 			InitializeComponent();
-			//string connectionString = ConfigurationManager.ConnectionStrings["Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True"].ConnectionString;
 		}
+
+
 		//-------------------------------------------------------------------------------------------------------------
 		// kiểm tra form ForgotPassword và ChangePassword đã mở hay chưa 
 		private bool CheckExistFrm_ForgotPassword (string name)
@@ -138,22 +139,25 @@ namespace QLBH_KiemThuPhanMem
 		{
 			try
 			{
-				
+				sqlcon.Open();
 				string user = txtTenDangNhap.Text;
 				string pass = txtMatKhau.Text;
 				// Dò tìm SĐT khách hàng và ID nhân viên
-				string sql = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone AND Password=@pass) OR (ID_Emp=@id AND Password=@pass)";
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone AND Password=@pass) OR (ID_Emp=@id AND Password=@pass)";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				cmd.Parameters.Add(new SqlParameter("@phone", user));
 				cmd.Parameters.Add(new SqlParameter("@id", user));
 				cmd.Parameters.Add(new SqlParameter("@pass", pass));
+				//SqlDataReader rd = cmd.ExecuteReader();
 				int x = (int)cmd.ExecuteScalar();
 				if (x == 1)
+				//if(rd.Read() == true)
 				{
-					string sql_Permision = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
+					MessageBox.Show("Here1");
+					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
-					cmd_Permision.Parameters.AddWithValue("@per","Guess");
+					cmd_Permision.Parameters.AddWithValue("@per", "Guess");
 					int y = (int)cmd_Permision.ExecuteScalar();
 					if (y == 1)
 					{
@@ -197,14 +201,15 @@ namespace QLBH_KiemThuPhanMem
 				string id = txtTenDangNhap.Text.ToUpper().Trim();
 				if (id != null) // Textbox không bỏ trống
 				{
-					string sql = "Select Count(*) From [QLBH].[dbo].[Info_SignIn] Where ID_Sin=@id ";
+					string sql = "Select Count(*) From [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id ";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
 					cmd.Parameters.Add(new SqlParameter("@id", id));
 					int x = (int)cmd.ExecuteScalar();
 					if (x == 1) // đúng id thì mới mở form đổi mật khẩu
 					{
-							Frm_ChangePassword change = new Frm_ChangePassword(txtTenDangNhap.Text);
-							change.Show();
+						this.Hide();
+						Frm_ChangePassword change = new Frm_ChangePassword(txtTenDangNhap.Text);
+						change.Show();
 					}
 					else
 					{
@@ -213,10 +218,7 @@ namespace QLBH_KiemThuPhanMem
 				}
 				else
 				{
-					if (txtTenDangNhap.Text == "")
-					{
-						errorProvider1.SetError(txtTenDangNhap, "Bạn chưa nhập ID !");
-					}
+					errorProvider1.SetError(txtTenDangNhap, "Bạn chưa nhập ID !");
 				}
 			}
 			catch (Exception)
@@ -260,7 +262,7 @@ namespace QLBH_KiemThuPhanMem
 						try
 						{
 							// vào SQL kiểm tra SĐT 
-							string sql = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
+							string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
 							SqlCommand cmd = new SqlCommand(sql, sqlcon);
 							cmd.Parameters.Add(new SqlParameter("@sdt", P));
 							int x = (int)cmd.ExecuteScalar();
@@ -320,7 +322,7 @@ namespace QLBH_KiemThuPhanMem
 												// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
 													if (pw != "" && cpw != "" && String.Compare(cpw, pw, false) == 0)
 													{
-														string id_pw = "INSERT INTO [QLBH].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
+														string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
 																		+ " VALUES (@sdt,@pass,@per)";
 														SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
 														cmd_id_pw.Parameters.AddWithValue("@sdt", P);
@@ -390,7 +392,6 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnDangKy_Click(object sender, EventArgs e)
 		{
-			sqlcon.Open();
 			DangKy();
 		}
 

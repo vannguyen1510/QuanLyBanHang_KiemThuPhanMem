@@ -17,7 +17,7 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_ForgotPassword : Form
 	{
-		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		public Frm_ForgotPassword()
 		{
@@ -32,9 +32,9 @@ namespace QLBH_KiemThuPhanMem
 				string id = txtUser.Text;
 				if (id != null) // Textbox không bỏ trống
 				{
-					string sql = "Select Count(*) From [QLNV].[dbo].[QLNV_Login] Where ID=@id ";
+					string sql = "Select Count(*) From [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id ";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
-					cmd.Parameters.Add(new SqlParameter("@id", id));
+					cmd.Parameters.Add(new SqlParameter("@Phone_Cus", id));
 					int x = (int)cmd.ExecuteScalar();
 					if (x == 1) // đúng id
 					{
@@ -84,7 +84,7 @@ namespace QLBH_KiemThuPhanMem
 						if (String.Compare(Newpw, Cfpw, false) == 0)
 						{
 							btnDoipw.Enabled = true;
-							string sqlUpdatePW = "UPDATE [QLNV].[dbo].[QLNV_Login] SET Password='" + txtCNpw.Text + "' WHERE ID='" + txtUser.Text + "'";
+							string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] SET Password='" + txtCNpw.Text + "' WHERE Phone_Cus='" + txtUser.Text + "'";
 							SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
 							SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
 							DataTable dt = new DataTable();
