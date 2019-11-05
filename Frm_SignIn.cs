@@ -155,6 +155,7 @@ namespace QLBH_KiemThuPhanMem
 				if (x == 1)
 				//if(rd.Read() == true)
 				{
+                    //MessageBox.Show("here 1");
 					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
