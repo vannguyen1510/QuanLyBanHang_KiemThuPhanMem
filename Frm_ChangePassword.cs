@@ -32,25 +32,25 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Change
 		public void Change()
 		{
-			try
+			// textbox không bỏ trống
+			if (ValidateChildren(ValidationConstraints.Enabled))
 			{
-				sqlcon.Open();
-				string pass = txtEpw.Text;
-				string id = txtTenDangNhap.Text;
-				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id AND Password=@pass";
-				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				cmd.Parameters.Add("@id", id);
-				cmd.Parameters.Add("@pass", pass);
-				int x = (int)cmd.ExecuteScalar();
-				// textbox không bỏ trống
-				if(ValidateChildren(ValidationConstraints.Enabled))
+				try
 				{
+					sqlcon.Open();
+					string pass = txtEpw.Text;
+					string id = txtTenDangNhap.Text;
+					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id AND Password=@pass";
+					SqlCommand cmd = new SqlCommand(sql, sqlcon);
+					cmd.Parameters.Add("@id", id);
+					cmd.Parameters.Add("@pass", pass);
+					int x = (int)cmd.ExecuteScalar();
 					if (x == 1)// đúng id và password cũ
 					{
 						txtNpw.ReadOnly = false;
 						txtCNpw.ReadOnly = false;
-						string Newpw = txtNpw.Text.Trim();
-						string Cfpw = txtCNpw.Text.Trim();
+						string Newpw = txtNpw.Text;
+						string Cfpw = txtCNpw.Text;
 						string pattern = @"^[ \s]+|[ \s]+$ ";
 						int countSo = 0;
 						int countHoa = 0;
@@ -64,7 +64,7 @@ namespace QLBH_KiemThuPhanMem
 							txtNpw.Text = string.Empty;
 							txtCNpw.Text = string.Empty;
 						}
-						else // chưa bắt được lỗi nhập Khoảng trắng đầu cuối
+						else 
 						{
 							while (i < Newpw.Length)
 							{
@@ -83,9 +83,9 @@ namespace QLBH_KiemThuPhanMem
 								else
 								{
 									Regex checkWhitespace = new Regex(pattern);
-									if(checkWhitespace.IsMatch(Newpw))
+									if (checkWhitespace.IsMatch(Newpw))
 									{
-										errorProvider1.SetError(txtNpw,"Your password can't start or end with a blank space");
+										errorProvider1.SetError(txtNpw, "Your password can't start or end with a blank space");
 										txtNpw.Text = string.Empty;
 									}
 									if (checkWhitespace.IsMatch(Cfpw))
@@ -125,7 +125,10 @@ namespace QLBH_KiemThuPhanMem
 									errorProvider1.SetError(txtCNpw, "Please enter new password and confirm password!");
 								}
 							}
-							
+							else
+							{
+								errorProvider1.SetError(txtNpw, "Please read the password setting instructions!");
+							}
 						}
 					}
 					else // nếu sai password
@@ -133,18 +136,18 @@ namespace QLBH_KiemThuPhanMem
 						MessageBox.Show("You have entered the WRONG PASSWORD !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 				}
-				else
+				catch (Exception)
 				{
-					errorProvider1.SetError(txtEpw, " Enter the password !");
+					MessageBox.Show("Error Connection!", "Please Try Again");
+				}
+				finally
+				{
+					sqlcon.Close();
 				}
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Error Connection!", "Please Try Again");
-			}
-			finally
-			{
-				sqlcon.Close();
+				errorProvider1.SetError(txtEpw, " Enter the password !");
 			}
 		}
 		// btn Change
@@ -181,8 +184,6 @@ namespace QLBH_KiemThuPhanMem
 				Frm_SignIn sin = new Frm_SignIn();
 				sin.Show();
 			}
-				
-				
 		}
 
 		// BẮT SỰ KIỆN PHÍM

@@ -227,6 +227,7 @@ namespace QLBH_KiemThuPhanMem
 				errorProvider2.SetError(txtTen_KH, "Do not accept blank field !");
 			}
 		}
+
 		private void txtMa_KH_TextChanged(object sender, EventArgs e)
 		{
 			errorProvider2.SetError(txtMa_KH, "");
@@ -598,7 +599,7 @@ namespace QLBH_KiemThuPhanMem
 				try
 				{
 					OpenConnect();
-					string sql = "UPDATE [QLBH].[dbo].[Info_Emp]"
+					string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
 								+ "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birthday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
 								+ "WHERE ID_Emp='" + txtMa.Text + "'";
 					SqlCommand cmdSua = new SqlCommand(sql, sqlcon);

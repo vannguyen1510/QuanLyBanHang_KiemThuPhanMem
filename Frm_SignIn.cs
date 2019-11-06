@@ -23,16 +23,14 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
-
-
 		//-------------------------------------------------------------------------------------------------------------
 		// kiểm tra form ForgotPassword và ChangePassword đã mở hay chưa 
-		private bool CheckExistFrm_ForgotPassword (string name)
+		private bool CheckExistFrm_ForgotPassword(string name)
 		{
 			bool check = false;
-			foreach(Form Frm_ForgotPassword in this.MdiChildren)
+			foreach (Form Frm_ForgotPassword in this.MdiChildren)
 			{
-				if(Frm_ForgotPassword.Name == name)
+				if (Frm_ForgotPassword.Name == name)
 				{
 					check = true;
 					break;
@@ -155,7 +153,7 @@ namespace QLBH_KiemThuPhanMem
 				if (x == 1)
 				//if(rd.Read() == true)
 				{
-                    //MessageBox.Show("here 1");
+                    MessageBox.Show("here 1");
 					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
@@ -240,7 +238,8 @@ namespace QLBH_KiemThuPhanMem
 		// QUÊN MẬT KHẨU - FORGOT PASSWORD
 		private void btnForgotPW_Click(object sender, EventArgs e)
 		{
-			Frm_ForgotPassword forgot = new Frm_ForgotPassword();
+			this.Hide();
+			Frm_ForgotPassword forgot = new Frm_ForgotPassword(txtTenDangNhap.Text);
 			forgot.Show();
 		}
 

@@ -33,6 +33,8 @@
 			this.btnSignUp = new System.Windows.Forms.Button();
 			this.btnLogIn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.lbTenDangNhap = new System.Windows.Forms.Label();
 			this.btnDoipw = new System.Windows.Forms.Button();
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -42,11 +44,9 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-			this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnSignUp
@@ -60,6 +60,7 @@
 			this.btnSignUp.TabIndex = 28;
 			this.btnSignUp.Text = "Sign Up";
 			this.btnSignUp.UseVisualStyleBackColor = true;
+			this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
 			// 
 			// btnLogIn
 			// 
@@ -77,6 +78,8 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.GhostWhite;
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.lbTenDangNhap);
 			this.panel1.Controls.Add(this.btnDoipw);
 			this.panel1.Controls.Add(this.checkBox3);
 			this.panel1.Controls.Add(this.checkBox2);
@@ -87,6 +90,26 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(670, 228);
 			this.panel1.TabIndex = 25;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(3, 128);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(187, 25);
+			this.label1.TabIndex = 31;
+			this.label1.Text = "Confirm Password : ";
+			// 
+			// lbTenDangNhap
+			// 
+			this.lbTenDangNhap.AutoSize = true;
+			this.lbTenDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbTenDangNhap.Location = new System.Drawing.Point(27, 82);
+			this.lbTenDangNhap.Name = "lbTenDangNhap";
+			this.lbTenDangNhap.Size = new System.Drawing.Size(158, 25);
+			this.lbTenDangNhap.TabIndex = 30;
+			this.lbTenDangNhap.Text = "New Password : ";
 			// 
 			// btnDoipw
 			// 
@@ -100,6 +123,7 @@
 			this.btnDoipw.TabIndex = 5;
 			this.btnDoipw.Text = "HELP ME";
 			this.btnDoipw.UseVisualStyleBackColor = false;
+			this.btnDoipw.Click += new System.EventHandler(this.btnDoipw_Click);
 			// 
 			// checkBox3
 			// 
@@ -111,6 +135,7 @@
 			this.checkBox3.TabIndex = 22;
 			this.checkBox3.Text = "Hide / Show";
 			this.checkBox3.UseVisualStyleBackColor = true;
+			this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
 			// 
 			// checkBox2
 			// 
@@ -122,6 +147,7 @@
 			this.checkBox2.TabIndex = 21;
 			this.checkBox2.Text = "Hide / Show ";
 			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// txtCNpw
 			// 
@@ -131,9 +157,10 @@
 			this.txtCNpw.Location = new System.Drawing.Point(191, 114);
 			this.txtCNpw.Multiline = true;
 			this.txtCNpw.Name = "txtCNpw";
+			this.txtCNpw.PasswordChar = '*';
 			this.txtCNpw.Size = new System.Drawing.Size(295, 40);
 			this.txtCNpw.TabIndex = 4;
-			this.txtCNpw.Text = "Confirm New Password";
+			this.txtCNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNpw_Validating);
 			// 
 			// txtNpw
 			// 
@@ -143,9 +170,10 @@
 			this.txtNpw.Location = new System.Drawing.Point(191, 66);
 			this.txtNpw.Multiline = true;
 			this.txtNpw.Name = "txtNpw";
+			this.txtNpw.PasswordChar = '*';
 			this.txtNpw.Size = new System.Drawing.Size(295, 42);
 			this.txtNpw.TabIndex = 3;
-			this.txtNpw.Text = "New Password";
+			this.txtNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtNpw_Validating);
 			// 
 			// txtUser
 			// 
@@ -159,6 +187,9 @@
 			this.txtUser.Size = new System.Drawing.Size(295, 44);
 			this.txtUser.TabIndex = 2;
 			this.txtUser.Text = "User";
+			this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+			this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
+			this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
 			// 
 			// label2
 			// 
@@ -185,10 +216,6 @@
 			// 
 			this.errorProvider1.ContainerControl = this;
 			// 
-			// errorProvider2
-			// 
-			this.errorProvider2.ContainerControl = this;
-			// 
 			// Frm_ForgotPassword
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -200,12 +227,13 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.pictureBox1);
 			this.Name = "Frm_ForgotPassword";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Frm_ForgotPassword";
+			this.TopMost = true;
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -225,6 +253,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
-		private System.Windows.Forms.ErrorProvider errorProvider2;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lbTenDangNhap;
 	}
 }
