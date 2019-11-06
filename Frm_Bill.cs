@@ -15,7 +15,8 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_Bill : Form
 	{
-        SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		public Frm_Bill()
 		{
 			InitializeComponent();
@@ -52,7 +53,7 @@ namespace QLBH_KiemThuPhanMem
 		// Checkbox Bill No
 		private void cbRandomBillNo_CheckedChanged(object sender, EventArgs e)
 		{
-			RandomString(6);
+			RandomString(5);
 		}
 
         // Function - Load Employee ID
