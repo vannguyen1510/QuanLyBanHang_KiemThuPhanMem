@@ -81,7 +81,6 @@
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.btnThoat = new System.Windows.Forms.Button();
-			this.btnXem = new System.Windows.Forms.Button();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
 			this.tabControl_Emp.SuspendLayout();
 			this.tabPage_Emp.SuspendLayout();
@@ -692,20 +691,6 @@
 			this.btnThoat.UseVisualStyleBackColor = false;
 			this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
 			// 
-			// btnXem
-			// 
-			this.btnXem.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnXem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnXem.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnXem.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnXem.Location = new System.Drawing.Point(849, 670);
-			this.btnXem.Name = "btnXem";
-			this.btnXem.Size = new System.Drawing.Size(230, 42);
-			this.btnXem.TabIndex = 60;
-			this.btnXem.Text = "VIEW SHOP";
-			this.btnXem.UseVisualStyleBackColor = false;
-			this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
-			// 
 			// imageList2
 			// 
 			this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
@@ -717,7 +702,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1362, 724);
-			this.Controls.Add(this.btnXem);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.tabControl_Emp);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -788,7 +772,6 @@
 		private System.Windows.Forms.Button btnTaiLai;
 		private System.Windows.Forms.Button btnTaiLai_KH;
 		private System.Windows.Forms.ErrorProvider errorProvider2;
-		private System.Windows.Forms.Button btnXem;
 		private System.Windows.Forms.Button btnThoat;
 		private System.Windows.Forms.ImageList imageList2;
 	}

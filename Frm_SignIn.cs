@@ -148,12 +148,11 @@ namespace QLBH_KiemThuPhanMem
 				cmd.Parameters.Add(new SqlParameter("@phone", user));
 				cmd.Parameters.Add(new SqlParameter("@id", user));
 				cmd.Parameters.Add(new SqlParameter("@pass", pass));
-				//SqlDataReader rd = cmd.ExecuteReader();
+				MessageBox.Show("here 1");
 				int x = (int)cmd.ExecuteScalar();
 				if (x == 1)
-				//if(rd.Read() == true)
 				{
-                    MessageBox.Show("here 1");
+                   
 					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
