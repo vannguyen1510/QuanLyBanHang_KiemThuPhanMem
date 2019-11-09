@@ -198,20 +198,18 @@
 			// txtMatKhau
 			// 
 			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMatKhau.Location = new System.Drawing.Point(255, 196);
-			this.txtMatKhau.Multiline = true;
+			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
 			this.txtMatKhau.Name = "txtMatKhau";
 			this.txtMatKhau.PasswordChar = '*';
-			this.txtMatKhau.Size = new System.Drawing.Size(242, 40);
+			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
 			this.txtMatKhau.TabIndex = 13;
 			// 
 			// txtTenDangNhap
 			// 
 			this.txtTenDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTenDangNhap.Location = new System.Drawing.Point(255, 155);
-			this.txtTenDangNhap.Multiline = true;
+			this.txtTenDangNhap.Location = new System.Drawing.Point(255, 165);
 			this.txtTenDangNhap.Name = "txtTenDangNhap";
-			this.txtTenDangNhap.Size = new System.Drawing.Size(242, 35);
+			this.txtTenDangNhap.Size = new System.Drawing.Size(242, 28);
 			this.txtTenDangNhap.TabIndex = 12;
 			// 
 			// lbMatKhau
@@ -228,7 +226,7 @@
 			// 
 			this.lbTenDangNhap.AutoSize = true;
 			this.lbTenDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbTenDangNhap.Location = new System.Drawing.Point(130, 165);
+			this.lbTenDangNhap.Location = new System.Drawing.Point(155, 168);
 			this.lbTenDangNhap.Name = "lbTenDangNhap";
 			this.lbTenDangNhap.Size = new System.Drawing.Size(85, 25);
 			this.lbTenDangNhap.TabIndex = 11;

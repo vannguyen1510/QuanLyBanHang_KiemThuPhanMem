@@ -143,16 +143,15 @@ namespace QLBH_KiemThuPhanMem
 				string user = txtTenDangNhap.Text;
 				string pass = txtMatKhau.Text;
 				// Dò tìm SĐT khách hàng và ID nhân viên
-				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone AND Password=@pass) OR (ID_Emp=@id AND Password=@pass)";
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				cmd.Parameters.Add(new SqlParameter("@phone", user));
 				cmd.Parameters.Add(new SqlParameter("@id", user));
 				cmd.Parameters.Add(new SqlParameter("@pass", pass));
-				MessageBox.Show("here 1");
+				//MessageBox.Show("here 1");
 				int x = (int)cmd.ExecuteScalar();
 				if (x == 1)
 				{
-                   
 					string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
 					SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
 					cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
@@ -187,7 +186,6 @@ namespace QLBH_KiemThuPhanMem
 		}
 		private void btnDangNhap_Click(object sender, EventArgs e)
 		{
-			sqlcon.Open();
 			DangNhap();
 		}
 

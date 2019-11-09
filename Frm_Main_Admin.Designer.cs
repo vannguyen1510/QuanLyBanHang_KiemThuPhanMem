@@ -139,6 +139,7 @@
 			this.Controls.Add(this.lbQLNV);
 			this.Controls.Add(this.btnBill);
 			this.Name = "Frm_Main_Admin";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Adminstrator";
 			this.ResumeLayout(false);
 
