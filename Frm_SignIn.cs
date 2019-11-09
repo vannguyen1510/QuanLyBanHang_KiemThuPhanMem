@@ -132,6 +132,20 @@ namespace QLBH_KiemThuPhanMem
 			else
 				txtMatKhau.UseSystemPasswordChar = false;
 		}
+		private void checkBox2_CheckedChanged(object sender, EventArgs e)
+		{
+			if (checkBox2.Checked)
+				txtPw.UseSystemPasswordChar = true;
+			else
+				txtPw.UseSystemPasswordChar = false;
+		}
+		private void checkBox3_CheckedChanged(object sender, EventArgs e)
+		{
+			if (checkBox3.Checked)
+				txtCPw.UseSystemPasswordChar = true;
+			else
+				txtCPw.UseSystemPasswordChar = false;
+		}
 
 		//-----------------------------------------------------------------------------------------------
 		// ĐĂNG NHẬP - SIGN IN
@@ -244,6 +258,7 @@ namespace QLBH_KiemThuPhanMem
 		// ĐĂNG KÝ - SIGN UP
 		public void DangKy()
 		{
+			sqlcon.Open();
 			string F = txtFName.Text.Trim();
 			string L = txtLName.Text.Trim();
 			string P = txtPhone.Text.Trim();
@@ -264,6 +279,7 @@ namespace QLBH_KiemThuPhanMem
 							SqlCommand cmd = new SqlCommand(sql, sqlcon);
 							cmd.Parameters.Add(new SqlParameter("@sdt", P));
 							int x = (int)cmd.ExecuteScalar();
+							
 							if (x == 1) // nếu SĐT trùng thì báo lỗi 
 							{
 								errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
@@ -271,6 +287,7 @@ namespace QLBH_KiemThuPhanMem
 							}
 							else // nếu SĐT trùng thì kiểm tra tiếp MẬT KHẨU
 							{
+
 								if (pw != "")
 								{
 									if (cpw != "")
@@ -292,7 +309,7 @@ namespace QLBH_KiemThuPhanMem
 											// Chiều dài hợp lệ thì kiểm tra ký tự bên trong
 											else
 											{
-											
+												string pattern = @"^[ \s]+|[ \s]+$ ";
 												while (i < pw.Length)
 												{
 													if (pw[i] >= 'a' && pw[i] <= 'z')
@@ -309,15 +326,25 @@ namespace QLBH_KiemThuPhanMem
 													}
 													else
 													{
+														Regex checkWhitespace = new Regex(pattern);
+														if (checkWhitespace.IsMatch(pw))
+														{
+															errorProvider1.SetError(txtPw, "Your password can't start or end with a blank space");
+															txtPw.Text = string.Empty;
+														}
+														if (checkWhitespace.IsMatch(cpw))
+														{
+															errorProvider1.SetError(txtCPw, "Your password can't start or end with a blank space");
+															txtCPw.Text = string.Empty;
+														}
 														countDB++;
 													}
 													i++;
 												}
 												// Ít nhất: 1 chữ Hoa +1 chữ Thường + 1 Số + 1 Ký tự đặc biệt
-												if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1 && (pw.Length >= 6 || pw.Length <= 8))
+												if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1 && (pw.Length >= 6 && pw.Length <= 8))
 												{
-												
-												// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
+													// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
 													if (pw != "" && cpw != "" && String.Compare(cpw, pw, false) == 0)
 													{
 														string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
@@ -326,10 +353,12 @@ namespace QLBH_KiemThuPhanMem
 														cmd_id_pw.Parameters.AddWithValue("@sdt", P);
 														cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
 														cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
+
+														MessageBox.Show("here");
 														cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
 														MessageBox.Show(" WELCOME " + L + " " + P + " !");
 														tabPage_SignIn.Show();
-														txtTenDangNhap.Text = txtPhone.Text;
+														//txtTenDangNhap.Text = txtPhone.Text;
 													}
 													else
 													{
@@ -339,13 +368,13 @@ namespace QLBH_KiemThuPhanMem
 												}
 												else
 												{
-													errorProvider1.SetError(txtCPw, "Please enter the password and confirm password!");
+													errorProvider1.SetError(txtPw, "Please read the password setting instructions!");
 												}
 											}
 										}
 										catch (Exception)
 										{
-											MessageBox.Show("Error Connection Password!", "Please Try Again");
+											MessageBox.Show("Error Connection at Password!", "Please Try Again");
 										}
 										finally
 										{
@@ -365,7 +394,7 @@ namespace QLBH_KiemThuPhanMem
 						}
 						catch (Exception)
 						{
-							MessageBox.Show("Error Connection Phone!", "Try Again");
+							MessageBox.Show("Error Connection at Phone!", "Try Again");
 						}
 						finally
 						{

@@ -96,7 +96,7 @@
 			btnDangKy.Location = new System.Drawing.Point(292, 362);
 			btnDangKy.Name = "btnDangKy";
 			btnDangKy.Size = new System.Drawing.Size(138, 44);
-			btnDangKy.TabIndex = 36;
+			btnDangKy.TabIndex = 11;
 			btnDangKy.Text = "Sign Up";
 			btnDangKy.UseVisualStyleBackColor = false;
 			btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
@@ -270,7 +270,7 @@
 			this.txtAddress.Multiline = true;
 			this.txtAddress.Name = "txtAddress";
 			this.txtAddress.Size = new System.Drawing.Size(406, 35);
-			this.txtAddress.TabIndex = 35;
+			this.txtAddress.TabIndex = 10;
 			// 
 			// label8
 			// 
@@ -289,7 +289,7 @@
 			this.txtCPw.Multiline = true;
 			this.txtCPw.Name = "txtCPw";
 			this.txtCPw.Size = new System.Drawing.Size(244, 35);
-			this.txtCPw.TabIndex = 33;
+			this.txtCPw.TabIndex = 5;
 			// 
 			// txtPw
 			// 
@@ -298,7 +298,7 @@
 			this.txtPw.Multiline = true;
 			this.txtPw.Name = "txtPw";
 			this.txtPw.Size = new System.Drawing.Size(244, 35);
-			this.txtPw.TabIndex = 32;
+			this.txtPw.TabIndex = 3;
 			// 
 			// label6
 			// 
@@ -317,7 +317,7 @@
 			this.rdbNu.Location = new System.Drawing.Point(374, 264);
 			this.rdbNu.Name = "rdbNu";
 			this.rdbNu.Size = new System.Drawing.Size(95, 28);
-			this.rdbNu.TabIndex = 29;
+			this.rdbNu.TabIndex = 9;
 			this.rdbNu.Text = "Female";
 			this.rdbNu.UseVisualStyleBackColor = true;
 			// 
@@ -329,7 +329,7 @@
 			this.rdbNam.Location = new System.Drawing.Point(271, 264);
 			this.rdbNam.Name = "rdbNam";
 			this.rdbNam.Size = new System.Drawing.Size(72, 28);
-			this.rdbNam.TabIndex = 30;
+			this.rdbNam.TabIndex = 8;
 			this.rdbNam.TabStop = true;
 			this.rdbNam.Text = "Male";
 			this.rdbNam.UseVisualStyleBackColor = true;
@@ -343,7 +343,7 @@
 			this.dateTimePicker1.Location = new System.Drawing.Point(271, 230);
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(244, 28);
-			this.dateTimePicker1.TabIndex = 28;
+			this.dateTimePicker1.TabIndex = 7;
 			// 
 			// label7
 			// 
@@ -362,7 +362,7 @@
 			this.txtLName.Multiline = true;
 			this.txtLName.Name = "txtLName";
 			this.txtLName.Size = new System.Drawing.Size(243, 35);
-			this.txtLName.TabIndex = 26;
+			this.txtLName.TabIndex = 1;
 			this.txtLName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLName_KeyPress);
 			// 
 			// label5
@@ -382,7 +382,7 @@
 			this.txtFName.Multiline = true;
 			this.txtFName.Name = "txtFName";
 			this.txtFName.Size = new System.Drawing.Size(243, 35);
-			this.txtFName.TabIndex = 24;
+			this.txtFName.TabIndex = 0;
 			this.txtFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFName_KeyPress);
 			// 
 			// label4
@@ -402,9 +402,10 @@
 			this.checkBox3.Location = new System.Drawing.Point(521, 205);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(110, 22);
-			this.checkBox3.TabIndex = 22;
+			this.checkBox3.TabIndex = 6;
 			this.checkBox3.Text = "Hide / Show";
 			this.checkBox3.UseVisualStyleBackColor = true;
+			this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
 			// 
 			// label3
 			// 
@@ -423,9 +424,10 @@
 			this.checkBox2.Location = new System.Drawing.Point(521, 158);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(110, 22);
-			this.checkBox2.TabIndex = 19;
+			this.checkBox2.TabIndex = 4;
 			this.checkBox2.Text = "Hide / Show";
 			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// txtPhone
 			// 
@@ -434,7 +436,7 @@
 			this.txtPhone.Multiline = true;
 			this.txtPhone.Name = "txtPhone";
 			this.txtPhone.Size = new System.Drawing.Size(243, 35);
-			this.txtPhone.TabIndex = 17;
+			this.txtPhone.TabIndex = 2;
 			this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
 			// 
 			// label1
