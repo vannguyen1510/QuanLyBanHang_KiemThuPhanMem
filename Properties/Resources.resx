@@ -133,16 +133,19 @@
   <data name="trash-can_115312" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trash-can_115312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_123048 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\_123048 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="8medical-report_102120" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\8medical-report_102120.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="note_102351" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note_102351.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_123048 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\_123048 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_123048" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\_123048.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="8medical-report_102120" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\8medical-report_102120.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sign-error-icon_34362" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sign-error-icon_34362.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

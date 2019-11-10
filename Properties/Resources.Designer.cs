@@ -143,6 +143,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sign_error_icon_34362 {
+            get {
+                object obj = ResourceManager.GetObject("sign-error-icon_34362", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap trash_can_115312 {
             get {
                 object obj = ResourceManager.GetObject("trash-can_115312", resourceCulture);

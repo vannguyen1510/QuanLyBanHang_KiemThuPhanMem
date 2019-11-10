@@ -30,7 +30,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
-			
+			Load_combobCus_ID();
 			Load_combobEmp_ID();
 		}
 
@@ -62,7 +62,6 @@ namespace QLBH_KiemThuPhanMem
 		public void Load_combobEmp_ID()
 		{
 			combobEmp_ID.Items.Clear();
-			sqlcon.Open();
 			string sql = "SELECT ID_Emp FROM Info_Emp";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			cmd.ExecuteNonQuery();
@@ -74,30 +73,21 @@ namespace QLBH_KiemThuPhanMem
 				combobEmp_ID.Items.Add(dr["ID_Emp"].ToString());
 			}
 		}
-
-		// Function - Kiểm tra Employee
+		// Kiểm tra Employee
 		private void combobEmp_ID_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			try
 			{
-				for(int i =0; i<= combobEmp_ID.Items.Count - 1; i++)
+			string sql = "SELECT FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'COLLATE SQL_Latin1_General_CP1_CS_AS"; 
+				SqlCommand cmd = new SqlCommand(sql, sqlcon);
+				cmd.ExecuteNonQuery();
+				SqlDataReader dr = cmd.ExecuteReader();
+				while (dr.Read())
 				{
-					if(combobEmp_ID.Text.Equals(combobEmp_ID.GetItemText(combobEmp_ID.Items[i].ToString())))
-					{
-						sqlcon.Close();
-						sqlcon.Open();
-						string sql = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS";
-						SqlCommand cmd = new SqlCommand(sql, sqlcon);
-						cmd.ExecuteNonQuery();
-						SqlDataReader dr = cmd.ExecuteReader();
-						while (dr.Read())
-						{
-							string name = (string)dr["FirstName_Emp"].ToString();
-							txtEmp_Name.Text = name;
-						}
-						sqlcon.Close();
-					}
+					string name = (string)dr["FirstName_Emp"].ToString();
+					txtEmp_Name.Text = name;
 				}
+				sqlcon.Close();
 			}
 			catch (Exception ex)
 			{
@@ -105,41 +95,6 @@ namespace QLBH_KiemThuPhanMem
 			}
 			
 		}
-
-		private void combobEmp_ID_Leave(object sender, EventArgs e)
-		{
-			if (ValidateChildren(ValidationConstraints.Enabled))
-			{
-				//string empID = combobEmp_ID.Text;
-				//sqlcon.Open();
-				//string sql = "SELECT ID_Emp FROM Info_Emp WHERE ID_Emp = @id  COLLATE SQL_Latin1_General_CP1_CS_AS";
-				//SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				//cmd.Parameters.Add(new SqlParameter ("@id",empID));
-				//int x = (int)cmd.ExecuteScalar();
-				//if (x == 1)
-				//{
-				//	string sql_c = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '"+empID+"'  COLLATE SQL_Latin1_General_CP1_CS_AS";
-				//	SqlCommand cmd_c = new SqlCommand(sql, sqlcon);
-				//	cmd_c.ExecuteNonQuery();
-				//	SqlDataReader dr = cmd_c.ExecuteReader();
-				//	while (dr.Read())
-				//	{
-				//		string name = (string)dr["FirstName_Emp"].ToString();
-				//		txtEmp_Name.Text = name;
-				//	}
-				//}
-				//else
-				//{
-				//	errorProvider1.SetError(combobEmp_ID, " This employee ID does not exist in Database !");
-				//}
-			}
-			else
-			{
-				sqlcon.Close();
-				errorProvider1.SetError(combobEmp_ID, " Do not accept blank field !");
-			}
-		}
-
 		private void combobEmp_ID_Validating(object sender, CancelEventArgs e)
 		{
 			if (string.IsNullOrEmpty(combobEmp_ID.Text))
@@ -152,6 +107,70 @@ namespace QLBH_KiemThuPhanMem
 			{
 				e.Cancel = false;
 				errorProvider1.SetError(combobEmp_ID, null);
+			}
+		}
+
+		// Function - Load Customer ID
+		public void Load_combobCus_ID()
+		{
+			combobCus_ID.Items.Clear();
+			sqlcon.Open();
+			string sql = "SELECT ID_Cus FROM Info_Cus";
+			SqlCommand cmd = new SqlCommand(sql, sqlcon);
+			cmd.ExecuteNonQuery();
+			SqlDataAdapter data = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			data.Fill(dt);
+			foreach (DataRow dr in dt.Rows)
+			{
+				combobCus_ID.Items.Add(dr["ID_Cus"].ToString());
+			}
+		}
+		// Kiểm tra Customer
+		private void combobCus_ID_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			//try
+			//{
+			sqlcon.Open();
+			for (int i = 0; i <= combobCus_ID.Items.Count - 1; i++)
+				{
+					if (combobCus_ID.Text.Equals(combobCus_ID.GetItemText(combobCus_ID.Items[i].ToString())))
+					{
+					
+					string sql = "SELECT FirstName_Cus, Address_Cus, Phone_Cus FROM Info_Cus WHERE ID_Cus = " + combobCus_ID.Text ;
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.ExecuteNonQuery();
+						SqlDataReader dr = cmd.ExecuteReader();
+						while (dr.Read())
+						{
+							string name = (string)dr["FirstName_Cus"].ToString();
+							string address = (string)dr["Address_Cus"].ToString();
+							string phone = (string)dr["Phone_Cus"].ToString();
+							txtCus_Name.Text = name;
+							txtCus_Address.Text = address;
+							txtCus_Phone.Text = phone;
+						}
+					}
+				}
+			sqlcon.Close();
+			//}
+			//catch (Exception ex)
+			//{
+				//MessageBox.Show("Error Connection. Please try again !", "ERROR");
+			//}
+		}
+		private void combobCus_ID_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(combobCus_ID.Text))
+			{
+				e.Cancel = true;
+				combobCus_ID.Focus();
+				errorProvider1.SetError(combobCus_ID, " Do not accept blank field !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(combobCus_ID, null);
 			}
 		}
 	}
