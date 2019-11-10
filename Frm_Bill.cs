@@ -17,6 +17,8 @@ namespace QLBH_KiemThuPhanMem
 	{
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		private const String allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		private readonly char[] allCharArray = (allChar + allChar.ToUpper() + "0123456789").ToCharArray();
 		public Frm_Bill()
 		{
 			InitializeComponent();
@@ -29,31 +31,25 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Random Bill No
 		private string RandomString(int count)
 		{
-			string allChar = "0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
-			string[] allCharArray = allChar.Split(',');
-			string billNo = txtBillNo.Text;
-			int temp = -1;
+			StringBuilder result = new StringBuilder();
 			Random rd = new Random();
-			for(int i = 0; i < count; i++)
+			for(int i = 0; i< count; i++)
 			{
-				if(temp != -1)
-				{
-					rd = new Random(i*temp*((int)DateTime.Now.Ticks));
-				}
-				int t = rd.Next(36);
-				if(temp != -1 && temp == t)
-				{
-					return RandomString(count);
-				}
-				temp = t;
-				billNo += allCharArray[t];
+				result.Append(allCharArray[rd.Next(allCharArray.Length)]);
 			}
-			return billNo;
+			return result.ToString();
 		}
 		// Checkbox Bill No
 		private void cbRandomBillNo_CheckedChanged(object sender, EventArgs e)
 		{
-			RandomString(5);
+			if(cbRandomBillNo.Checked == true)
+			{
+				txtBillNo.Text = RandomString(Convert.ToInt32(5));
+			}
+			else
+			{
+				txtBillNo.Text = string.Empty;
+			}
 		}
 
         // Function - Load Employee ID
