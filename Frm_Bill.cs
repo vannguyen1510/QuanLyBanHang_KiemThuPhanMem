@@ -58,30 +58,22 @@ namespace QLBH_KiemThuPhanMem
 			}
 		}
 
-        // Function - Load Employee ID
-        public void Load_combobEmp_ID()
-        {
+		// Function - Load Employee ID
+		public void Load_combobEmp_ID()
+		{
 			combobEmp_ID.Items.Clear();
 			sqlcon.Open();
 			string sql = "SELECT ID_Emp FROM Info_Emp";
-            SqlCommand cmd = new SqlCommand(sql,sqlcon);
+			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			cmd.ExecuteNonQuery();
-            SqlDataAdapter data = new SqlDataAdapter(cmd);
+			SqlDataAdapter data = new SqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
 			data.Fill(dt);
-			if(dt.Rows.Count > 0)
+			foreach (DataRow dr in dt.Rows)
 			{
-				foreach (DataRow dr in dt.Rows)
-				{
-					combobEmp_ID.Items.Add(dr["ID_Emp"].ToString());
-				}
+				combobEmp_ID.Items.Add(dr["ID_Emp"].ToString());
 			}
-			else
-			{
-				errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist in Database !");
-			}
-			
-        }
+		}
 
 		// Function - Kiểm tra Employee
 		private void combobEmp_ID_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +86,7 @@ namespace QLBH_KiemThuPhanMem
 					{
 						sqlcon.Close();
 						sqlcon.Open();
-						string sql = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'";
+						string sql = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS";
 						SqlCommand cmd = new SqlCommand(sql, sqlcon);
 						cmd.ExecuteNonQuery();
 						SqlDataReader dr = cmd.ExecuteReader();
@@ -105,12 +97,7 @@ namespace QLBH_KiemThuPhanMem
 						}
 						sqlcon.Close();
 					}
-					//else
-					//{
-					//	errorProvider1.SetError(combobEmp_ID,"Employee ID does not exist in Database !");
-					//}
 				}
-				
 			}
 			catch (Exception ex)
 			{
@@ -121,9 +108,50 @@ namespace QLBH_KiemThuPhanMem
 
 		private void combobEmp_ID_Leave(object sender, EventArgs e)
 		{
-			if(combobEmp_ID.Text == "")
+			if (ValidateChildren(ValidationConstraints.Enabled))
 			{
+				//string empID = combobEmp_ID.Text;
+				//sqlcon.Open();
+				//string sql = "SELECT ID_Emp FROM Info_Emp WHERE ID_Emp = @id  COLLATE SQL_Latin1_General_CP1_CS_AS";
+				//SqlCommand cmd = new SqlCommand(sql, sqlcon);
+				//cmd.Parameters.Add(new SqlParameter ("@id",empID));
+				//int x = (int)cmd.ExecuteScalar();
+				//if (x == 1)
+				//{
+				//	string sql_c = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '"+empID+"'  COLLATE SQL_Latin1_General_CP1_CS_AS";
+				//	SqlCommand cmd_c = new SqlCommand(sql, sqlcon);
+				//	cmd_c.ExecuteNonQuery();
+				//	SqlDataReader dr = cmd_c.ExecuteReader();
+				//	while (dr.Read())
+				//	{
+				//		string name = (string)dr["FirstName_Emp"].ToString();
+				//		txtEmp_Name.Text = name;
+				//	}
+				//}
+				//else
+				//{
+				//	errorProvider1.SetError(combobEmp_ID, " This employee ID does not exist in Database !");
+				//}
+			}
+			else
+			{
+				sqlcon.Close();
 				errorProvider1.SetError(combobEmp_ID, " Do not accept blank field !");
+			}
+		}
+
+		private void combobEmp_ID_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(combobEmp_ID.Text))
+			{
+				e.Cancel = true;
+				combobEmp_ID.Focus();
+				errorProvider1.SetError(combobEmp_ID, " Do not accept blank field !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(combobEmp_ID, null);
 			}
 		}
 	}

@@ -200,6 +200,7 @@
 			this.combobEmp_ID.TabIndex = 10;
 			this.combobEmp_ID.SelectedIndexChanged += new System.EventHandler(this.combobEmp_ID_SelectedIndexChanged);
 			this.combobEmp_ID.Leave += new System.EventHandler(this.combobEmp_ID_Leave);
+			this.combobEmp_ID.Validating += new System.ComponentModel.CancelEventHandler(this.combobEmp_ID_Validating);
 			// 
 			// txtBillNo
 			// 
