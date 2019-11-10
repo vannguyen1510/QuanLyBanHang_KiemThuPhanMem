@@ -396,6 +396,8 @@
 			this.txtPro_SoLuong.Name = "txtPro_SoLuong";
 			this.txtPro_SoLuong.Size = new System.Drawing.Size(140, 30);
 			this.txtPro_SoLuong.TabIndex = 48;
+			this.txtPro_SoLuong.TextChanged += new System.EventHandler(this.txtPro_SoLuong_TextChanged);
+			this.txtPro_SoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPro_SoLuong_KeyPress);
 			// 
 			// label12
 			// 
@@ -427,6 +429,7 @@
 			this.combobPro_No.Name = "combobPro_No";
 			this.combobPro_No.Size = new System.Drawing.Size(309, 31);
 			this.combobPro_No.TabIndex = 48;
+			this.combobPro_No.SelectedIndexChanged += new System.EventHandler(this.combobPro_No_SelectedIndexChanged);
 			// 
 			// txtTamTinh
 			// 
@@ -530,8 +533,8 @@
 			this.txtDiscount.Name = "txtDiscount";
 			this.txtDiscount.Size = new System.Drawing.Size(297, 30);
 			this.txtDiscount.TabIndex = 57;
-			this.txtDiscount.Text = "0";
 			this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
 			// 
 			// label10
 			// 

@@ -30,6 +30,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
+			Load_combobPro_No();
 			Load_combobShipper();
 			Load_combobCus_ID();
 			Load_combobEmp_ID();
@@ -80,7 +81,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			try
 			{
-			string sql = "SELECT FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'COLLATE SQL_Latin1_General_CP1_CS_AS"; 
+				string sql = "SELECT FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'COLLATE SQL_Latin1_General_CP1_CS_AS"; 
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				cmd.ExecuteNonQuery();
 				SqlDataReader dr = cmd.ExecuteReader();
@@ -154,7 +155,7 @@ namespace QLBH_KiemThuPhanMem
 						}
 					}
 				}
-				sqlcon.Close();
+				//sqlcon.Close();
 			}
 			catch (Exception ex)
 			{
@@ -180,7 +181,7 @@ namespace QLBH_KiemThuPhanMem
 		public void Load_combobShipper()
 		{
 			combobShipper.Items.Clear();
-			sqlcon.Open();
+			//sqlcon.Open();
 			string sql = "SELECT Company FROM Shippers";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			cmd.ExecuteNonQuery();
@@ -192,13 +193,13 @@ namespace QLBH_KiemThuPhanMem
 				combobShipper.Items.Add(dr["Company"].ToString());
 			}
 		}
-
 		// Kiểm tra Shipper
 		private void combobShipper_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			//sqlcon.Open();
 			try
 			{
-				sqlcon.Open();
+				
 				for (int i = 0; i <= combobShipper.Items.Count - 1; i++)
 				{
 					if (combobShipper.Text.Equals(combobShipper.GetItemText(combobShipper.Items[i].ToString())))
@@ -221,6 +222,104 @@ namespace QLBH_KiemThuPhanMem
 			{
 				MessageBox.Show("Error Connection. Please try again !", "ERROR");
 			}
+		}
+
+		// Function - Load Products
+		public void Load_combobPro_No()
+		{
+			combobPro_No.Items.Clear();
+			sqlcon.Open();
+			string sql = "SELECT ProductID FROM Products";
+			SqlCommand cmd = new SqlCommand(sql, sqlcon);
+			cmd.ExecuteNonQuery();
+			SqlDataAdapter data = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			data.Fill(dt);
+			foreach (DataRow dr in dt.Rows)
+			{
+				combobPro_No.Items.Add(dr["ProductID"].ToString());
+			}
+		}
+		// Kiểm tra Product
+		private void combobPro_No_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			//sqlcon.Open();
+			//try
+			//{
+				for (int i = 0; i <= combobPro_No.Items.Count - 1; i++)
+				{
+					if (combobPro_No.Text.Equals(combobPro_No.GetItemText(combobPro_No.Items[i].ToString())))
+					{
+
+						string sql = "SELECT ProductName, UnitPrice FROM Products WHERE ProductID = " + combobPro_No.Text;
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.ExecuteNonQuery();
+						SqlDataReader dr = cmd.ExecuteReader();
+						while (dr.Read())
+						{
+							string proName = (string)dr["ProductName"].ToString();
+							string proUnitPrice = (string)dr["UnitPrice"].ToString();
+							txtPro_Name.Text = proName;
+							txtPro_UnitPrice.Text = proUnitPrice;
+						}
+					}
+				}
+				sqlcon.Close();
+			//}
+			//catch (Exception ex)
+			//{
+				//MessageBox.Show("Error Connection. Please try again !", "ERROR");
+			//}
+		}
+
+		private void txtPro_SoLuong_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+				|| (e.KeyChar == (char)8)) // backspace
+			{
+				txtPro_SoLuong.ShortcutsEnabled = false;
+				e.Handled = false;
+			}
+			else
+			{
+				errorProvider1.SetError(txtPro_SoLuong, "Accept only numbers!");
+				e.Handled = true;
+			}
+		}
+
+		private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+				|| (e.KeyChar == (char)8)) // backspace
+			{
+				txtDiscount.ShortcutsEnabled = false;
+				e.Handled = false;
+			}
+			else
+			{
+				errorProvider1.SetError(txtDiscount, "Accept only numbers!");
+				e.Handled = true;
+			}
+		}
+
+		// Thay đổi số lượng thì tính lại tiền
+		private void txtPro_SoLuong_TextChanged(object sender, EventArgs e)
+		{
+			double total, quantity, price, dis;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
+			if (txtDiscount.Text == "")
+				dis = 0;
+			else
+				dis = Convert.ToDouble(txtDiscount.Text);
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
+			else
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			total = quantity * price - quantity * price * dis / 100;
+			txtTamTinh.Text = total.ToString();
 		}
 	}
 }
