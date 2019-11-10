@@ -189,6 +189,8 @@
 			// 
 			// combobEmp_ID
 			// 
+			this.combobEmp_ID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.combobEmp_ID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.combobEmp_ID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobEmp_ID.FormattingEnabled = true;
 			this.combobEmp_ID.Location = new System.Drawing.Point(199, 142);
@@ -196,6 +198,7 @@
 			this.combobEmp_ID.Name = "combobEmp_ID";
 			this.combobEmp_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobEmp_ID.TabIndex = 10;
+			this.combobEmp_ID.SelectedIndexChanged += new System.EventHandler(this.combobEmp_ID_SelectedIndexChanged);
 			// 
 			// txtBillNo
 			// 
@@ -657,7 +660,6 @@
 			this.Name = "Frm_Bill";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice";
-			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Frm_Bill_Load);
 			this.gb_PerInfo.ResumeLayout(false);
 			this.gb_PerInfo.PerformLayout();
