@@ -199,6 +199,7 @@
 			this.combobEmp_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobEmp_ID.TabIndex = 10;
 			this.combobEmp_ID.SelectedIndexChanged += new System.EventHandler(this.combobEmp_ID_SelectedIndexChanged);
+			this.combobEmp_ID.Leave += new System.EventHandler(this.combobEmp_ID_Leave);
 			// 
 			// txtBillNo
 			// 

@@ -33,6 +33,7 @@ namespace QLBH_KiemThuPhanMem
 			
 			Load_combobEmp_ID();
 		}
+
 		// Function - Random Bill No
 		private string RandomString(int count)
 		{
@@ -66,78 +67,64 @@ namespace QLBH_KiemThuPhanMem
             SqlCommand cmd = new SqlCommand(sql,sqlcon);
 			cmd.ExecuteNonQuery();
             SqlDataAdapter data = new SqlDataAdapter(cmd);
-			//DataSet set = new DataSet();
-			//data.Fill(set,"Info_Emp");
-			//combobEmp_ID.DataSource = set.Tables[0];
-			//combobEmp_ID.DisplayMember = "ID_Emp";
-			//combobEmp_ID.ValueMember = "FirstName_Emp";
 			DataTable dt = new DataTable();
 			data.Fill(dt);
-			foreach(DataRow dr in dt.Rows)
+			if(dt.Rows.Count > 0)
 			{
-				combobEmp_ID.Items.Add(dr["ID_Emp"].ToString());
+				foreach (DataRow dr in dt.Rows)
+				{
+					combobEmp_ID.Items.Add(dr["ID_Emp"].ToString());
+				}
 			}
-        }
-
-        // Function - Kiểm tra Employee
-        //public void Check_Emp()
-        //{
-            
-        //    else 
-        //    {
-        //        sqlcon.Open();
-        //        string Emp_Name = txtEmp_Name.Text;
-        //        string sql_Check_Emp = "SELECT COUNT (*) FROM Info_Emp WHERE FirstName=@fn";
-        //        SqlCommand cmd_Check_Emp = new SqlCommand(sql_Check_Emp,sqlcon);
-        //        cmd_Check_Emp.Parameters.Add(new SqlParameter("@fn", Emp_Name));
-        //        int x = (int)cmd_Check_Emp.ExecuteScalar();
-        //        if (x == 1)
-        //        { 
-                    
-        //        }
-        //    }
-        //}
-
-		private void combobEmp_ID_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			// kiểm tra Emp_ID có trống hay không 
-			// nếu có: thì báo lỗi - fail
-			if (combobEmp_ID.SelectedIndex == -1)
-			{
-				errorProvider1.SetError(combobEmp_ID, "Do not accept blank fields !");
-			}
-			// nếu không: thì kiểm tra tồn tại trong SQL hay không
 			else
 			{
-				sqlcon.Close();
-				sqlcon.Open();
-				string sql = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'";
-				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				cmd.ExecuteNonQuery();
-				SqlDataReader dr = cmd.ExecuteReader();
-				// nếu tồn tại: thì hiển thị tên lên Emp_Name
-				if(dr.Read())
+				errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist in Database !");
+			}
+			
+        }
+
+		// Function - Kiểm tra Employee
+		private void combobEmp_ID_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				for(int i =0; i<= combobEmp_ID.Items.Count - 1; i++)
 				{
-					if(dr.HasRows)
+					if(combobEmp_ID.Text.Equals(combobEmp_ID.GetItemText(combobEmp_ID.Items[i].ToString())))
 					{
-						string name = (string)dr["FirstName_Emp"].ToString();
-						txtEmp_Name.Text = name;
+						sqlcon.Close();
+						sqlcon.Open();
+						string sql = "SELECT ID_Emp, FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'";
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.ExecuteNonQuery();
+						SqlDataReader dr = cmd.ExecuteReader();
+						while (dr.Read())
+						{
+							string name = (string)dr["FirstName_Emp"].ToString();
+							txtEmp_Name.Text = name;
+						}
+						sqlcon.Close();
 					}
-					
-					else
-					{
-						errorProvider1.SetError(combobEmp_ID, "Do not accept blank fields !");
-					}
+					//else
+					//{
+					//	errorProvider1.SetError(combobEmp_ID,"Employee ID does not exist in Database !");
+					//}
 				}
 				
-				// nếu không tồn tại: thì báo lỗi
-				
 			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Connection. Please try again !", "ERROR");
+			}
+			
 		}
 
-
-
-		
-		
+		private void combobEmp_ID_Leave(object sender, EventArgs e)
+		{
+			if(combobEmp_ID.Text == "")
+			{
+				errorProvider1.SetError(combobEmp_ID, " Do not accept blank field !");
+			}
+		}
 	}
 }
