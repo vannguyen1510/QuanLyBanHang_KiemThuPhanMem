@@ -50,6 +50,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.lbQLNV = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnSua = new System.Windows.Forms.Button();
 			this.btnXoa = new System.Windows.Forms.Button();
 			this.btnThem = new System.Windows.Forms.Button();
@@ -68,7 +69,7 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.txtDiscount = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.combobShipper = new System.Windows.Forms.ComboBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.btnOut = new System.Windows.Forms.Button();
@@ -79,11 +80,10 @@
 			this.btnAdd_Bill = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gb_PerInfo
@@ -335,6 +335,15 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Product Information";
 			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Location = new System.Drawing.Point(961, 20);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(165, 148);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 54;
+			this.pictureBox1.TabStop = false;
+			// 
 			// btnSua
 			// 
 			this.btnSua.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -534,15 +543,16 @@
 			this.label10.TabIndex = 58;
 			this.label10.Text = "Discount %";
 			// 
-			// comboBox1
+			// combobShipper
 			// 
-			this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(214, 562);
-			this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(297, 31);
-			this.comboBox1.TabIndex = 55;
+			this.combobShipper.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.combobShipper.FormattingEnabled = true;
+			this.combobShipper.Location = new System.Drawing.Point(214, 562);
+			this.combobShipper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.combobShipper.Name = "combobShipper";
+			this.combobShipper.Size = new System.Drawing.Size(297, 31);
+			this.combobShipper.TabIndex = 55;
+			this.combobShipper.SelectedIndexChanged += new System.EventHandler(this.combobShipper_SelectedIndexChanged);
 			// 
 			// label15
 			// 
@@ -682,14 +692,6 @@
 			this.txtTotalInWord.TabIndex = 62;
 			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Location = new System.Drawing.Point(973, 20);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(153, 148);
-			this.pictureBox1.TabIndex = 54;
-			this.pictureBox1.TabStop = false;
-			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -699,7 +701,7 @@
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.btnOut);
 			this.Controls.Add(this.btnReport);
-			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.combobShipper);
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.txtDiscount);
 			this.Controls.Add(this.label10);
@@ -723,8 +725,8 @@
 			this.gb_PerInfo.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -774,7 +776,7 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox txtDiscount;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox combobShipper;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.ErrorProvider errorProvider1;

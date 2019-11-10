@@ -188,5 +188,8 @@
   <ItemGroup>
     <None Include="Resources\8medical-report_102120.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign-error-icon_34362.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

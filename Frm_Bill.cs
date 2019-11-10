@@ -30,8 +30,10 @@ namespace QLBH_KiemThuPhanMem
 
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
+			Load_combobShipper();
 			Load_combobCus_ID();
 			Load_combobEmp_ID();
+			
 		}
 
 		// Function - Random Bill No
@@ -114,7 +116,7 @@ namespace QLBH_KiemThuPhanMem
 		public void Load_combobCus_ID()
 		{
 			combobCus_ID.Items.Clear();
-			sqlcon.Open();
+			//sqlcon.Open();
 			string sql = "SELECT ID_Cus FROM Info_Cus";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			cmd.ExecuteNonQuery();
@@ -129,15 +131,15 @@ namespace QLBH_KiemThuPhanMem
 		// Kiểm tra Customer
 		private void combobCus_ID_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//try
-			//{
-			sqlcon.Open();
-			for (int i = 0; i <= combobCus_ID.Items.Count - 1; i++)
+			try
+			{
+				sqlcon.Open();
+				for (int i = 0; i <= combobCus_ID.Items.Count - 1; i++)
 				{
 					if (combobCus_ID.Text.Equals(combobCus_ID.GetItemText(combobCus_ID.Items[i].ToString())))
 					{
-					
-					string sql = "SELECT FirstName_Cus, Address_Cus, Phone_Cus FROM Info_Cus WHERE ID_Cus = " + combobCus_ID.Text ;
+
+						string sql = "SELECT FirstName_Cus, Address_Cus, Phone_Cus FROM Info_Cus WHERE ID_Cus = " + combobCus_ID.Text;
 						SqlCommand cmd = new SqlCommand(sql, sqlcon);
 						cmd.ExecuteNonQuery();
 						SqlDataReader dr = cmd.ExecuteReader();
@@ -152,12 +154,12 @@ namespace QLBH_KiemThuPhanMem
 						}
 					}
 				}
-			sqlcon.Close();
-			//}
-			//catch (Exception ex)
-			//{
-				//MessageBox.Show("Error Connection. Please try again !", "ERROR");
-			//}
+				sqlcon.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Connection. Please try again !", "ERROR");
+			}
 		}
 		private void combobCus_ID_Validating(object sender, CancelEventArgs e)
 		{
@@ -171,6 +173,53 @@ namespace QLBH_KiemThuPhanMem
 			{
 				e.Cancel = false;
 				errorProvider1.SetError(combobCus_ID, null);
+			}
+		}
+
+		// Function - Load Shipper
+		public void Load_combobShipper()
+		{
+			combobShipper.Items.Clear();
+			sqlcon.Open();
+			string sql = "SELECT Company FROM Shippers";
+			SqlCommand cmd = new SqlCommand(sql, sqlcon);
+			cmd.ExecuteNonQuery();
+			SqlDataAdapter data = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			data.Fill(dt);
+			foreach (DataRow dr in dt.Rows)
+			{
+				combobShipper.Items.Add(dr["Company"].ToString());
+			}
+		}
+
+		// Kiểm tra Shipper
+		private void combobShipper_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				sqlcon.Open();
+				for (int i = 0; i <= combobShipper.Items.Count - 1; i++)
+				{
+					if (combobShipper.Text.Equals(combobShipper.GetItemText(combobShipper.Items[i].ToString())))
+					{
+
+						string sql = "SELECT Company FROM Shippers WHERE Company = " + combobShipper.Text;
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.ExecuteNonQuery();
+						SqlDataReader dr = cmd.ExecuteReader();
+						while (dr.Read())
+						{
+							string shipper = (string)dr["Company"].ToString();
+							combobShipper.Text = shipper;
+						}
+					}
+				}
+				sqlcon.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Connection. Please try again !", "ERROR");
 			}
 		}
 	}
