@@ -36,7 +36,36 @@ namespace QLBH_KiemThuPhanMem
 			Load_combobEmp_ID();
 			
 		}
-
+		// Chỉ được nhập số
+		private void txtPro_SoLuong_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+				|| (e.KeyChar == (char)8)) // backspace
+			{
+				txtPro_SoLuong.ShortcutsEnabled = false;
+				e.Handled = false;
+			}
+			else
+			{
+				errorProvider1.SetError(txtPro_SoLuong, "Accept only numbers!");
+				e.Handled = true;
+			}
+		}
+		private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+				|| (e.KeyChar == (char)8)) // backspace
+			{
+				txtDiscount.ShortcutsEnabled = false;
+				e.Handled = false;
+			}
+			else
+			{
+				errorProvider1.SetError(txtDiscount, "Accept only numbers!");
+				e.Handled = true;
+			}
+		}
+		//---------------------------------------------------------------------------------
 		// Function - Random Bill No
 		private string RandomString(int count)
 		{
@@ -60,7 +89,7 @@ namespace QLBH_KiemThuPhanMem
 				txtBillNo.Text = string.Empty;
 			}
 		}
-
+		//---------------------------------------------------------------------------------
 		// Function - Load Employee ID
 		public void Load_combobEmp_ID()
 		{
@@ -112,7 +141,7 @@ namespace QLBH_KiemThuPhanMem
 				errorProvider1.SetError(combobEmp_ID, null);
 			}
 		}
-
+		//------------------------------------------------------------------------------------
 		// Function - Load Customer ID
 		public void Load_combobCus_ID()
 		{
@@ -159,7 +188,7 @@ namespace QLBH_KiemThuPhanMem
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Error Connection. Please try again !", "ERROR");
+				MessageBox.Show("Error Connection cus. Please try again !", "ERROR");
 			}
 		}
 		private void combobCus_ID_Validating(object sender, CancelEventArgs e)
@@ -271,36 +300,7 @@ namespace QLBH_KiemThuPhanMem
 				//MessageBox.Show("Error Connection. Please try again !", "ERROR");
 			//}
 		}
-
-		private void txtPro_SoLuong_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
-				|| (e.KeyChar == (char)8)) // backspace
-			{
-				txtPro_SoLuong.ShortcutsEnabled = false;
-				e.Handled = false;
-			}
-			else
-			{
-				errorProvider1.SetError(txtPro_SoLuong, "Accept only numbers!");
-				e.Handled = true;
-			}
-		}
-
-		private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
-				|| (e.KeyChar == (char)8)) // backspace
-			{
-				txtDiscount.ShortcutsEnabled = false;
-				e.Handled = false;
-			}
-			else
-			{
-				errorProvider1.SetError(txtDiscount, "Accept only numbers!");
-				e.Handled = true;
-			}
-		}
+		
 
 		// Thay đổi số lượng thì tính lại tiền
 		private void txtPro_SoLuong_TextChanged(object sender, EventArgs e)
