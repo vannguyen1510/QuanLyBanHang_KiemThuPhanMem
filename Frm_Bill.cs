@@ -321,5 +321,24 @@ namespace QLBH_KiemThuPhanMem
 			total = quantity * price - quantity * price * dis / 100;
 			txtTamTinh.Text = total.ToString();
 		}
+		// Thay đổi disount thì tính lại tiền
+		private void txtDiscount_TextChanged(object sender, EventArgs e)
+		{
+			double total, quantity, price, dis;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
+			if (txtDiscount.Text == "")
+				dis = 0;
+			else
+				dis = Convert.ToDouble(txtDiscount.Text);
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
+			else
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			total = quantity * price - quantity * price * dis / 100;
+			txtTamTinh.Text = total.ToString();
+		}
 	}
 }

@@ -534,6 +534,7 @@
 			this.txtDiscount.Size = new System.Drawing.Size(297, 30);
 			this.txtDiscount.TabIndex = 57;
 			this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
 			this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
 			// 
 			// label10
