@@ -30,6 +30,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
+			Collumn_Load();
 			Load_combobPro_No();
 			Load_combobShipper();
 			Load_combobCus_ID();
@@ -65,6 +66,43 @@ namespace QLBH_KiemThuPhanMem
 				e.Handled = true;
 			}
 		}
+
+		// Load cột Listview
+		public void Collumn_Load()
+		{
+			listView1.View = View.Details;
+			listView1.Columns.Add("Number", 60, HorizontalAlignment.Center);
+			listView1.Columns.Add("Product ID", 115, HorizontalAlignment.Center);
+			listView1.Columns.Add("Product Name", 172, HorizontalAlignment.Center);
+			listView1.Columns.Add("Quantity", 70, HorizontalAlignment.Center);
+			listView1.Columns.Add("Unit Price", 120, HorizontalAlignment.Center);
+			listView1.Columns.Add("Sub total", 160, HorizontalAlignment.Center);
+			timer1.Enabled = true;
+			this.Opacity = 1;
+			//dataLoad();
+		}
+		//// TẢI DỮ LIỆU LÊN LISTVIEW
+		//private void dataLoad()
+		//{
+		//sqlcon.Open();
+		//	String sql = "Select * From [QLBH].[dbo].[Info_Emp] ";
+		//	SqlCommand cmd = new SqlCommand(sql, sqlcon);
+		//	SqlDataAdapter da = new SqlDataAdapter(cmd);
+		//	DataTable dt = new DataTable();
+		//	da.Fill(dt);
+		//	int i = 0;
+		//	foreach (DataRow dr in dt.Rows)
+		//	{
+		//		listView1.Items.Add(dr["ID_Emp"].ToString());
+		//		listView1.Items[i].SubItems.Add(dr["FirstName_Emp"].ToString());
+		//		listView1.Items[i].SubItems.Add(dr["LastName_Emp"].ToString());
+		//		listView1.Items[i].SubItems.Add(dr["Birthday_Emp"].ToString());
+		//		listView1.Items[i].SubItems.Add(dr["Sex_Emp"].ToString());
+		//		i++;
+		//	}
+		//	listView1.View = View.Details;
+		//}
+
 		//---------------------------------------------------------------------------------
 		// Function - Random Bill No
 		private string RandomString(int count)
@@ -83,9 +121,11 @@ namespace QLBH_KiemThuPhanMem
 			if (cbRandomBillNo.Checked == true)
 			{
 				txtBillNo.Text = RandomString(Convert.ToInt32(5));
+				txtBillNo.Enabled = false;
 			}
 			else
 			{
+				txtBillNo.Enabled = true;
 				txtBillNo.Text = string.Empty;
 			}
 		}
@@ -306,40 +346,28 @@ namespace QLBH_KiemThuPhanMem
 		// Thay đổi số lượng thì tính lại SUB TOTAL
 		private void txtPro_SoLuong_TextChanged(object sender, EventArgs e)
 		{
-			double total, quantity, price, dis;
+			double total, quantity, price;
 			if (txtPro_SoLuong.Text == "")
 				quantity = 0;
 			else
 				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
-			if (txtDiscount.Text == "")
-				dis = 0;
-			else
-				dis = Convert.ToDouble(txtDiscount.Text);
 			if (txtPro_UnitPrice.Text == "")
 				price = 0;
 			else
 				price = Convert.ToDouble(txtPro_UnitPrice.Text);
-			total = quantity * price - quantity * price * dis / 100;
+			total = quantity * price;
 			txtTamTinh.Text = total.ToString();
 		}
-		// Thay đổi disount thì tính lại tiền
+		// TOTAL COST
+		// Thay đổi disount thì tính lại TOTAL COST
 		private void txtDiscount_TextChanged(object sender, EventArgs e)
 		{
-			double total, quantity, price, dis;
-			if (txtPro_SoLuong.Text == "")
-				quantity = 0;
-			else
-				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
-			if (txtDiscount.Text == "")
-				dis = 0;
-			else
-				dis = Convert.ToDouble(txtDiscount.Text);
-			if (txtPro_UnitPrice.Text == "")
-				price = 0;
-			else
-				price = Convert.ToDouble(txtPro_UnitPrice.Text);
-			total = quantity * price - quantity * price * dis / 100;
-			txtTamTinh.Text = total.ToString();
+			
+		}
+
+		private void btnThem_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

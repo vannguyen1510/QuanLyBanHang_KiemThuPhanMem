@@ -80,6 +80,7 @@
 			this.btnAdd_Bill = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -387,6 +388,7 @@
 			this.btnThem.TabIndex = 51;
 			this.btnThem.Text = "ADD";
 			this.btnThem.UseVisualStyleBackColor = false;
+			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
 			// 
 			// txtPro_SoLuong
 			// 
@@ -789,5 +791,6 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.TextBox txtTotalInWord;
 		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Timer timer1;
 	}
 }

@@ -19,7 +19,6 @@ namespace QLBH_KiemThuPhanMem
 	{
 		string gender = string.Empty;
 		// ĐƯỜNG DẪN SQL
-		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 		public Frm_List_Cus_Emp()
@@ -113,7 +112,7 @@ namespace QLBH_KiemThuPhanMem
 		private void dataLoad()
 		{
 			OpenConnect();
-			String sql = "Select * From [QLBH].[dbo].[Info_Emp] ";
+			String sql = "Select * From [KTPM].[dbo].[Info_Emp] ";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			SqlDataAdapter da = new SqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
@@ -143,7 +142,7 @@ namespace QLBH_KiemThuPhanMem
 		private void dataLoad_KH()
 		{
 			OpenConnect();
-			String sql = "Select * From [QLBH].[dbo].[Info_Cus] ";
+			String sql = "Select * From [KTPM].[dbo].[Info_Cus] ";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
 			SqlDataAdapter da = new SqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
@@ -435,7 +434,7 @@ namespace QLBH_KiemThuPhanMem
 									gender = "Male";
 								else
 									gender = "Female";
-								string sql = "INSERT INTO [QLBH].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birthday_Emp,Sex_Emp)"
+								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birthday_Emp,Sex_Emp)"
 												+ "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
 								SqlCommand cmd = new SqlCommand(sql, sqlcon);
 								cmd.Parameters.AddWithValue("@ma", ma);
@@ -521,7 +520,7 @@ namespace QLBH_KiemThuPhanMem
 										gender = "Male";
 									else
 										gender = "Female";
-									string sql = "INSERT INTO [QLBH].[dbo].[Info_Cus] (ID_Cus,FirstName_Cus,LastName_Cus,Phone_Cus,Birthday_Cus,Sex_Cus)"
+									string sql = "INSERT INTO [KTPM].[dbo].[Info_Cus] (ID_Cus,FirstName_Cus,LastName_Cus,Phone_Cus,Birthday_Cus,Sex_Cus)"
 													+ "VALUES (@ma,@ho,@ten,@dt,@ngaysinh,@gt)";
 									SqlCommand cmd = new SqlCommand(sql, sqlcon);
 									cmd.Parameters.AddWithValue("@ma", ma);
@@ -644,10 +643,10 @@ namespace QLBH_KiemThuPhanMem
 			{
 				OpenConnect();
 				// Xóa trong SQL
-				string sql = "DELETE FROM [QLBH].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
+				string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				SqlDataReader myReader;
-				string sqlMa = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Emp] WHERE ID_Emp=@ma";
+				string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp=@ma";
 				SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
 				cmdMa.Parameters.Add(new SqlParameter("@ma", ma));
 				int x = (int)cmdMa.ExecuteScalar(); // kết quả trả về là 1 giá trị			
@@ -686,10 +685,10 @@ namespace QLBH_KiemThuPhanMem
 			{
 				OpenConnect();
 				// Xóa trong SQL
-				string sql = "DELETE FROM [QLBH].[dbo].[Info_Cus] WHERE ID_Cus= '" + ma + "';";
+				string sql = "DELETE FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus= '" + ma + "';";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				SqlDataReader myReader;
-				string sqlMa = "SELECT COUNT (*) FROM [QLBH].[dbo].[Info_Cus] WHERE ID_Cus=@ma";
+				string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus=@ma";
 				SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
 				cmdMa.Parameters.Add(new SqlParameter("@ma", ma));
 				int x = (int)cmdMa.ExecuteScalar(); // kết quả trả về là 1 giá trị			
