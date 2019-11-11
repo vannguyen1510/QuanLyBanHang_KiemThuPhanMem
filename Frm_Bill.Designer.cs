@@ -391,10 +391,10 @@
 			// txtPro_SoLuong
 			// 
 			this.txtPro_SoLuong.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtPro_SoLuong.Location = new System.Drawing.Point(148, 130);
+			this.txtPro_SoLuong.Location = new System.Drawing.Point(119, 127);
 			this.txtPro_SoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtPro_SoLuong.Name = "txtPro_SoLuong";
-			this.txtPro_SoLuong.Size = new System.Drawing.Size(140, 30);
+			this.txtPro_SoLuong.Size = new System.Drawing.Size(135, 30);
 			this.txtPro_SoLuong.TabIndex = 48;
 			this.txtPro_SoLuong.TextChanged += new System.EventHandler(this.txtPro_SoLuong_TextChanged);
 			this.txtPro_SoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPro_SoLuong_KeyPress);
@@ -403,7 +403,7 @@
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label12.Location = new System.Drawing.Point(39, 132);
+			this.label12.Location = new System.Drawing.Point(24, 132);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(85, 23);
 			this.label12.TabIndex = 50;
@@ -412,11 +412,11 @@
 			// txtPro_UnitPrice
 			// 
 			this.txtPro_UnitPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtPro_UnitPrice.Location = new System.Drawing.Point(148, 79);
+			this.txtPro_UnitPrice.Location = new System.Drawing.Point(119, 76);
 			this.txtPro_UnitPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtPro_UnitPrice.Name = "txtPro_UnitPrice";
 			this.txtPro_UnitPrice.ReadOnly = true;
-			this.txtPro_UnitPrice.Size = new System.Drawing.Size(309, 30);
+			this.txtPro_UnitPrice.Size = new System.Drawing.Size(324, 30);
 			this.txtPro_UnitPrice.TabIndex = 49;
 			this.txtPro_UnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
@@ -424,10 +424,10 @@
 			// 
 			this.combobPro_No.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobPro_No.FormattingEnabled = true;
-			this.combobPro_No.Location = new System.Drawing.Point(148, 34);
+			this.combobPro_No.Location = new System.Drawing.Point(119, 31);
 			this.combobPro_No.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.combobPro_No.Name = "combobPro_No";
-			this.combobPro_No.Size = new System.Drawing.Size(309, 31);
+			this.combobPro_No.Size = new System.Drawing.Size(324, 31);
 			this.combobPro_No.TabIndex = 48;
 			this.combobPro_No.SelectedIndexChanged += new System.EventHandler(this.combobPro_No_SelectedIndexChanged);
 			// 
@@ -477,7 +477,7 @@
 			// 
 			this.label14.AutoSize = true;
 			this.label14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(34, 88);
+			this.label14.Location = new System.Drawing.Point(19, 88);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(93, 23);
 			this.label14.TabIndex = 2;
@@ -487,7 +487,7 @@
 			// 
 			this.label16.AutoSize = true;
 			this.label16.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label16.Location = new System.Drawing.Point(21, 43);
+			this.label16.Location = new System.Drawing.Point(6, 43);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(107, 23);
 			this.label16.TabIndex = 0;
@@ -528,7 +528,7 @@
 			// txtDiscount
 			// 
 			this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtDiscount.Location = new System.Drawing.Point(214, 616);
+			this.txtDiscount.Location = new System.Drawing.Point(214, 612);
 			this.txtDiscount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtDiscount.Name = "txtDiscount";
 			this.txtDiscount.Size = new System.Drawing.Size(297, 30);
@@ -541,11 +541,11 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(78, 618);
+			this.label10.Location = new System.Drawing.Point(63, 610);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(115, 28);
+			this.label10.Size = new System.Drawing.Size(129, 28);
 			this.label10.TabIndex = 58;
-			this.label10.Text = "Discount %";
+			this.label10.Text = "Discount (%)";
 			// 
 			// combobShipper
 			// 
@@ -724,6 +724,7 @@
 			this.Name = "Frm_Bill";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.Frm_Bill_Load);
 			this.gb_PerInfo.ResumeLayout(false);
 			this.gb_PerInfo.PerformLayout();

@@ -16,7 +16,7 @@ namespace QLBH_KiemThuPhanMem
 	public partial class Frm_Bill : Form
 	{
 		// SQL CONNECTION
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 
 		// RANDOM BILL NO
@@ -34,7 +34,7 @@ namespace QLBH_KiemThuPhanMem
 			Load_combobShipper();
 			Load_combobCus_ID();
 			Load_combobEmp_ID();
-			
+
 		}
 		// Chỉ được nhập số
 		private void txtPro_SoLuong_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,7 +71,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			StringBuilder result = new StringBuilder();
 			Random rd = new Random();
-			for(int i = 0; i< count; i++)
+			for (int i = 0; i < count; i++)
 			{
 				result.Append(allCharArray[rd.Next(allCharArray.Length)]);
 			}
@@ -80,7 +80,7 @@ namespace QLBH_KiemThuPhanMem
 		// Checkbox Bill No
 		private void cbRandomBillNo_CheckedChanged(object sender, EventArgs e)
 		{
-			if(cbRandomBillNo.Checked == true)
+			if (cbRandomBillNo.Checked == true)
 			{
 				txtBillNo.Text = RandomString(Convert.ToInt32(5));
 			}
@@ -110,7 +110,9 @@ namespace QLBH_KiemThuPhanMem
 		{
 			try
 			{
-				string sql = "SELECT FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'COLLATE SQL_Latin1_General_CP1_CS_AS"; 
+				sqlcon.Close();
+				sqlcon.Open();
+				string sql = "SELECT FirstName_Emp FROM Info_Emp WHERE ID_Emp = '" + combobEmp_ID.Text + "'COLLATE SQL_Latin1_General_CP1_CS_AS";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				cmd.ExecuteNonQuery();
 				SqlDataReader dr = cmd.ExecuteReader();
@@ -119,13 +121,12 @@ namespace QLBH_KiemThuPhanMem
 					string name = (string)dr["FirstName_Emp"].ToString();
 					txtEmp_Name.Text = name;
 				}
-				sqlcon.Close();
+
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error Connection. Please try again !", "ERROR");
 			}
-			
 		}
 		private void combobEmp_ID_Validating(object sender, CancelEventArgs e)
 		{
@@ -163,6 +164,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			try
 			{
+				sqlcon.Close();
 				sqlcon.Open();
 				for (int i = 0; i <= combobCus_ID.Items.Count - 1; i++)
 				{
@@ -184,7 +186,6 @@ namespace QLBH_KiemThuPhanMem
 						}
 					}
 				}
-				//sqlcon.Close();
 			}
 			catch (Exception ex)
 			{
@@ -205,7 +206,7 @@ namespace QLBH_KiemThuPhanMem
 				errorProvider1.SetError(combobCus_ID, null);
 			}
 		}
-
+		//-----------------------------------------------------------------------------------
 		// Function - Load Shipper
 		public void Load_combobShipper()
 		{
@@ -225,16 +226,16 @@ namespace QLBH_KiemThuPhanMem
 		// Kiểm tra Shipper
 		private void combobShipper_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//sqlcon.Open();
 			try
 			{
-				
+				sqlcon.Close();
+				sqlcon.Open();
 				for (int i = 0; i <= combobShipper.Items.Count - 1; i++)
 				{
 					if (combobShipper.Text.Equals(combobShipper.GetItemText(combobShipper.Items[i].ToString())))
 					{
 
-						string sql = "SELECT Company FROM Shippers WHERE Company = " + combobShipper.Text;
+						string sql = "SELECT Company FROM Shippers WHERE Company = N'" + combobShipper.Text + "'";
 						SqlCommand cmd = new SqlCommand(sql, sqlcon);
 						cmd.ExecuteNonQuery();
 						SqlDataReader dr = cmd.ExecuteReader();
@@ -245,14 +246,14 @@ namespace QLBH_KiemThuPhanMem
 						}
 					}
 				}
-				sqlcon.Close();
+
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Error Connection. Please try again !", "ERROR");
+				MessageBox.Show("Error Connection shipper. Please try again !", "ERROR");
 			}
-		}
-
+		} 
+		//-----------------------------------------------------------------------------------
 		// Function - Load Products
 		public void Load_combobPro_No()
 		{
@@ -272,15 +273,15 @@ namespace QLBH_KiemThuPhanMem
 		// Kiểm tra Product
 		private void combobPro_No_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//sqlcon.Open();
-			//try
-			//{
+			try
+			{
+				sqlcon.Close();
+				sqlcon.Open();
 				for (int i = 0; i <= combobPro_No.Items.Count - 1; i++)
 				{
 					if (combobPro_No.Text.Equals(combobPro_No.GetItemText(combobPro_No.Items[i].ToString())))
 					{
-
-						string sql = "SELECT ProductName, UnitPrice FROM Products WHERE ProductID = " + combobPro_No.Text;
+						string sql = "SELECT ProductName, UnitPrice FROM Products WHERE ProductID = '" + combobPro_No.Text +"'";
 						SqlCommand cmd = new SqlCommand(sql, sqlcon);
 						cmd.ExecuteNonQuery();
 						SqlDataReader dr = cmd.ExecuteReader();
@@ -293,16 +294,16 @@ namespace QLBH_KiemThuPhanMem
 						}
 					}
 				}
-				sqlcon.Close();
-			//}
-			//catch (Exception ex)
-			//{
-				//MessageBox.Show("Error Connection. Please try again !", "ERROR");
-			//}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Connection product. Please try again !", "ERROR");
+			}
 		}
-		
+		//---------------------------------------------------------------------------------
 
-		// Thay đổi số lượng thì tính lại tiền
+		// SUB TOTAL
+		// Thay đổi số lượng thì tính lại SUB TOTAL
 		private void txtPro_SoLuong_TextChanged(object sender, EventArgs e)
 		{
 			double total, quantity, price, dis;
