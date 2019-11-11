@@ -66,6 +66,18 @@ namespace QLBH_KiemThuPhanMem
 				e.Handled = true;
 			}
 		}
+		// Kiểm tra textbox rỗng
+		public void ChechNullTextbox()
+		{
+			if (txtBillNo.Text == "")
+			{
+				errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+			}
+			if (txtPro_SoLuong.Text == "")
+			{
+				errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+			}
+		}
 
 		// Load cột Listview
 		public void Collumn_Load()
@@ -79,29 +91,8 @@ namespace QLBH_KiemThuPhanMem
 			listView1.Columns.Add("Sub total", 160, HorizontalAlignment.Center);
 			timer1.Enabled = true;
 			this.Opacity = 1;
-			//dataLoad();
 		}
-		//// TẢI DỮ LIỆU LÊN LISTVIEW
-		//private void dataLoad()
-		//{
-		//sqlcon.Open();
-		//	String sql = "Select * From [QLBH].[dbo].[Info_Emp] ";
-		//	SqlCommand cmd = new SqlCommand(sql, sqlcon);
-		//	SqlDataAdapter da = new SqlDataAdapter(cmd);
-		//	DataTable dt = new DataTable();
-		//	da.Fill(dt);
-		//	int i = 0;
-		//	foreach (DataRow dr in dt.Rows)
-		//	{
-		//		listView1.Items.Add(dr["ID_Emp"].ToString());
-		//		listView1.Items[i].SubItems.Add(dr["FirstName_Emp"].ToString());
-		//		listView1.Items[i].SubItems.Add(dr["LastName_Emp"].ToString());
-		//		listView1.Items[i].SubItems.Add(dr["Birthday_Emp"].ToString());
-		//		listView1.Items[i].SubItems.Add(dr["Sex_Emp"].ToString());
-		//		i++;
-		//	}
-		//	listView1.View = View.Details;
-		//}
+		
 
 		//---------------------------------------------------------------------------------
 		// Function - Random Bill No
@@ -292,7 +283,21 @@ namespace QLBH_KiemThuPhanMem
 			{
 				MessageBox.Show("Error Connection shipper. Please try again !", "ERROR");
 			}
-		} 
+		}
+		private void combobShipper_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(combobShipper.Text))
+			{
+				e.Cancel = true;
+				combobShipper.Focus();
+				errorProvider1.SetError(combobShipper, " Do not accept blank field !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(combobShipper, null);
+			}
+		}
 		//-----------------------------------------------------------------------------------
 		// Function - Load Products
 		public void Load_combobPro_No()
@@ -340,6 +345,21 @@ namespace QLBH_KiemThuPhanMem
 				MessageBox.Show("Error Connection product. Please try again !", "ERROR");
 			}
 		}
+		private void combobPro_No_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(combobPro_No.Text))
+			{
+				e.Cancel = true;
+				combobPro_No.Focus();
+				errorProvider1.SetError(combobPro_No, " Do not accept blank field !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(combobPro_No, null);
+			}
+		}
+
 		//---------------------------------------------------------------------------------
 
 		// SUB TOTAL
@@ -364,10 +384,97 @@ namespace QLBH_KiemThuPhanMem
 		{
 			
 		}
+		// Function - kiểm tra Personal info
+		public void CheckPersonal()
+		{
+			string BillNo = txtBillNo.Text.ToUpper().Trim();
+			string Emp_id = combobEmp_ID.Text.ToUpper().Trim();
+			// kiểm tra Mã hóa đơn rỗng
+			if(BillNo != "")
+			{
+				// kiểm tra tồn tại Mã nhân viên
+				sqlcon.Close();
+				sqlcon.Open();
+				string sql = "SELECT ID_Emp FROM Info_Emp WHERE ID_Emp = '@id' COLLATE SQL_Latin1_General_CP1_CS_AS";
+				SqlCommand cmd = new SqlCommand(sql, sqlcon);
+				cmd.Parameters.Add(new SqlParameter("@id",Emp_id));
+				int x = (int)cmd.ExecuteScalar();
+				if(x==1)
+				{
+					// kiểm tra tồn tại Mã khách hàng
+					sqlcon.Close();
+					sqlcon.Open();
+					string sql_c = "SELECT ID_Cus FROM Info_Cus WHERE ID_Cus = '" + combobCus_ID.Text.Trim() +"'";
+					SqlCommand cmd_c = new SqlCommand(sql_c, sqlcon);
+					cmd.Parameters.Add(combobCus_ID.Text.Trim());
+					int y = (int)cmd_c.ExecuteScalar();
+					if(y==1)
+					{
+						// kiểm tra tồn tại Mã shipper
+						sqlcon.Close();
+						sqlcon.Open();
+						string sql_s = "SELECT Company FROM Shippers WHERE Company = '" + combobShipper.Text.Trim() + "'";
+						SqlCommand cmd_s = new SqlCommand(sql_s, sqlcon);
+						cmd.Parameters.Add(combobShipper.Text.Trim());
+						int z = (int)cmd_s.ExecuteScalar();
+						if (z == 1)
+						{
 
+						}
+						else
+						{
+							combobShipper.Focus();
+							errorProvider1.SetError(combobShipper, "Shipper ID does not exist !");
+						}
+					}
+					else
+					{
+						combobCus_ID.Focus();
+						errorProvider1.SetError(combobCus_ID, "Customer ID does not exist !");
+					}
+				}
+				else
+				{
+					combobEmp_ID.Focus();
+					errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist !");
+				}
+			}
+			else
+			{
+				txtBillNo.Focus();
+				errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+			}
+		}
+
+		// Function - Add in to Listview
+		public void AddListview()
+		{
+			string proID = combobPro_No.Text;
+			string quantity = txtPro_SoLuong.Text.Trim();
+			if(combobPro_No.Text != "")
+			{
+				CheckPersonal();
+			}
+			else
+			{
+
+			}
+		}
+		// btn Thêm sản phẩm vào listview
 		private void btnThem_Click(object sender, EventArgs e)
 		{
+			sqlcon.Close();
+			sqlcon.Open();
 
+			AddListview();
+		}
+
+		// btn Out
+		private void btnOut_Click(object sender, EventArgs e)
+		{
+			Frm_Main_Admin admin = new Frm_Main_Admin();
+			admin.Show();
+			this.Hide();
 		}
 	}
 }

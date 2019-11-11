@@ -432,6 +432,7 @@
 			this.combobPro_No.Size = new System.Drawing.Size(324, 31);
 			this.combobPro_No.TabIndex = 48;
 			this.combobPro_No.SelectedIndexChanged += new System.EventHandler(this.combobPro_No_SelectedIndexChanged);
+			this.combobPro_No.Validating += new System.ComponentModel.CancelEventHandler(this.combobPro_No_Validating);
 			// 
 			// txtTamTinh
 			// 
@@ -559,6 +560,7 @@
 			this.combobShipper.Size = new System.Drawing.Size(297, 31);
 			this.combobShipper.TabIndex = 55;
 			this.combobShipper.SelectedIndexChanged += new System.EventHandler(this.combobShipper_SelectedIndexChanged);
+			this.combobShipper.Validating += new System.ComponentModel.CancelEventHandler(this.combobShipper_Validating);
 			// 
 			// label15
 			// 
@@ -590,6 +592,7 @@
 			this.btnOut.Text = "OUT";
 			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnOut.UseVisualStyleBackColor = false;
+			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
 			// 
 			// btnReport
 			// 
