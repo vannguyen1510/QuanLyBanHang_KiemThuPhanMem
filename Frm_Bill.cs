@@ -427,7 +427,7 @@ namespace QLBH_KiemThuPhanMem
 							string sql_c = "SELECT ID_Cus FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus = '@Cusid'";
 							SqlCommand cmd_c = new SqlCommand(sql_c, sqlcon);
 							cmd_c.Parameters.AddWithValue("@Cusid", Cus_id);
-							int y = Convert.ToChar(cmd_c.ExecuteScalar());
+							int y = (int)cmd_c.ExecuteScalar();
 							if (y == 1)
 							{
 								// kiểm tra tồn tại Mã shipper

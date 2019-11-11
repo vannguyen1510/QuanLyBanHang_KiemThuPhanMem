@@ -122,20 +122,12 @@ namespace QLBH_KiemThuPhanMem
 			foreach (DataRow dr in dt.Rows)
 			{
 				// Đã load dữ liệu lên thành công 
-				// Chưa xử lý được thêm icon giới tính khi load dữ liệu từ SQL lên listView
 				listView1.Items.Add(dr["ID_Emp"].ToString());
 				listView1.Items[i].SubItems.Add(dr["FirstName_Emp"].ToString());
 				listView1.Items[i].SubItems.Add(dr["LastName_Emp"].ToString());
-				listView1.Items[i].SubItems.Add(dr["Birthday_Emp"].ToString());
+				listView1.Items[i].SubItems.Add(dr["Birtday_Emp"].ToString());
 				listView1.Items[i].SubItems.Add(dr["Sex_Emp"].ToString());
 				i++;
-				//string gd = listView1.Items[i].SubItems[4].Text;
-				//if (gd.Trim() == "Nam")
-				//{
-				//	listView1.Items[i].ImageIndex = 0;
-				//}
-				//else
-				//	listView1.Items[i].ImageIndex = 1;
 			}
 			listView1.View = View.Details;
 		}
