@@ -923,13 +923,6 @@ namespace QLBH_KiemThuPhanMem
 		private void btnThoat_Click(object sender, EventArgs e)
 		{
 			this.Hide();
-			Frm_SignIn In = new Frm_SignIn();
-			In.Show();
-		}
-
-		private void btnXem_Click(object sender, EventArgs e)
-		{
-			this.Hide();
 			Frm_Main_Admin Ad = new Frm_Main_Admin();
 			Ad.Show();
 		}
