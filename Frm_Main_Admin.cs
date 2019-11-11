@@ -24,8 +24,10 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnBill_Click(object sender, EventArgs e)
 		{
+			this.Hide();
 			Frm_Bill bill = new Frm_Bill();
 			bill.Show();
+			Visible = false;
 		}
         // Function Open tab Employee in Frm_List_Cus_Emp
 
@@ -38,20 +40,26 @@ namespace QLBH_KiemThuPhanMem
         //}
         private void btnEmp_Click(object sender, EventArgs e)
         {
+			this.Hide();
             Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp();
             evc.Show();
-        }
+			Visible = false;
+		}
 
         private void btnCus_Click(object sender, EventArgs e)
         {
+			this.Hide();
             Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp();
             evc.Show();
-        }
+			Visible = false;
+		}
 
         private void btnOut_Click(object sender, EventArgs e)
         {
+			this.Hide();
             Frm_SignIn sin = new Frm_SignIn();
             sin.Show();
-        }
+			Visible = false;
+		}
 	}
 }

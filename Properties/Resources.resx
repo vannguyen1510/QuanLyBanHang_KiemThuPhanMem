@@ -121,11 +121,17 @@
   <data name="1486395306-11-packaging_80579" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486395306-11-packaging_80579.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="action_exit_close_remove_13915" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\action_exit_close_remove_13915.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="note_102351" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note_102351.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_123048 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\_123048 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash-can_115312" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash-can_115312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconfinder-653-company-employee-group-people-team-4017596_113084 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder-653-company-employee-group-people-team-4017596_113084 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,14 +154,11 @@
   <data name="_123048" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\_123048.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="chart-1_111423" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\chart-1_111423.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="restart_120144" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restart_120144.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trash-can_115312" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trash-can_115312.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="chart-1_111423" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chart-1_111423.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rotation_102346 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotation_102346 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,7 +175,7 @@
   <data name="8medical-report_102120" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8medical-report_102120.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="action_exit_close_remove_13915" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\action_exit_close_remove_13915.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="photo-photography-image-picture_108525" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\photo-photography-image-picture_108525.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -203,6 +203,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap photo_photography_image_picture_108525 {
+            get {
+                object obj = ResourceManager.GetObject("photo-photography-image-picture_108525", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap print_102332 {
             get {
                 object obj = ResourceManager.GetObject("print_102332", resourceCulture);

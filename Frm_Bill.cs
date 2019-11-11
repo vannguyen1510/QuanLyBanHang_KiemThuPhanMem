@@ -492,8 +492,11 @@ namespace QLBH_KiemThuPhanMem
 			Frm_Main_Admin admin = new Frm_Main_Admin();
 			admin.Show();
 			this.Hide();
+			Visible = false;
 		}
-
 		
+
+
+
 	}
 }

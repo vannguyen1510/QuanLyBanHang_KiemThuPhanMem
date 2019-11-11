@@ -191,5 +191,32 @@
   <ItemGroup>
     <None Include="Resources\sign-error-icon_34362.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3592855-business-man-employee-general-human-member-office-tie_107745.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder-653-company-employee-group-people-team-4017596_113084 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3592855-business-man-employee-general-human-member-office-tie_107745 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder-653-company-employee-group-people-team-4017596_113084 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rotation_102346 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bill_icon-icons.com_54416.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1486395306-11-packaging_80579.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart-1_111423.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\action_exit_close_remove_13915.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

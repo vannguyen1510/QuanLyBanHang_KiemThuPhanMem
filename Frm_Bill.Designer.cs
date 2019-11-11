@@ -522,7 +522,7 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(676, 685);
+			this.label9.Location = new System.Drawing.Point(667, 681);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(94, 23);
 			this.label9.TabIndex = 54;
@@ -592,6 +592,7 @@
 			this.btnOut.Text = "OUT";
 			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnOut.UseVisualStyleBackColor = false;
+			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
 			// 
 			// btnReport
 			// 
@@ -683,7 +684,7 @@
 			// 
 			this.label17.AutoSize = true;
 			this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label17.Location = new System.Drawing.Point(619, 718);
+			this.label17.Location = new System.Drawing.Point(610, 721);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(151, 23);
 			this.label17.TabIndex = 61;
@@ -725,10 +726,11 @@
 			this.Controls.Add(this.gb_PerInfo);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Frm_Bill";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice";
-			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.Frm_Bill_Load);
 			this.gb_PerInfo.ResumeLayout(false);
 			this.gb_PerInfo.PerformLayout();
