@@ -154,7 +154,7 @@ namespace QLBH_KiemThuPhanMem
 				}
 
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show("Error Connection. Please try again !", "ERROR");
 			}
@@ -218,7 +218,7 @@ namespace QLBH_KiemThuPhanMem
 					}
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show("Error Connection cus. Please try again !", "ERROR");
 			}
@@ -279,7 +279,7 @@ namespace QLBH_KiemThuPhanMem
 				}
 
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show("Error Connection shipper. Please try again !", "ERROR");
 			}
@@ -340,7 +340,7 @@ namespace QLBH_KiemThuPhanMem
 					}
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show("Error Connection product. Please try again !", "ERROR");
 			}
@@ -384,91 +384,108 @@ namespace QLBH_KiemThuPhanMem
 		{
 			
 		}
-		// Function - kiểm tra Personal info
-		public void CheckPersonal()
+		
+		// Function - Add in to Listview
+		public void AddListview()
 		{
-			string BillNo = txtBillNo.Text.ToUpper().Trim();
-			string Emp_id = combobEmp_ID.Text.ToUpper().Trim();
-			// kiểm tra Mã hóa đơn rỗng
-			if(BillNo != "")
+			int counter = 0;
+			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
+			string Emp_id = combobEmp_ID.Text.ToUpper().Trim(); // Mã nhân viên
+			string Cus_id = combobCus_ID.Text.Trim(); // Mã khách hàng
+			string ship = combobShipper.Text.Trim(); // Mã shipper
+			string proID = combobPro_No.Text; // Mã sản phẩm
+			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
+			//try
+			//{
+			// Kiểm tra Mã sản phẩm
+			if (proID != "")
 			{
-				// kiểm tra tồn tại Mã nhân viên
-				sqlcon.Close();
-				sqlcon.Open();
-				string sql = "SELECT ID_Emp FROM Info_Emp WHERE ID_Emp = '@id' COLLATE SQL_Latin1_General_CP1_CS_AS";
-				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				cmd.Parameters.Add(new SqlParameter("@id",Emp_id));
-				int x = (int)cmd.ExecuteScalar();
-				if(x==1)
+				// kiểm tra số lượng sản phẩm
+				if (quantity != "")
 				{
-					// kiểm tra tồn tại Mã khách hàng
-					sqlcon.Close();
-					sqlcon.Open();
-					string sql_c = "SELECT ID_Cus FROM Info_Cus WHERE ID_Cus = '" + combobCus_ID.Text.Trim() +"'";
-					SqlCommand cmd_c = new SqlCommand(sql_c, sqlcon);
-					cmd.Parameters.Add(combobCus_ID.Text.Trim());
-					int y = (int)cmd_c.ExecuteScalar();
-					if(y==1)
+					// kiểm tra Mã hóa đơn rỗng
+					if (BillNo != "")
 					{
-						// kiểm tra tồn tại Mã shipper
+						// kiểm tra tồn tại Mã nhân viên
 						sqlcon.Close();
 						sqlcon.Open();
-						string sql_s = "SELECT Company FROM Shippers WHERE Company = '" + combobShipper.Text.Trim() + "'";
-						SqlCommand cmd_s = new SqlCommand(sql_s, sqlcon);
-						cmd.Parameters.Add(combobShipper.Text.Trim());
-						int z = (int)cmd_s.ExecuteScalar();
-						if (z == 1)
+						string sql = "SELECT ID_Emp FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp = '@id' COLLATE SQL_Latin1_General_CP1_CS_AS";
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.Parameters.AddWithValue("@id", Emp_id);
+						int x = Convert.ToInt32(cmd.ExecuteScalar());
+						if (x == 1)
 						{
-
+							
 						}
 						else
 						{
-							combobShipper.Focus();
-							errorProvider1.SetError(combobShipper, "Shipper ID does not exist !");
+							combobEmp_ID.Focus();
+							errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist !");
+							// kiểm tra tồn tại Mã khách hàng
+							sqlcon.Close();
+							sqlcon.Open();
+							string sql_c = "SELECT ID_Cus FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus = '@Cusid'";
+							SqlCommand cmd_c = new SqlCommand(sql_c, sqlcon);
+							cmd_c.Parameters.AddWithValue("@Cusid", Cus_id);
+							int y = Convert.ToChar(cmd_c.ExecuteScalar());
+							if (y == 1)
+							{
+								// kiểm tra tồn tại Mã shipper
+								sqlcon.Close();
+								sqlcon.Open();
+								string sql_s = "SELECT Company FROM Shippers WHERE Company = '@ship'";
+								SqlCommand cmd_s = new SqlCommand(sql_s, sqlcon);
+								cmd.Parameters.AddWithValue("@ship", ship);
+								int z = Convert.ToInt32(cmd_s.ExecuteScalar());
+								if (z == 1)
+								{
+									string[] data = { (++counter).ToString(), proID, txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+									ListViewItem item = new ListViewItem(data);
+									listView1.Items.Add(item);
+								}
+								else
+								{
+									combobShipper.Focus();
+									errorProvider1.SetError(combobShipper, "Shipper ID does not exist !");
+								}
+							}
+							else
+							{
+								combobCus_ID.Focus();
+								errorProvider1.SetError(combobCus_ID, "Customer ID does not exist !");
+							}
 						}
 					}
 					else
 					{
-						combobCus_ID.Focus();
-						errorProvider1.SetError(combobCus_ID, "Customer ID does not exist !");
+						txtBillNo.Focus();
+						errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
 					}
 				}
 				else
 				{
-					combobEmp_ID.Focus();
-					errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist !");
+					txtPro_SoLuong.Focus();
+					errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 				}
 			}
 			else
 			{
-				txtBillNo.Focus();
-				errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+				combobPro_No.Focus();
+				errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 			}
-		}
 
-		// Function - Add in to Listview
-		public void AddListview()
-		{
-			string proID = combobPro_No.Text;
-			string quantity = txtPro_SoLuong.Text.Trim();
-			if(combobPro_No.Text != "")
-			{
-				CheckPersonal();
-			}
-			else
-			{
+			//}
+			//catch
+			//{
+			//MessageBox.Show("Error connection. Pplease try again !");
+			//}
 
-			}
 		}
 		// btn Thêm sản phẩm vào listview
 		private void btnThem_Click(object sender, EventArgs e)
 		{
-			sqlcon.Close();
-			sqlcon.Open();
-
 			AddListview();
 		}
-
 		// btn Out
 		private void btnOut_Click(object sender, EventArgs e)
 		{
@@ -476,5 +493,7 @@ namespace QLBH_KiemThuPhanMem
 			admin.Show();
 			this.Hide();
 		}
+
+		
 	}
 }

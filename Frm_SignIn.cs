@@ -162,7 +162,6 @@ namespace QLBH_KiemThuPhanMem
 				cmd.Parameters.Add(new SqlParameter("@phone", user));
 				cmd.Parameters.Add(new SqlParameter("@id", user));
 				cmd.Parameters.Add(new SqlParameter("@pass", pass));
-				//MessageBox.Show("here 1");
 				int x = (int)cmd.ExecuteScalar();
 				if (x == 1)
 				{
