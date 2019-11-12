@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Globalization;
 
 namespace QLBH_KiemThuPhanMem
 {
@@ -407,7 +408,25 @@ namespace QLBH_KiemThuPhanMem
 		// Thay đổi disount thì tính lại TOTAL COST
 		private void txtDiscount_TextChanged(object sender, EventArgs e)
 		{
-			
+			double total=0, quantity, price, dis;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
+			if (txtDiscount.Text == "")
+				dis = 0;
+			else
+				dis = Convert.ToDouble(txtDiscount.Text);
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
+			else
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			foreach (ListViewItem i in listView1.Items)
+			{
+				total += double.Parse(i.SubItems[5].Text);
+			}
+			txtsum.Text = total.ToString();
+			txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
 		}
 
 		//-----------------------------------------------------------------------------------
@@ -418,44 +437,51 @@ namespace QLBH_KiemThuPhanMem
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			string[] data = { (++counter).ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
-			//try
-			//{
-			// Kiểm tra Mã sản phẩm
-			if (combobPro_No.SelectedValue != "")
+			try
 			{
-				// kiểm tra số lượng sản phẩm
-				if (quantity != "")
+				// Kiểm tra Mã sản phẩm
+				if (combobPro_No.SelectedValue != "")
 				{
-					// kiểm tra Mã hóa đơn rỗng
-					if (BillNo != "")
+					// kiểm tra số lượng sản phẩm
+					if (quantity != "")
 					{
-						ListViewItem item = new ListViewItem(data);
-						listView1.Items.Add(item);
+						// kiểm tra Mã hóa đơn rỗng
+						if (BillNo != "")
+						{
+							string[] data = { ((++counter).ToString()), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+							ListViewItem item = new ListViewItem(data);
+							listView1.Items.Add(item);
+							double total = 0;
+							foreach(ListViewItem i in listView1.Items)
+							{
+								total += double.Parse(i.SubItems[5].Text);
+							}
+							txtsum.Text = total.ToString();
+							txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
+						}
+						else
+						{
+							txtBillNo.Focus();
+							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+						}
 					}
 					else
 					{
-						txtBillNo.Focus();
-						errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+						txtPro_SoLuong.Focus();
+						errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 					}
 				}
 				else
 				{
-					txtPro_SoLuong.Focus();
-					errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+					combobPro_No.Focus();
+					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
-			}
-			else
-			{
-				combobPro_No.Focus();
-				errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
-			}
 
-			//}
-			//catch
-			//{
-			//MessageBox.Show("Error connection. Pplease try again !");
-			//}
+			}
+			catch
+			{
+				MessageBox.Show("Error connection. Pplease try again !");
+			}
 
 		}
 
@@ -474,7 +500,11 @@ namespace QLBH_KiemThuPhanMem
 			Visible = false;
 		}
 
-		
-
+		private void txtTamTinh_TextChanged(object sender, EventArgs e)
+		{
+			double temp = double.Parse(txtTamTinh.Text.Replace(".", ""));
+			txtTamTinh.Text = temp.ToString("0,0.#");
+			txtTamTinh.Select(txtTamTinh.TextLength, 0);
+		}
 	}
 }
