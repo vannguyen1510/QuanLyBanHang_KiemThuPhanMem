@@ -10,16 +10,18 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using QLBH_KiemThuPhanMem;
 
 namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
-		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
-        
-		public Frm_SignIn() 
+
+        public Frm_SignIn() 
 		{
 			InitializeComponent();
 		}
@@ -184,7 +186,7 @@ namespace QLBH_KiemThuPhanMem
 					}
 				}
 				else
-				{
+				{                  
 					MessageBox.Show(" User or Password is incorrect . \n Please try again!", "ERROR");
 				}
 			}
@@ -197,7 +199,60 @@ namespace QLBH_KiemThuPhanMem
 				sqlcon.Close();
 			}
 		}
-		private void btnDangNhap_Click(object sender, EventArgs e)
+        public bool DangNhap1(string username, string password)
+        {
+            //bool tamp = false;
+            try
+            {
+                sqlcon.Open();
+                /*string*/string user = username;
+                /*string*/string pass = password;
+                // Dò tìm SĐT khách hàng và ID nhân viên
+                string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
+                SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                cmd.Parameters.Add(new SqlParameter("@phone", user));
+                cmd.Parameters.Add(new SqlParameter("@id", user));
+                cmd.Parameters.Add(new SqlParameter("@pass", pass));
+                int x = (int)cmd.ExecuteScalar();
+                if (x == 1)
+                {
+                    string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
+                    SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
+                    cmd_Permision.Parameters.Add(new SqlParameter("@phone", user));
+                    cmd_Permision.Parameters.AddWithValue("@per", "Guess");
+                    int y = (int)cmd_Permision.ExecuteScalar();
+                    if (y == 1)
+                    {
+                        this.Hide();
+                        Frm_Main_Customers cus = new Frm_Main_Customers();
+                        cus.Show();
+                    }
+                    else
+                    {
+                       //tamp =false;
+                        this.Hide();
+                        Frm_Main_Admin admin = new Frm_Main_Admin();
+                        admin.Show();
+                    }
+                }
+                else
+                {
+                 // tamp = false;
+                    MessageBox.Show(" User or Password is incorrect . \n Please try again!", "ERROR");
+                }
+            }
+            catch (Exception)
+            {
+               // tamp = true;
+                MessageBox.Show("Error Connection!", "Try Again");
+            }
+            finally
+            {
+                sqlcon.Close();
+            }
+            return false;
+        }
+        private void btnDangNhap_Click(object sender, EventArgs e)
 		{
 			DangNhap();
 		}

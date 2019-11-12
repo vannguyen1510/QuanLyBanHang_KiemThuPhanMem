@@ -81,13 +81,6 @@
 			this.label17 = new System.Windows.Forms.Label();
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label21 = new System.Windows.Forms.Label();
-			this.txtsum = new System.Windows.Forms.TextBox();
-			this.label22 = new System.Windows.Forms.Label();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -122,7 +115,6 @@
 			this.gb_PerInfo.TabIndex = 0;
 			this.gb_PerInfo.TabStop = false;
 			this.gb_PerInfo.Text = "Personal Information";
-			this.gb_PerInfo.UseWaitCursor = true;
 			// 
 			// txtCus_Phone
 			// 
@@ -133,7 +125,6 @@
 			this.txtCus_Phone.ReadOnly = true;
 			this.txtCus_Phone.Size = new System.Drawing.Size(297, 30);
 			this.txtCus_Phone.TabIndex = 47;
-			this.txtCus_Phone.UseWaitCursor = true;
 			// 
 			// txtCus_Address
 			// 
@@ -144,7 +135,6 @@
 			this.txtCus_Address.ReadOnly = true;
 			this.txtCus_Address.Size = new System.Drawing.Size(297, 30);
 			this.txtCus_Address.TabIndex = 46;
-			this.txtCus_Address.UseWaitCursor = true;
 			// 
 			// txtCus_Name
 			// 
@@ -156,11 +146,9 @@
 			this.txtCus_Name.Size = new System.Drawing.Size(297, 30);
 			this.txtCus_Name.TabIndex = 45;
 			this.txtCus_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtCus_Name.UseWaitCursor = true;
 			// 
 			// combobCus_ID
 			// 
-			this.combobCus_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobCus_ID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobCus_ID.FormattingEnabled = true;
 			this.combobCus_ID.Location = new System.Drawing.Point(199, 250);
@@ -168,10 +156,7 @@
 			this.combobCus_ID.Name = "combobCus_ID";
 			this.combobCus_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobCus_ID.TabIndex = 44;
-			this.toolTip1.SetToolTip(this.combobCus_ID, "Provide one customer ID");
-			this.combobCus_ID.UseWaitCursor = true;
 			this.combobCus_ID.SelectedIndexChanged += new System.EventHandler(this.combobCus_ID_SelectedIndexChanged);
-			this.combobCus_ID.TextChanged += new System.EventHandler(this.combobCus_ID_TextChanged);
 			this.combobCus_ID.Validating += new System.ComponentModel.CancelEventHandler(this.combobCus_ID_Validating);
 			// 
 			// dateTimePicker1
@@ -185,7 +170,6 @@
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(297, 28);
 			this.dateTimePicker1.TabIndex = 43;
-			this.dateTimePicker1.UseWaitCursor = true;
 			// 
 			// txtEmp_Name
 			// 
@@ -197,7 +181,6 @@
 			this.txtEmp_Name.Size = new System.Drawing.Size(297, 30);
 			this.txtEmp_Name.TabIndex = 12;
 			this.txtEmp_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtEmp_Name.UseWaitCursor = true;
 			// 
 			// cbRandomBillNo
 			// 
@@ -210,14 +193,12 @@
 			this.cbRandomBillNo.TabIndex = 11;
 			this.cbRandomBillNo.Text = "Random Bill No";
 			this.cbRandomBillNo.UseVisualStyleBackColor = true;
-			this.cbRandomBillNo.UseWaitCursor = true;
 			this.cbRandomBillNo.CheckedChanged += new System.EventHandler(this.cbRandomBillNo_CheckedChanged);
 			// 
 			// combobEmp_ID
 			// 
 			this.combobEmp_ID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.combobEmp_ID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.combobEmp_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobEmp_ID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobEmp_ID.FormattingEnabled = true;
 			this.combobEmp_ID.Location = new System.Drawing.Point(199, 142);
@@ -225,10 +206,7 @@
 			this.combobEmp_ID.Name = "combobEmp_ID";
 			this.combobEmp_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobEmp_ID.TabIndex = 10;
-			this.toolTip1.SetToolTip(this.combobEmp_ID, "Provide one Employee ID");
-			this.combobEmp_ID.UseWaitCursor = true;
 			this.combobEmp_ID.SelectedIndexChanged += new System.EventHandler(this.combobEmp_ID_SelectedIndexChanged);
-			this.combobEmp_ID.TextChanged += new System.EventHandler(this.combobEmp_ID_TextChanged);
 			this.combobEmp_ID.Validating += new System.ComponentModel.CancelEventHandler(this.combobEmp_ID_Validating);
 			// 
 			// txtBillNo
@@ -236,12 +214,8 @@
 			this.txtBillNo.Location = new System.Drawing.Point(123, 36);
 			this.txtBillNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtBillNo.Name = "txtBillNo";
-			this.txtBillNo.ReadOnly = true;
 			this.txtBillNo.Size = new System.Drawing.Size(176, 31);
 			this.txtBillNo.TabIndex = 8;
-			this.txtBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.toolTip1.SetToolTip(this.txtBillNo, "Please check \"Random box\" to get a bill ID");
-			this.txtBillNo.UseWaitCursor = true;
 			// 
 			// label8
 			// 
@@ -252,7 +226,6 @@
 			this.label8.Size = new System.Drawing.Size(147, 23);
 			this.label8.TabIndex = 7;
 			this.label8.Text = "Customer Phone :";
-			this.label8.UseWaitCursor = true;
 			// 
 			// label7
 			// 
@@ -263,7 +236,6 @@
 			this.label7.Size = new System.Drawing.Size(158, 23);
 			this.label7.TabIndex = 6;
 			this.label7.Text = "Customer Address :";
-			this.label7.UseWaitCursor = true;
 			// 
 			// label6
 			// 
@@ -274,7 +246,6 @@
 			this.label6.Size = new System.Drawing.Size(144, 23);
 			this.label6.TabIndex = 5;
 			this.label6.Text = "Customer Name :";
-			this.label6.UseWaitCursor = true;
 			// 
 			// label5
 			// 
@@ -285,7 +256,6 @@
 			this.label5.Size = new System.Drawing.Size(115, 23);
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Customer ID :";
-			this.label5.UseWaitCursor = true;
 			// 
 			// label4
 			// 
@@ -296,7 +266,6 @@
 			this.label4.Size = new System.Drawing.Size(144, 23);
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Employee Name :";
-			this.label4.UseWaitCursor = true;
 			// 
 			// label3
 			// 
@@ -307,7 +276,6 @@
 			this.label3.Size = new System.Drawing.Size(115, 23);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Employee ID :";
-			this.label3.UseWaitCursor = true;
 			// 
 			// label2
 			// 
@@ -318,7 +286,6 @@
 			this.label2.Size = new System.Drawing.Size(109, 23);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Date of sale :";
-			this.label2.UseWaitCursor = true;
 			// 
 			// label1
 			// 
@@ -329,7 +296,6 @@
 			this.label1.Size = new System.Drawing.Size(81, 25);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Bill No :";
-			this.label1.UseWaitCursor = true;
 			// 
 			// lbQLNV
 			// 
@@ -343,12 +309,9 @@
 			this.lbQLNV.TabIndex = 38;
 			this.lbQLNV.Text = "BILLING SYSTEM";
 			this.lbQLNV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.lbQLNV.UseWaitCursor = true;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.label19);
-			this.groupBox1.Controls.Add(this.label18);
 			this.groupBox1.Controls.Add(this.pictureBox1);
 			this.groupBox1.Controls.Add(this.btnSua);
 			this.groupBox1.Controls.Add(this.btnXoa);
@@ -372,7 +335,6 @@
 			this.groupBox1.TabIndex = 48;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Product Information";
-			this.groupBox1.UseWaitCursor = true;
 			// 
 			// pictureBox1
 			// 
@@ -382,7 +344,6 @@
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 54;
 			this.pictureBox1.TabStop = false;
-			this.pictureBox1.UseWaitCursor = true;
 			// 
 			// btnSua
 			// 
@@ -397,7 +358,6 @@
 			this.btnSua.TabIndex = 53;
 			this.btnSua.Text = "UPDATE";
 			this.btnSua.UseVisualStyleBackColor = false;
-			this.btnSua.UseWaitCursor = true;
 			// 
 			// btnXoa
 			// 
@@ -412,7 +372,6 @@
 			this.btnXoa.TabIndex = 52;
 			this.btnXoa.Text = "DELETE";
 			this.btnXoa.UseVisualStyleBackColor = false;
-			this.btnXoa.UseWaitCursor = true;
 			// 
 			// btnThem
 			// 
@@ -429,7 +388,6 @@
 			this.btnThem.TabIndex = 51;
 			this.btnThem.Text = "ADD";
 			this.btnThem.UseVisualStyleBackColor = false;
-			this.btnThem.UseWaitCursor = true;
 			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
 			// 
 			// txtPro_SoLuong
@@ -437,12 +395,9 @@
 			this.txtPro_SoLuong.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtPro_SoLuong.Location = new System.Drawing.Point(119, 127);
 			this.txtPro_SoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtPro_SoLuong.MaxLength = 9999;
 			this.txtPro_SoLuong.Name = "txtPro_SoLuong";
 			this.txtPro_SoLuong.Size = new System.Drawing.Size(135, 30);
 			this.txtPro_SoLuong.TabIndex = 48;
-			this.toolTip1.SetToolTip(this.txtPro_SoLuong, "Please enter no more 4-digit numbers");
-			this.txtPro_SoLuong.UseWaitCursor = true;
 			this.txtPro_SoLuong.TextChanged += new System.EventHandler(this.txtPro_SoLuong_TextChanged);
 			this.txtPro_SoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPro_SoLuong_KeyPress);
 			// 
@@ -450,12 +405,11 @@
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label12.Location = new System.Drawing.Point(24, 127);
+			this.label12.Location = new System.Drawing.Point(24, 132);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(85, 23);
 			this.label12.TabIndex = 50;
 			this.label12.Text = "Quantity :";
-			this.label12.UseWaitCursor = true;
 			// 
 			// txtPro_UnitPrice
 			// 
@@ -464,14 +418,12 @@
 			this.txtPro_UnitPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtPro_UnitPrice.Name = "txtPro_UnitPrice";
 			this.txtPro_UnitPrice.ReadOnly = true;
-			this.txtPro_UnitPrice.Size = new System.Drawing.Size(135, 30);
+			this.txtPro_UnitPrice.Size = new System.Drawing.Size(324, 30);
 			this.txtPro_UnitPrice.TabIndex = 49;
 			this.txtPro_UnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtPro_UnitPrice.UseWaitCursor = true;
 			// 
 			// combobPro_No
 			// 
-			this.combobPro_No.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobPro_No.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobPro_No.FormattingEnabled = true;
 			this.combobPro_No.Location = new System.Drawing.Point(119, 31);
@@ -479,69 +431,60 @@
 			this.combobPro_No.Name = "combobPro_No";
 			this.combobPro_No.Size = new System.Drawing.Size(324, 31);
 			this.combobPro_No.TabIndex = 48;
-			this.toolTip1.SetToolTip(this.combobPro_No, "Provide one product ID");
-			this.combobPro_No.UseWaitCursor = true;
 			this.combobPro_No.SelectedIndexChanged += new System.EventHandler(this.combobPro_No_SelectedIndexChanged);
-			this.combobPro_No.TextChanged += new System.EventHandler(this.combobPro_No_TextChanged);
 			this.combobPro_No.Validating += new System.ComponentModel.CancelEventHandler(this.combobPro_No_Validating);
 			// 
 			// txtTamTinh
 			// 
 			this.txtTamTinh.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTamTinh.Location = new System.Drawing.Point(578, 72);
+			this.txtTamTinh.Location = new System.Drawing.Point(626, 72);
 			this.txtTamTinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtTamTinh.Name = "txtTamTinh";
 			this.txtTamTinh.ReadOnly = true;
-			this.txtTamTinh.Size = new System.Drawing.Size(244, 30);
+			this.txtTamTinh.Size = new System.Drawing.Size(309, 30);
 			this.txtTamTinh.TabIndex = 45;
 			this.txtTamTinh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTamTinh.UseWaitCursor = true;
-			this.txtTamTinh.TextChanged += new System.EventHandler(this.txtTamTinh_TextChanged);
 			// 
 			// txtPro_Name
 			// 
 			this.txtPro_Name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtPro_Name.Location = new System.Drawing.Point(578, 28);
+			this.txtPro_Name.Location = new System.Drawing.Point(626, 28);
 			this.txtPro_Name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtPro_Name.Name = "txtPro_Name";
 			this.txtPro_Name.ReadOnly = true;
-			this.txtPro_Name.Size = new System.Drawing.Size(244, 30);
+			this.txtPro_Name.Size = new System.Drawing.Size(309, 30);
 			this.txtPro_Name.TabIndex = 12;
 			this.txtPro_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtPro_Name.UseWaitCursor = true;
 			// 
 			// label11
 			// 
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(469, 75);
+			this.label11.Location = new System.Drawing.Point(517, 75);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(89, 23);
 			this.label11.TabIndex = 5;
 			this.label11.Text = "Sub Total :";
-			this.label11.UseWaitCursor = true;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(490, 31);
+			this.label13.Location = new System.Drawing.Point(538, 31);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(65, 23);
 			this.label13.TabIndex = 3;
 			this.label13.Text = "Name :";
-			this.label13.UseWaitCursor = true;
 			// 
 			// label14
 			// 
 			this.label14.AutoSize = true;
 			this.label14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(16, 79);
+			this.label14.Location = new System.Drawing.Point(19, 88);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(93, 23);
 			this.label14.TabIndex = 2;
 			this.label14.Text = "Unit Price :";
-			this.label14.UseWaitCursor = true;
 			// 
 			// label16
 			// 
@@ -552,7 +495,6 @@
 			this.label16.Size = new System.Drawing.Size(107, 23);
 			this.label16.TabIndex = 0;
 			this.label16.Text = "Product No :";
-			this.label16.UseWaitCursor = true;
 			// 
 			// listView1
 			// 
@@ -563,56 +505,50 @@
 			this.listView1.Size = new System.Drawing.Size(935, 391);
 			this.listView1.TabIndex = 49;
 			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.UseWaitCursor = true;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			// 
 			// txtTotalCost
 			// 
 			this.txtTotalCost.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTotalCost.Location = new System.Drawing.Point(748, 733);
+			this.txtTotalCost.Location = new System.Drawing.Point(776, 678);
 			this.txtTotalCost.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtTotalCost.Name = "txtTotalCost";
 			this.txtTotalCost.ReadOnly = true;
 			this.txtTotalCost.Size = new System.Drawing.Size(323, 30);
 			this.txtTotalCost.TabIndex = 55;
 			this.txtTotalCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTotalCost.UseWaitCursor = true;
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(613, 736);
+			this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Location = new System.Drawing.Point(667, 681);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(117, 26);
+			this.label9.Size = new System.Drawing.Size(94, 23);
 			this.label9.TabIndex = 54;
 			this.label9.Text = "Total Cost :";
-			this.label9.UseWaitCursor = true;
 			// 
 			// txtDiscount
 			// 
 			this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtDiscount.Location = new System.Drawing.Point(748, 699);
+			this.txtDiscount.Location = new System.Drawing.Point(214, 612);
 			this.txtDiscount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtDiscount.Name = "txtDiscount";
-			this.txtDiscount.Size = new System.Drawing.Size(166, 30);
+			this.txtDiscount.Size = new System.Drawing.Size(297, 30);
 			this.txtDiscount.TabIndex = 57;
 			this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.toolTip1.SetToolTip(this.txtDiscount, "Discount per bill");
-			this.txtDiscount.UseWaitCursor = true;
 			this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
 			this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(599, 703);
+			this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.Location = new System.Drawing.Point(63, 610);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(131, 26);
+			this.label10.Size = new System.Drawing.Size(129, 28);
 			this.label10.TabIndex = 58;
 			this.label10.Text = "Discount (%)";
-			this.label10.UseWaitCursor = true;
 			// 
 			// combobShipper
 			// 
@@ -623,10 +559,7 @@
 			this.combobShipper.Name = "combobShipper";
 			this.combobShipper.Size = new System.Drawing.Size(297, 31);
 			this.combobShipper.TabIndex = 55;
-			this.toolTip1.SetToolTip(this.combobShipper, "Provide one ship company");
-			this.combobShipper.UseWaitCursor = true;
 			this.combobShipper.SelectedIndexChanged += new System.EventHandler(this.combobShipper_SelectedIndexChanged);
-			this.combobShipper.TextChanged += new System.EventHandler(this.combobShipper_TextChanged);
 			this.combobShipper.Validating += new System.ComponentModel.CancelEventHandler(this.combobShipper_Validating);
 			// 
 			// label15
@@ -638,7 +571,6 @@
 			this.label15.Size = new System.Drawing.Size(95, 25);
 			this.label15.TabIndex = 54;
 			this.label15.Text = "Shippers  ";
-			this.label15.UseWaitCursor = true;
 			// 
 			// errorProvider1
 			// 
@@ -660,7 +592,6 @@
 			this.btnOut.Text = "OUT";
 			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnOut.UseVisualStyleBackColor = false;
-			this.btnOut.UseWaitCursor = true;
 			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
 			// 
 			// btnReport
@@ -679,7 +610,6 @@
 			this.btnReport.Text = "REPORT";
 			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnReport.UseVisualStyleBackColor = false;
-			this.btnReport.UseWaitCursor = true;
 			// 
 			// button1
 			// 
@@ -697,7 +627,6 @@
 			this.button1.Text = "RESET";
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.button1.UseVisualStyleBackColor = false;
-			this.button1.UseWaitCursor = true;
 			// 
 			// btnPrint_Bill
 			// 
@@ -715,7 +644,6 @@
 			this.btnPrint_Bill.Text = "PRINT";
 			this.btnPrint_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnPrint_Bill.UseVisualStyleBackColor = false;
-			this.btnPrint_Bill.UseWaitCursor = true;
 			// 
 			// btnDel_Bill
 			// 
@@ -733,7 +661,6 @@
 			this.btnDel_Bill.Text = "DELETE";
 			this.btnDel_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnDel_Bill.UseVisualStyleBackColor = false;
-			this.btnDel_Bill.UseWaitCursor = true;
 			// 
 			// btnAdd_Bill
 			// 
@@ -752,112 +679,33 @@
 			this.btnAdd_Bill.Text = "ADD";
 			this.btnAdd_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnAdd_Bill.UseVisualStyleBackColor = false;
-			this.btnAdd_Bill.UseWaitCursor = true;
 			// 
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label17.Location = new System.Drawing.Point(554, 769);
+			this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(610, 721);
 			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(182, 26);
+			this.label17.Size = new System.Drawing.Size(151, 23);
 			this.label17.TabIndex = 61;
 			this.label17.Text = "Amount in words :";
-			this.label17.UseWaitCursor = true;
 			// 
 			// txtTotalInWord
 			// 
 			this.txtTotalInWord.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTotalInWord.Location = new System.Drawing.Point(748, 767);
+			this.txtTotalInWord.Location = new System.Drawing.Point(776, 718);
 			this.txtTotalInWord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtTotalInWord.Name = "txtTotalInWord";
 			this.txtTotalInWord.ReadOnly = true;
 			this.txtTotalInWord.Size = new System.Drawing.Size(653, 30);
 			this.txtTotalInWord.TabIndex = 62;
 			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtTotalInWord.UseWaitCursor = true;
-			// 
-			// toolTip1
-			// 
-			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-			this.toolTip1.ToolTipTitle = "Suggestion";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.Location = new System.Drawing.Point(260, 79);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(43, 23);
-			this.label18.TabIndex = 55;
-			this.label18.Text = "USD";
-			this.label18.UseWaitCursor = true;
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label19.Location = new System.Drawing.Point(828, 76);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(43, 23);
-			this.label19.TabIndex = 56;
-			this.label19.Text = "USD";
-			this.label19.UseWaitCursor = true;
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(1077, 736);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(43, 23);
-			this.label20.TabIndex = 57;
-			this.label20.Text = "USD";
-			this.label20.UseWaitCursor = true;
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(1077, 668);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(43, 23);
-			this.label21.TabIndex = 65;
-			this.label21.Text = "USD";
-			this.label21.UseWaitCursor = true;
-			// 
-			// txtsum
-			// 
-			this.txtsum.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtsum.Location = new System.Drawing.Point(748, 665);
-			this.txtsum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtsum.Name = "txtsum";
-			this.txtsum.ReadOnly = true;
-			this.txtsum.Size = new System.Drawing.Size(323, 30);
-			this.txtsum.TabIndex = 64;
-			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtsum.UseWaitCursor = true;
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label22.Location = new System.Drawing.Point(637, 669);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(70, 26);
-			this.label22.TabIndex = 63;
-			this.label22.Text = "Total :";
-			this.label22.UseWaitCursor = true;
 			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1715, 817);
-			this.Controls.Add(this.label21);
-			this.Controls.Add(this.txtsum);
-			this.Controls.Add(this.label22);
-			this.Controls.Add(this.label20);
+			this.ClientSize = new System.Drawing.Size(1715, 774);
 			this.Controls.Add(this.txtTotalInWord);
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.btnOut);
@@ -883,7 +731,6 @@
 			this.Name = "Frm_Bill";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice";
-			this.UseWaitCursor = true;
 			this.Load += new System.EventHandler(this.Frm_Bill_Load);
 			this.gb_PerInfo.ResumeLayout(false);
 			this.gb_PerInfo.PerformLayout();
@@ -949,12 +796,5 @@
 		private System.Windows.Forms.TextBox txtTotalInWord;
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.TextBox txtsum;
-		private System.Windows.Forms.Label label22;
 	}
 }
