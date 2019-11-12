@@ -149,6 +149,7 @@
 			// 
 			// combobCus_ID
 			// 
+			this.combobCus_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobCus_ID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobCus_ID.FormattingEnabled = true;
 			this.combobCus_ID.Location = new System.Drawing.Point(199, 250);
@@ -157,6 +158,7 @@
 			this.combobCus_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobCus_ID.TabIndex = 44;
 			this.combobCus_ID.SelectedIndexChanged += new System.EventHandler(this.combobCus_ID_SelectedIndexChanged);
+			this.combobCus_ID.TextChanged += new System.EventHandler(this.combobCus_ID_TextChanged);
 			this.combobCus_ID.Validating += new System.ComponentModel.CancelEventHandler(this.combobCus_ID_Validating);
 			// 
 			// dateTimePicker1
@@ -199,6 +201,7 @@
 			// 
 			this.combobEmp_ID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.combobEmp_ID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.combobEmp_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobEmp_ID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobEmp_ID.FormattingEnabled = true;
 			this.combobEmp_ID.Location = new System.Drawing.Point(199, 142);
@@ -207,6 +210,7 @@
 			this.combobEmp_ID.Size = new System.Drawing.Size(297, 31);
 			this.combobEmp_ID.TabIndex = 10;
 			this.combobEmp_ID.SelectedIndexChanged += new System.EventHandler(this.combobEmp_ID_SelectedIndexChanged);
+			this.combobEmp_ID.TextChanged += new System.EventHandler(this.combobEmp_ID_TextChanged);
 			this.combobEmp_ID.Validating += new System.ComponentModel.CancelEventHandler(this.combobEmp_ID_Validating);
 			// 
 			// txtBillNo
@@ -216,6 +220,7 @@
 			this.txtBillNo.Name = "txtBillNo";
 			this.txtBillNo.Size = new System.Drawing.Size(176, 31);
 			this.txtBillNo.TabIndex = 8;
+			this.txtBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// label8
 			// 
@@ -432,6 +437,7 @@
 			this.combobPro_No.Size = new System.Drawing.Size(324, 31);
 			this.combobPro_No.TabIndex = 48;
 			this.combobPro_No.SelectedIndexChanged += new System.EventHandler(this.combobPro_No_SelectedIndexChanged);
+			this.combobPro_No.TextChanged += new System.EventHandler(this.combobPro_No_TextChanged);
 			this.combobPro_No.Validating += new System.ComponentModel.CancelEventHandler(this.combobPro_No_Validating);
 			// 
 			// txtTamTinh
@@ -560,6 +566,7 @@
 			this.combobShipper.Size = new System.Drawing.Size(297, 31);
 			this.combobShipper.TabIndex = 55;
 			this.combobShipper.SelectedIndexChanged += new System.EventHandler(this.combobShipper_SelectedIndexChanged);
+			this.combobShipper.TextChanged += new System.EventHandler(this.combobShipper_TextChanged);
 			this.combobShipper.Validating += new System.ComponentModel.CancelEventHandler(this.combobShipper_Validating);
 			// 
 			// label15
