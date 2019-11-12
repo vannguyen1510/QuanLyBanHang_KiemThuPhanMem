@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace QLBH_KiemThuPhanMem
 {
+	
 	//public static class PanelExtension
 	//{
 	//	public static void ScrollBack(this Panel pnl, int pos)
@@ -31,7 +32,8 @@ namespace QLBH_KiemThuPhanMem
 	//}
 	public partial class Frm_Main_Customers : Form
 	{
-		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		//private const int VerticalStep = 40;
 		//private int location = 0;
 		public Frm_Main_Customers()

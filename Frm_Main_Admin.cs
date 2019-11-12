@@ -16,6 +16,7 @@ namespace QLBH_KiemThuPhanMem
 	public partial class Frm_Main_Admin : Form
 	{
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
 		public Frm_Main_Admin()
 		{
 			InitializeComponent();

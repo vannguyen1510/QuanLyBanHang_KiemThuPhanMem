@@ -83,6 +83,12 @@
     <Compile Include="Frm_Main_Customers.Designer.cs">
       <DependentUpon>Frm_Main_Customers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Products.Designer.cs">
+      <DependentUpon>Frm_Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main_Customers.resx">
       <DependentUpon>Frm_Main_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Products.resx">
+      <DependentUpon>Frm_Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_SignIn.resx">
       <DependentUpon>Frm_SignIn.cs</DependentUpon>
@@ -217,6 +226,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\action_exit_close_remove_13915.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-photography-image-picture_108525.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

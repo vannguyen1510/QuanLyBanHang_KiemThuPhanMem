@@ -19,8 +19,10 @@ namespace QLBH_KiemThuPhanMem
 	{
 		string gender = string.Empty;
 		// ĐƯỜNG DẪN SQL
-		SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+
 		public Frm_List_Cus_Emp()
 		{
 			InitializeComponent();
@@ -390,8 +392,9 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// Function - Thêm mới 
-		public void AddNew()
+		public void AddNew( )
 		{
+			
 			string ma = txtMa.Text.ToUpper().Trim();
 			string ho = txtHo.Text.Trim();
 			while (ho.IndexOf("  ") != -1)
@@ -441,6 +444,7 @@ namespace QLBH_KiemThuPhanMem
 							}
 							catch (Exception)
 							{
+								
 								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
 							}
 							finally
@@ -450,6 +454,7 @@ namespace QLBH_KiemThuPhanMem
 						}
 						else
 						{
+	
 							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
 							txtMa.Text = string.Empty;
 						}
@@ -468,11 +473,103 @@ namespace QLBH_KiemThuPhanMem
 			}
 			else
 			{
+			
 				lbXuatTenDangNhap.Text = string.Empty;
 				errorProvider1.SetError(txtMa, "Do not accept blank field !");
 			}
-		}
 		
+		}
+		public bool AddNew1(string ma, string ho, string ten, string ns, string gt)
+		{
+			bool tamp = false;
+			//string ma = txtMa.Text.ToUpper().Trim();
+			//string ho = txtHo.Text.Trim();
+			while (ho.IndexOf("  ") != -1)
+			{
+				ho = ho.Replace("  ", " ");
+			}
+			//string ten = (txtTen.Text).Trim();
+			while (ten.IndexOf("  ") != -1)
+			{
+				ten = ten.Replace("  ", " ");
+			}
+			//string ns = dateTimePicker1.Text;
+			//string gt = rdbNam.Checked ? "Male" : "Female";
+			string[] data = { ma, ho, ten, ns, gt };
+			if (ma != "")
+			{
+				if (ho != "")
+				{
+					if (ten != "")
+					{
+						ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
+						if (item1 == null) // nếu Mã chưa có trong Listview thì thêm mới
+						{
+							// Thêm vào listview
+							ListViewItem item = new ListViewItem(data);
+							listView1.Items.Add(item);
+							item.ImageIndex = rdbNam.Checked ? 0 : 1;
+							// Thêm vào SQL
+							try
+							{
+								if (rdbNam.Checked)
+									gender = "Male";
+								else
+									gender = "Female";
+								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birthday_Emp,Sex_Emp)"
+												+ "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
+								SqlCommand cmd = new SqlCommand(sql, sqlcon);
+								cmd.Parameters.AddWithValue("@ma", ma);
+								cmd.Parameters.AddWithValue("@ho", ho);
+								cmd.Parameters.AddWithValue("@ten", ten);
+								cmd.Parameters.AddWithValue("@ngaysinh", ns);
+								cmd.Parameters.AddWithValue("@gt", gender);
+								cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
+								lbXuatTenDangNhap.Text = " DATA ADDED SUCCESSFUL !";
+								XoaFullTextbox();
+								CloseConnect();
+							}
+							catch (Exception)
+							{
+								tamp = true;
+
+								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
+							}
+							finally
+							{
+								CloseConnect();
+							}
+						}
+						else
+						{
+							tamp = true;
+							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
+							txtMa.Text = string.Empty;
+						}
+					}
+					else
+					{
+						tamp = true;
+						lbXuatTenDangNhap.Text = string.Empty;
+						errorProvider1.SetError(txtTen, " Do not accept blank field !");
+					}
+				}
+				else
+				{
+					tamp = true;
+					lbXuatTenDangNhap.Text = string.Empty;
+					errorProvider1.SetError(txtHo, "Do not accept blank field !");
+				}
+			}
+			else
+			{
+				tamp = true;
+				lbXuatTenDangNhap.Text = string.Empty;
+				errorProvider1.SetError(txtMa, "Do not accept blank field !");
+			}
+			return tamp;
+		}
+
 		/// -----------------------------------
 		public void AddNew_KH()
 		{

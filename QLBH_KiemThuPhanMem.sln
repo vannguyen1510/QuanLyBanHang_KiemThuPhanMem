@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLBH_KiemThuPhanMem", "QLBH_KiemThuPhanMem.csproj", "{A4031C5F-C01B-4643-BB6F-C6B03CA333D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_1", "UnitTest_1\UnitTest_1.csproj", "{D24D10B5-9500-4C89-90F2-BA412B4E6D69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{A4031C5F-C01B-4643-BB6F-C6B03CA333D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4031C5F-C01B-4643-BB6F-C6B03CA333D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4031C5F-C01B-4643-BB6F-C6B03CA333D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D24D10B5-9500-4C89-90F2-BA412B4E6D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D24D10B5-9500-4C89-90F2-BA412B4E6D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D24D10B5-9500-4C89-90F2-BA412B4E6D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D24D10B5-9500-4C89-90F2-BA412B4E6D69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B9D18AE-A593-4C53-ABF1-263D100CD923}
 	EndGlobalSection
 EndGlobal
