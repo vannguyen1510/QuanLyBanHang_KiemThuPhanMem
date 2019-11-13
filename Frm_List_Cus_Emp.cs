@@ -21,7 +21,7 @@ namespace QLBH_KiemThuPhanMem
 		// ĐƯỜNG DẪN SQL
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
 		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
 		public Frm_List_Cus_Emp()
 		{
@@ -32,18 +32,18 @@ namespace QLBH_KiemThuPhanMem
 			this.txtTimKiem_KH.Leave += new System.EventHandler(this.txtTimKiem_KH_Leave);
 			this.txtTimKiem_KH.Enter += new System.EventHandler(this.txtTimKiem_KH_Enter);
 		}
-        // Open tab Employee
-        //protected override void OnShown(EventArgs e)
-        //{
-        //    base.OnShown(e);
-        //    Frm_Main_Admin admin = new Frm_Main_Admin();
-        //    admin.OnOpenTab_Emp += admin_OnOpenTab_Emp;
-        //    admin.ShowDialog(this);
-        //}
-        //void admin_OnOpenTab_Emp(Object sender, EventArgs e)
-        //{
-        //    tabControl_Emp.SelectedTab = tabPage_Emp;
-        //}
+		// Open tab Employee
+		//protected override void OnShown(EventArgs e)
+		//{
+		//    base.OnShown(e);
+		//    Frm_Main_Admin admin = new Frm_Main_Admin();
+		//    admin.OnOpenTab_Emp += admin_OnOpenTab_Emp;
+		//    admin.ShowDialog(this);
+		//}
+		//void admin_OnOpenTab_Emp(Object sender, EventArgs e)
+		//{
+		//    tabControl_Emp.SelectedTab = tabPage_Emp;
+		//}
 
 		private void txtTimKiem_Leave(object sender, EventArgs e)
 		{
@@ -79,7 +79,7 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// LOAD CỘT LISTVIEW
-		public void Collumn_Load ()
+		public void Collumn_Load()
 		{
 			listView1.View = View.Details;
 			listView1.Columns.Add("ID", 100, HorizontalAlignment.Center);
@@ -172,7 +172,7 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// BỎ TRỐNG textbox
-			// Form Employee
+		// Form Employee
 		public void CheckNullTextBox()
 		{
 			if (txtMa.Text == "")
@@ -200,7 +200,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			errorProvider1.SetError(txtTen, "");
 		}
-			// Form Customer
+		// Form Customer
 		public void CheckNullTextBox_KH()
 		{
 			if (txtMa_KH.Text == "")
@@ -322,7 +322,7 @@ namespace QLBH_KiemThuPhanMem
 		// Chỉ nhận ký tự số
 		private void txtSDT_KH_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			if((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
 				|| (e.KeyChar == (char)8)) // backspace
 			{
 				txtSDT_KH.ShortcutsEnabled = false;
@@ -392,9 +392,9 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// Function - Thêm mới 
-		public void AddNew( )
+		public void AddNew()
 		{
-			
+
 			string ma = txtMa.Text.ToUpper().Trim();
 			string ho = txtHo.Text.Trim();
 			while (ho.IndexOf("  ") != -1)
@@ -444,7 +444,7 @@ namespace QLBH_KiemThuPhanMem
 							}
 							catch (Exception)
 							{
-								
+
 								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
 							}
 							finally
@@ -454,7 +454,7 @@ namespace QLBH_KiemThuPhanMem
 						}
 						else
 						{
-	
+
 							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
 							txtMa.Text = string.Empty;
 						}
@@ -473,11 +473,11 @@ namespace QLBH_KiemThuPhanMem
 			}
 			else
 			{
-			
+
 				lbXuatTenDangNhap.Text = string.Empty;
 				errorProvider1.SetError(txtMa, "Do not accept blank field !");
 			}
-		
+
 		}
 		public bool AddNew1(string ma, string ho, string ten, string ns, string gt)
 		{
@@ -594,7 +594,7 @@ namespace QLBH_KiemThuPhanMem
 				{
 					if (ten != "")
 					{
-						if(sdt != "")
+						if (sdt != "")
 						{
 							ListViewItem item2 = listView1.FindItemWithText(txtMa_KH.Text); // tìm Mã trùng với txtMa_KH
 							if (item2 == null) // nếu Mã chưa có trong Listview thì thêm mới
@@ -724,17 +724,22 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// Function - Xoa
+		
 		public void Del()
 		{
 			lbXuatTenDangNhap.Text = string.Empty;
 			string ma = txtTimKiem.Text;
-			try
-			{
+			//try
+			//{
+			CloseConnect();
 				OpenConnect();
 				// Xóa trong SQL
 				string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				SqlDataReader myReader;
+				string sql_detail = "DELETE FROM [KTPM].[dbo].[Info_Secret] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmd_detail = new SqlCommand(sql_detail, sqlcon);
+				SqlDataReader myReader_detail;
 				string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp=@ma";
 				SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
 				cmdMa.Parameters.Add(new SqlParameter("@ma", ma));
@@ -746,25 +751,30 @@ namespace QLBH_KiemThuPhanMem
 					{
 						listView1.Items.Remove(item);
 						myReader = cmd.ExecuteReader(); // kết quả trả về là 1 tập các dòng
-						while (myReader.Read())
-						{ }
+						while (myReader.Read()){ }
+						myReader_detail = cmd_detail.ExecuteReader();
+						while (myReader_detail.Read()) { }
 						lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
 						ma = string.Empty;
+					Frm_SignIn sin = new Frm_SignIn();
+					sin.Show();
+					this.Hide();
+
 					}
 				}
 				else
 				{
 					MessageBox.Show(" This ID does not exist! \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				}
-			}
-			catch (Exception)
-			{
-				lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
-			}
-			finally
-			{
-				CloseConnect();
-			}
+			//}
+			//catch (Exception)
+			//{
+				//lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
+			//}
+			//finally
+			//{
+				//CloseConnect();
+			//}
 		}
 		public void Del_KH()
 		{

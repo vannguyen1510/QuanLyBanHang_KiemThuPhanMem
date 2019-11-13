@@ -17,9 +17,9 @@ namespace QLBH_KiemThuPhanMem
 	{
 		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
-        
-		public Frm_SignIn() 
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+
+		public Frm_SignIn()
 		{
 			InitializeComponent();
 		}
@@ -38,12 +38,12 @@ namespace QLBH_KiemThuPhanMem
 			}
 			return check;
 		}
-		private bool CheckExistFrm_ChangePassword (string name)
+		private bool CheckExistFrm_ChangePassword(string name)
 		{
 			bool check = false;
-			foreach(Form Frm_ChangePassword in this.MdiChildren)
+			foreach (Form Frm_ChangePassword in this.MdiChildren)
 			{
-				if(Frm_ChangePassword.Name == name)
+				if (Frm_ChangePassword.Name == name)
 				{
 					check = true;
 					break;
@@ -53,11 +53,11 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// kích hoạt form ForgotPassword và ChangePassword hiển thị lên trên cùng - KHÔNG PHẢI TẠO MỚI FORM CON
-		private void ActiveChildFrm_ForgotPassword (string name)
+		private void ActiveChildFrm_ForgotPassword(string name)
 		{
-			foreach(Form Frm_ForgotPassword in this.MdiChildren)
+			foreach (Form Frm_ForgotPassword in this.MdiChildren)
 			{
-				if(Frm_ForgotPassword.Name == name)
+				if (Frm_ForgotPassword.Name == name)
 				{
 					Frm_ForgotPassword.Activate();
 					break;
@@ -66,15 +66,18 @@ namespace QLBH_KiemThuPhanMem
 		}
 		private void ActiveChildFrm_ChangePassword(string name)
 		{
-			foreach(Form Frm_ChangePassword in this.MdiChildren)
+			foreach (Form Frm_ChangePassword in this.MdiChildren)
 			{
-				if(Frm_ChangePassword.Name == name)
+				if (Frm_ChangePassword.Name == name)
 				{
 					Frm_ChangePassword.Activate();
 					break;
 				}
 			}
 		}
+
+		
+
 		//-------------------------------------------------------------------------------------------------------------
 
 		// LOAD FORM
@@ -254,16 +257,25 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		//-----------------------------------------------------------------------------------------------
+		string gender = string.Empty;
 		// ĐĂNG KÝ - SIGN UP
 		public void DangKy()
 		{
+			sqlcon.Close();
 			sqlcon.Open();
 			string F = txtFName.Text.Trim();
+			while (F.IndexOf("  ") != -1)
+				F = F.Replace("  "," ");
 			string L = txtLName.Text.Trim();
+			while (L.IndexOf("  ") != -1)
+				L = L.Replace("  ", " ");
 			string P = txtPhone.Text.Trim();
 			string pw = txtPw.Text;
 			string cpw = txtCPw.Text;
 			string A = txtAddress.Text.Trim();
+			string ns = dateTimePicker1.Text;
+			string gt = rdbNam.Checked ? "Male" : "Female";
+			string[] data = { F, L, ns, P, gt, A };
 			// Không cho phép để trống textbox nào
 			if (F != "")
 			{
@@ -278,13 +290,13 @@ namespace QLBH_KiemThuPhanMem
 							SqlCommand cmd = new SqlCommand(sql, sqlcon);
 							cmd.Parameters.Add(new SqlParameter("@sdt", P));
 							int x = (int)cmd.ExecuteScalar();
-							
+
 							if (x == 1) // nếu SĐT trùng thì báo lỗi 
 							{
 								errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
 								P = string.Empty;
 							}
-							else // nếu SĐT trùng thì kiểm tra tiếp MẬT KHẨU
+							else // nếu SĐT không trùng thì kiểm tra tiếp MẬT KHẨU
 							{
 
 								if (pw != "")
@@ -346,18 +358,35 @@ namespace QLBH_KiemThuPhanMem
 													// nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
 													if (pw != "" && cpw != "" && String.Compare(cpw, pw, false) == 0)
 													{
+														sqlcon.Close();
+														sqlcon.Open();
+														if (rdbNam.Checked)
+															gender = "Male";
+														else
+															gender = "Female";
+														// Thêm vào bảng Info_Cus
+														string sql_cus = "INSERT INTO [KTPM].[dbo].[Info_Cus] (FirstName_Cus,LastName_Cus,Birthday_Cus,Phone_Cus,Sex_Cus,Address_Cus)"
+																		+ "VALUES (@fn,@ln,@bd,@phone,@sex,@add)";
+														SqlCommand cmd_cus = new SqlCommand(sql_cus, sqlcon);
+														cmd_cus.Parameters.AddWithValue("@fn", F);
+														cmd_cus.Parameters.AddWithValue("@ln", L);
+														cmd_cus.Parameters.AddWithValue("@bd", ns);
+														cmd_cus.Parameters.AddWithValue("@phone", P);
+														cmd_cus.Parameters.AddWithValue("@sex", gender);
+														cmd_cus.Parameters.AddWithValue("@add", A);
+														cmd_cus.ExecuteNonQuery();
+														// Thêm vào bảng Info_Secret
+														sqlcon.Close();
+														sqlcon.Open();
 														string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
-																		+ " VALUES (@sdt,@pass,@per)";
+																				+ " VALUES (@sdt,@pass,@per)";
 														SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
 														cmd_id_pw.Parameters.AddWithValue("@sdt", P);
 														cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
 														cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
-
-														MessageBox.Show("here");
-														cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
-														MessageBox.Show(" WELCOME " + L + " " + P + " !");
+														cmd_id_pw.ExecuteNonQuery();
+														MessageBox.Show(" WELCOME " + F + " " + L + " !");
 														tabPage_SignIn.Show();
-														//txtTenDangNhap.Text = txtPhone.Text;
 													}
 													else
 													{

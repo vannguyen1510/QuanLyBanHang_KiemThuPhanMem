@@ -20,7 +20,6 @@ namespace QLBH_KiemThuPhanMem
 		public Frm_Main_Admin()
 		{
 			InitializeComponent();
-            //btnEmp.Click += btnEmp_Click;
 		}
 
 		private void btnBill_Click(object sender, EventArgs e)
