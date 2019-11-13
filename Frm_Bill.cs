@@ -461,14 +461,13 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Add in to Listview
 		public void AddListview()
 		{
-			int counter = 0;
+			int counter;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			
-			try
-			{
-			// Kiểm tra Mã sản phẩm
-			if (combobPro_No.SelectedValue != "")
+			//try
+			//{
+				// Kiểm tra Mã sản phẩm
+				if (combobPro_No.SelectedValue != "")
 				{
 					// kiểm tra số lượng sản phẩm
 					if (quantity != "")
@@ -476,20 +475,24 @@ namespace QLBH_KiemThuPhanMem
 						// kiểm tra Mã hóa đơn rỗng
 						if (BillNo != "")
 						{
-							string[] data = { ((++counter).ToString()), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+							for(counter = 1; counter <= listView1.Items.Count -1; counter ++)
+							{
+								listView1.Items[counter].Text = (counter + 1).ToString();
+								
+							}
+							string[] data = { counter.ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
 							ListViewItem item = new ListViewItem(data);
 							listView1.Items.Add(item);
 							double total = 0;
-						string dis = txtDiscount.Text;
-						double discount;
-						
-						foreach (ListViewItem i in listView1.Items)
+							string dis = txtDiscount.Text;
+							double discount;
+							foreach (ListViewItem i in listView1.Items)
 							{
 								total += double.Parse(i.SubItems[5].Text);
 							}
-						double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
-						txtsum.Text = total.ToString();
-							txtTotalCost.Text = (total - total * ( discount / 100)).ToString();
+							double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+							txtsum.Text = total.ToString();
+							txtTotalCost.Text = (total - total * (discount / 100)).ToString();
 						}
 						else
 						{
@@ -509,11 +512,11 @@ namespace QLBH_KiemThuPhanMem
 					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
 
-			}
-			catch
-			{
-				MessageBox.Show("Error connection. Pplease try again !");
-			}
+			//}
+			//catch
+			//{
+				//MessageBox.Show("Error connection. Pplease try again !");
+			//}
 		}
 
 		// btn Thêm sản phẩm vào listview

@@ -800,7 +800,6 @@
 			this.txtTotalInWord.TabIndex = 62;
 			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtTotalInWord.UseWaitCursor = true;
-			this.txtTotalInWord.TextChanged += new System.EventHandler(this.txtTotalInWord_TextChanged);
 			// 
 			// toolTip1
 			// 

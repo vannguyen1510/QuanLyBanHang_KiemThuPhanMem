@@ -429,7 +429,7 @@ namespace QLBH_KiemThuPhanMem
 									gender = "Male";
 								else
 									gender = "Female";
-								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birthday_Emp,Sex_Emp)"
+								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birtday_Emp,Sex_Emp)"
 												+ "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
 								SqlCommand cmd = new SqlCommand(sql, sqlcon);
 								cmd.Parameters.AddWithValue("@ma", ma);
