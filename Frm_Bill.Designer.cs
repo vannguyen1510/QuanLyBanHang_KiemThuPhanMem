@@ -50,6 +50,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.lbQLNV = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label19 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnSua = new System.Windows.Forms.Button();
 			this.btnXoa = new System.Windows.Forms.Button();
@@ -82,8 +84,6 @@
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
 			this.txtsum = new System.Windows.Forms.TextBox();
@@ -374,6 +374,28 @@
 			this.groupBox1.Text = "Product Information";
 			this.groupBox1.UseWaitCursor = true;
 			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label19.Location = new System.Drawing.Point(828, 76);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(43, 23);
+			this.label19.TabIndex = 56;
+			this.label19.Text = "USD";
+			this.label19.UseWaitCursor = true;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label18.Location = new System.Drawing.Point(260, 79);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(43, 23);
+			this.label18.TabIndex = 55;
+			this.label18.Text = "USD";
+			this.label18.UseWaitCursor = true;
+			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.Location = new System.Drawing.Point(961, 20);
@@ -468,6 +490,7 @@
 			this.txtPro_UnitPrice.TabIndex = 49;
 			this.txtPro_UnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtPro_UnitPrice.UseWaitCursor = true;
+			this.txtPro_UnitPrice.TextChanged += new System.EventHandler(this.txtPro_UnitPrice_TextChanged);
 			// 
 			// combobPro_No
 			// 
@@ -781,28 +804,6 @@
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.Location = new System.Drawing.Point(260, 79);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(43, 23);
-			this.label18.TabIndex = 55;
-			this.label18.Text = "USD";
-			this.label18.UseWaitCursor = true;
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label19.Location = new System.Drawing.Point(828, 76);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(43, 23);
-			this.label19.TabIndex = 56;
-			this.label19.Text = "USD";
-			this.label19.UseWaitCursor = true;
 			// 
 			// label20
 			// 

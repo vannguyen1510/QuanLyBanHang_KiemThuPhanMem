@@ -70,7 +70,7 @@ namespace QLBH_KiemThuPhanMem
 			}
 		}
 		// Kiểm tra textbox rỗng
-		public void ChechNullTextbox()
+		public void CheckNullTextbox()
 		{
 			if (txtPro_SoLuong.Text == "")
 			{
@@ -404,19 +404,31 @@ namespace QLBH_KiemThuPhanMem
 			total = quantity * price;
 			txtTamTinh.Text = total.ToString();
 		}
-		// TOTAL COST
-		// Thay đổi disount thì tính lại TOTAL COST
-		private void txtDiscount_TextChanged(object sender, EventArgs e)
+		// Thay đổi giá tiền thì tính lại SUBTOTAL
+		private void txtPro_UnitPrice_TextChanged(object sender, EventArgs e)
 		{
-			double total=0, quantity, price, dis;
+			double total, quantity, price;
 			if (txtPro_SoLuong.Text == "")
 				quantity = 0;
 			else
 				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
-			if (txtDiscount.Text == "")
-				dis = 0;
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
 			else
-				dis = Convert.ToDouble(txtDiscount.Text);
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			total = quantity * price;
+			txtTamTinh.Text = total.ToString();
+		}
+		// TOTAL COST
+		// Thay đổi disount thì tính lại TOTAL COST
+		private void txtDiscount_TextChanged(object sender, EventArgs e)
+		{
+			double total=0, quantity, price, discount;
+			string dis = txtDiscount.Text;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
 			if (txtPro_UnitPrice.Text == "")
 				price = 0;
 			else
@@ -426,7 +438,8 @@ namespace QLBH_KiemThuPhanMem
 				total += double.Parse(i.SubItems[5].Text);
 			}
 			txtsum.Text = total.ToString();
-			txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
+			double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+			txtTotalCost.Text = (total - total * (discount / 100)).ToString();
 		}
 
 		//-----------------------------------------------------------------------------------
@@ -437,10 +450,11 @@ namespace QLBH_KiemThuPhanMem
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			try
-			{
-				// Kiểm tra Mã sản phẩm
-				if (combobPro_No.SelectedValue != "")
+			
+			//try
+			//{
+			// Kiểm tra Mã sản phẩm
+			if (combobPro_No.SelectedValue != "")
 				{
 					// kiểm tra số lượng sản phẩm
 					if (quantity != "")
@@ -452,12 +466,16 @@ namespace QLBH_KiemThuPhanMem
 							ListViewItem item = new ListViewItem(data);
 							listView1.Items.Add(item);
 							double total = 0;
-							foreach(ListViewItem i in listView1.Items)
+						string dis = txtDiscount.Text;
+						double discount;
+						
+						foreach (ListViewItem i in listView1.Items)
 							{
 								total += double.Parse(i.SubItems[5].Text);
 							}
-							txtsum.Text = total.ToString();
-							txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
+						double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+						txtsum.Text = total.ToString();
+							txtTotalCost.Text = (total - total * ( discount / 100)).ToString();
 						}
 						else
 						{
@@ -477,18 +495,18 @@ namespace QLBH_KiemThuPhanMem
 					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
 
-			}
-			catch
-			{
-				MessageBox.Show("Error connection. Pplease try again !");
-			}
+			//}
+			//catch
+			//{
+				//MessageBox.Show("Error connection. Pplease try again !");
+			//}
 
 		}
 
 		// btn Thêm sản phẩm vào listview
 		private void btnThem_Click(object sender, EventArgs e)
 		{
-			
+			CheckNullTextbox();
 			AddListview();
 		}
 		// btn Out
@@ -506,5 +524,6 @@ namespace QLBH_KiemThuPhanMem
 			txtTamTinh.Text = temp.ToString("0,0.#");
 			txtTamTinh.Select(txtTamTinh.TextLength, 0);
 		}
+
 	}
 }
