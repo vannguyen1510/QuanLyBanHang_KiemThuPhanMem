@@ -475,7 +475,7 @@ namespace QLBH_KiemThuPhanMem
 						// kiểm tra Mã hóa đơn rỗng
 						if (BillNo != "")
 						{
-							for(counter = 1; counter <= listView1.Items.Count -1; counter ++)
+							for(counter = 1; counter <= listView1.Items.Count - 1; counter ++)
 							{
 								listView1.Items[counter].Text = (counter + 1).ToString();
 								

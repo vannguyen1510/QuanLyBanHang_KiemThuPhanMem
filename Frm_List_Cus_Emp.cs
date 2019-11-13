@@ -132,6 +132,7 @@ namespace QLBH_KiemThuPhanMem
 				i++;
 			}
 			listView1.View = View.Details;
+			
 		}
 		private void dataLoad_KH()
 		{
@@ -155,6 +156,7 @@ namespace QLBH_KiemThuPhanMem
 				i++;
 			}
 			listView2.View = View.Details;
+			listView2. = SortOrder.Ascending;
 		}
 
 		// TẢI LẠI DỮ LIỆU
@@ -973,7 +975,7 @@ namespace QLBH_KiemThuPhanMem
 		// ĐÓNG FORM
 		private void Frm_List_Cus_Emp_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			DialogResult = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+			DialogResult = MessageBox.Show("Do you really wanna exit?", ":(", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 			if (DialogResult == DialogResult.OK)
 			{
 				Application.Exit();
