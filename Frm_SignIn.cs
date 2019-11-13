@@ -473,6 +473,9 @@ namespace QLBH_KiemThuPhanMem
 						DoiPW();
 						break;
 					}
+				case Keys.Y:
+					DangKy();
+					break;
 			}
 			return base.ProcessDialogKey(keyData);
 		}

@@ -64,6 +64,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			btnDangNhap = new System.Windows.Forms.Button();
 			btnDangKy = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
@@ -84,6 +85,7 @@
 			btnDangNhap.Size = new System.Drawing.Size(138, 44);
 			btnDangNhap.TabIndex = 15;
 			btnDangNhap.Text = "Sign In";
+			this.toolTip1.SetToolTip(btnDangNhap, "Press Enter to sign in");
 			btnDangNhap.UseVisualStyleBackColor = false;
 			btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
 			// 
@@ -98,6 +100,7 @@
 			btnDangKy.Size = new System.Drawing.Size(138, 44);
 			btnDangKy.TabIndex = 11;
 			btnDangKy.Text = "Sign Up";
+			this.toolTip1.SetToolTip(btnDangKy, "Press Y to sign up ");
 			btnDangKy.UseVisualStyleBackColor = false;
 			btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
 			// 
@@ -166,6 +169,7 @@
 			this.btnDoipw.Size = new System.Drawing.Size(204, 44);
 			this.btnDoipw.TabIndex = 17;
 			this.btnDoipw.Text = "Change Password";
+			this.toolTip1.SetToolTip(this.btnDoipw, "Press P to change password");
 			this.btnDoipw.UseVisualStyleBackColor = false;
 			this.btnDoipw.Click += new System.EventHandler(this.btnDoipw_Click);
 			// 
@@ -192,6 +196,7 @@
 			this.btnDong.Size = new System.Drawing.Size(142, 44);
 			this.btnDong.TabIndex = 16;
 			this.btnDong.Text = "Close";
+			this.toolTip1.SetToolTip(this.btnDong, "Press Escape to clos");
 			this.btnDong.UseVisualStyleBackColor = false;
 			this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
 			// 
@@ -288,6 +293,7 @@
 			this.txtCPw.Location = new System.Drawing.Point(271, 189);
 			this.txtCPw.Multiline = true;
 			this.txtCPw.Name = "txtCPw";
+			this.txtCPw.PasswordChar = '*';
 			this.txtCPw.Size = new System.Drawing.Size(244, 35);
 			this.txtCPw.TabIndex = 5;
 			// 
@@ -297,6 +303,7 @@
 			this.txtPw.Location = new System.Drawing.Point(271, 148);
 			this.txtPw.Multiline = true;
 			this.txtPw.Name = "txtPw";
+			this.txtPw.PasswordChar = '*';
 			this.txtPw.Size = new System.Drawing.Size(244, 35);
 			this.txtPw.TabIndex = 3;
 			// 
@@ -463,6 +470,11 @@
 			// 
 			this.errorProvider1.ContainerControl = this;
 			// 
+			// toolTip1
+			// 
+			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+			this.toolTip1.ToolTipTitle = "Suggestion";
+			// 
 			// Frm_SignIn
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -521,5 +533,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
