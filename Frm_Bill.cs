@@ -445,12 +445,16 @@ namespace QLBH_KiemThuPhanMem
 			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
 			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
 		}
-
 		private void txtTamTinh_TextChanged(object sender, EventArgs e)
 		{
 			double temp = double.Parse(txtTamTinh.Text.Replace(".", ""));
 			txtTamTinh.Text = temp.ToString("0,0.#");
 			txtTamTinh.Select(txtTamTinh.TextLength, 0);
+		}
+		private void txtsum_TextChanged(object sender, EventArgs e)
+		{
+			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
+			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
 		}
 		//-----------------------------------------------------------------------------------
 
@@ -526,16 +530,6 @@ namespace QLBH_KiemThuPhanMem
 			this.Hide();
 			Visible = false;
 		}
-
-		private void txtTotalInWord_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void txtsum_TextChanged(object sender, EventArgs e)
-		{
-			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
-			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
-		}
+		
 	}
 }
