@@ -418,6 +418,8 @@ namespace QLBH_KiemThuPhanMem
 				price = Convert.ToDouble(txtPro_UnitPrice.Text);
 			total = quantity * price;
 			txtTamTinh.Text = total.ToString();
+			
+
 		}
 		// TOTAL COST
 		// Thay đổi disount thì tính lại TOTAL COST
@@ -440,10 +442,18 @@ namespace QLBH_KiemThuPhanMem
 			txtsum.Text = total.ToString();
 			double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
 			txtTotalCost.Text = (total - total * (discount / 100)).ToString();
+			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
+			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
 		}
 
+		private void txtTamTinh_TextChanged(object sender, EventArgs e)
+		{
+			double temp = double.Parse(txtTamTinh.Text.Replace(".", ""));
+			txtTamTinh.Text = temp.ToString("0,0.#");
+			txtTamTinh.Select(txtTamTinh.TextLength, 0);
+		}
 		//-----------------------------------------------------------------------------------
-		
+
 		// Function - Add in to Listview
 		public void AddListview()
 		{
@@ -451,8 +461,8 @@ namespace QLBH_KiemThuPhanMem
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
 			
-			//try
-			//{
+			try
+			{
 			// Kiểm tra Mã sản phẩm
 			if (combobPro_No.SelectedValue != "")
 				{
@@ -495,12 +505,11 @@ namespace QLBH_KiemThuPhanMem
 					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
 
-			//}
-			//catch
-			//{
-				//MessageBox.Show("Error connection. Pplease try again !");
-			//}
-
+			}
+			catch
+			{
+				MessageBox.Show("Error connection. Pplease try again !");
+			}
 		}
 
 		// btn Thêm sản phẩm vào listview
@@ -518,12 +527,15 @@ namespace QLBH_KiemThuPhanMem
 			Visible = false;
 		}
 
-		private void txtTamTinh_TextChanged(object sender, EventArgs e)
+		private void txtTotalInWord_TextChanged(object sender, EventArgs e)
 		{
-			double temp = double.Parse(txtTamTinh.Text.Replace(".", ""));
-			txtTamTinh.Text = temp.ToString("0,0.#");
-			txtTamTinh.Select(txtTamTinh.TextLength, 0);
+
 		}
 
+		private void txtsum_TextChanged(object sender, EventArgs e)
+		{
+			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
+			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
+		}
 	}
 }

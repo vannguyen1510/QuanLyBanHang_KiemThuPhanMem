@@ -88,6 +88,7 @@
 			this.label21 = new System.Windows.Forms.Label();
 			this.txtsum = new System.Windows.Forms.TextBox();
 			this.label22 = new System.Windows.Forms.Label();
+			this.label23 = new System.Windows.Forms.Label();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -630,11 +631,11 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(599, 703);
+			this.label10.Location = new System.Drawing.Point(636, 703);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(131, 26);
+			this.label10.Size = new System.Drawing.Size(94, 26);
 			this.label10.TabIndex = 58;
-			this.label10.Text = "Discount (%)";
+			this.label10.Text = "Discount";
 			this.label10.UseWaitCursor = true;
 			// 
 			// combobShipper
@@ -799,6 +800,7 @@
 			this.txtTotalInWord.TabIndex = 62;
 			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtTotalInWord.UseWaitCursor = true;
+			this.txtTotalInWord.TextChanged += new System.EventHandler(this.txtTotalInWord_TextChanged);
 			// 
 			// toolTip1
 			// 
@@ -808,10 +810,10 @@
 			// label20
 			// 
 			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label20.Location = new System.Drawing.Point(1077, 736);
 			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(43, 23);
+			this.label20.Size = new System.Drawing.Size(45, 23);
 			this.label20.TabIndex = 57;
 			this.label20.Text = "USD";
 			this.label20.UseWaitCursor = true;
@@ -819,10 +821,10 @@
 			// label21
 			// 
 			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label21.Location = new System.Drawing.Point(1077, 668);
 			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(43, 23);
+			this.label21.Size = new System.Drawing.Size(45, 23);
 			this.label21.TabIndex = 65;
 			this.label21.Text = "USD";
 			this.label21.UseWaitCursor = true;
@@ -838,23 +840,36 @@
 			this.txtsum.TabIndex = 64;
 			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.txtsum.UseWaitCursor = true;
+			this.txtsum.TextChanged += new System.EventHandler(this.txtsum_TextChanged);
 			// 
 			// label22
 			// 
 			this.label22.AutoSize = true;
 			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label22.Location = new System.Drawing.Point(637, 669);
+			this.label22.Location = new System.Drawing.Point(660, 669);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(70, 26);
 			this.label22.TabIndex = 63;
 			this.label22.Text = "Total :";
 			this.label22.UseWaitCursor = true;
 			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label23.Location = new System.Drawing.Point(920, 704);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(25, 23);
+			this.label23.TabIndex = 66;
+			this.label23.Text = "%";
+			this.label23.UseWaitCursor = true;
+			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1715, 817);
+			this.Controls.Add(this.label23);
 			this.Controls.Add(this.label21);
 			this.Controls.Add(this.txtsum);
 			this.Controls.Add(this.label22);
@@ -957,5 +972,6 @@
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.TextBox txtsum;
 		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.Label label23;
 	}
 }
