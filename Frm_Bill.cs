@@ -10,19 +10,20 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Globalization;
 
 namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_Bill : Form
 	{
-        // SQL CONNECTION
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-        //SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO;Initial Catalog=KTPM;Integrated Security=True");
-
-        // RANDOM BILL NO
-        private const String allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		// SQL CONNECTION
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------------
+		// RANDOM BILL NO
+		private const String allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		private readonly char[] allCharArray = (allChar + allChar.ToUpper() + "0123456789").ToCharArray();
 
 		public Frm_Bill()
@@ -71,13 +72,37 @@ namespace QLBH_KiemThuPhanMem
 		// Kiểm tra textbox rỗng
 		public void ChechNullTextbox()
 		{
-			if (txtBillNo.Text == "")
-			{
-				errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
-			}
 			if (txtPro_SoLuong.Text == "")
 			{
 				errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+			}
+		}
+		private void combobEmp_ID_TextChanged(object sender, EventArgs e)
+		{
+			if (combobCus_ID.Text == "")
+			{
+				errorProvider1.SetError(combobCus_ID, "Please enter employee ID!");
+			}
+		}
+		private void combobShipper_TextChanged(object sender, EventArgs e)
+		{
+			if (combobShipper.Text == "")
+			{
+				errorProvider1.SetError(combobShipper, "Please enter shipper!");
+			}
+		}
+		private void combobCus_ID_TextChanged(object sender, EventArgs e)
+		{
+			if (combobCus_ID.Text == "")
+			{
+				errorProvider1.SetError(combobCus_ID, "Please enter customer ID!");
+			}
+		}
+		private void combobPro_No_TextChanged(object sender, EventArgs e)
+		{
+			if (combobPro_No.Text == "")
+			{
+				errorProvider1.SetError(combobPro_No, "Please enter product ID!");
 			}
 		}
 
@@ -118,8 +143,7 @@ namespace QLBH_KiemThuPhanMem
 			}
 			else
 			{
-				txtBillNo.Enabled = true;
-				txtBillNo.Text = string.Empty;
+				txtBillNo.Enabled = false;
 			}
 		}
 		//---------------------------------------------------------------------------------
@@ -158,7 +182,7 @@ namespace QLBH_KiemThuPhanMem
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Error Connection. Please try again !", "ERROR");
+				MessageBox.Show("Error Connection emp. Please try again !", "ERROR");
 			}
 		}
 		private void combobEmp_ID_Validating(object sender, CancelEventArgs e)
@@ -384,108 +408,87 @@ namespace QLBH_KiemThuPhanMem
 		// Thay đổi disount thì tính lại TOTAL COST
 		private void txtDiscount_TextChanged(object sender, EventArgs e)
 		{
-			
+			double total=0, quantity, price, dis;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
+			if (txtDiscount.Text == "")
+				dis = 0;
+			else
+				dis = Convert.ToDouble(txtDiscount.Text);
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
+			else
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			foreach (ListViewItem i in listView1.Items)
+			{
+				total += double.Parse(i.SubItems[5].Text);
+			}
+			txtsum.Text = total.ToString();
+			txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
 		}
+
+		//-----------------------------------------------------------------------------------
 		
 		// Function - Add in to Listview
 		public void AddListview()
 		{
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
-			string Emp_id = combobEmp_ID.Text.ToUpper().Trim(); // Mã nhân viên
-			string Cus_id = combobCus_ID.Text.Trim(); // Mã khách hàng
-			string ship = combobShipper.Text.Trim(); // Mã shipper
-			string proID = combobPro_No.Text; // Mã sản phẩm
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			//try
-			//{
-			// Kiểm tra Mã sản phẩm
-			if (proID != "")
+			try
 			{
-				// kiểm tra số lượng sản phẩm
-				if (quantity != "")
+				// Kiểm tra Mã sản phẩm
+				if (combobPro_No.SelectedValue != "")
 				{
-					// kiểm tra Mã hóa đơn rỗng
-					if (BillNo != "")
+					// kiểm tra số lượng sản phẩm
+					if (quantity != "")
 					{
-						// kiểm tra tồn tại Mã nhân viên
-						sqlcon.Close();
-						sqlcon.Open();
-						string sql = "SELECT ID_Emp FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp = '@id' COLLATE SQL_Latin1_General_CP1_CS_AS";
-						SqlCommand cmd = new SqlCommand(sql, sqlcon);
-						cmd.Parameters.AddWithValue("@id", Emp_id);
-						int x = Convert.ToInt32(cmd.ExecuteScalar());
-						if (x == 1)
+						// kiểm tra Mã hóa đơn rỗng
+						if (BillNo != "")
 						{
-							
+							string[] data = { ((++counter).ToString()), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+							ListViewItem item = new ListViewItem(data);
+							listView1.Items.Add(item);
+							double total = 0;
+							foreach(ListViewItem i in listView1.Items)
+							{
+								total += double.Parse(i.SubItems[5].Text);
+							}
+							txtsum.Text = total.ToString();
+							txtTotalCost.Text = (total - total * (double.Parse(txtDiscount.Text) / 100)).ToString();
 						}
 						else
 						{
-							combobEmp_ID.Focus();
-							errorProvider1.SetError(combobEmp_ID, "Employee ID does not exist !");
-							// kiểm tra tồn tại Mã khách hàng
-							sqlcon.Close();
-							sqlcon.Open();
-							string sql_c = "SELECT ID_Cus FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus = '@Cusid'";
-							SqlCommand cmd_c = new SqlCommand(sql_c, sqlcon);
-							cmd_c.Parameters.AddWithValue("@Cusid", Cus_id);
-							int y = (int)cmd_c.ExecuteScalar();
-							if (y == 1)
-							{
-								// kiểm tra tồn tại Mã shipper
-								sqlcon.Close();
-								sqlcon.Open();
-								string sql_s = "SELECT Company FROM Shippers WHERE Company = '@ship'";
-								SqlCommand cmd_s = new SqlCommand(sql_s, sqlcon);
-								cmd.Parameters.AddWithValue("@ship", ship);
-								int z = Convert.ToInt32(cmd_s.ExecuteScalar());
-								if (z == 1)
-								{
-									string[] data = { (++counter).ToString(), proID, txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
-									ListViewItem item = new ListViewItem(data);
-									listView1.Items.Add(item);
-								}
-								else
-								{
-									combobShipper.Focus();
-									errorProvider1.SetError(combobShipper, "Shipper ID does not exist !");
-								}
-							}
-							else
-							{
-								combobCus_ID.Focus();
-								errorProvider1.SetError(combobCus_ID, "Customer ID does not exist !");
-							}
+							txtBillNo.Focus();
+							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
 						}
 					}
 					else
 					{
-						txtBillNo.Focus();
-						errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+						txtPro_SoLuong.Focus();
+						errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 					}
 				}
 				else
 				{
-					txtPro_SoLuong.Focus();
-					errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+					combobPro_No.Focus();
+					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
-			}
-			else
-			{
-				combobPro_No.Focus();
-				errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
-			}
 
-			//}
-			//catch
-			//{
-			//MessageBox.Show("Error connection. Pplease try again !");
-			//}
+			}
+			catch
+			{
+				MessageBox.Show("Error connection. Pplease try again !");
+			}
 
 		}
+
 		// btn Thêm sản phẩm vào listview
 		private void btnThem_Click(object sender, EventArgs e)
 		{
+			
 			AddListview();
 		}
 		// btn Out
@@ -496,9 +499,12 @@ namespace QLBH_KiemThuPhanMem
 			this.Hide();
 			Visible = false;
 		}
-		
 
-
-
+		private void txtTamTinh_TextChanged(object sender, EventArgs e)
+		{
+			double temp = double.Parse(txtTamTinh.Text.Replace(".", ""));
+			txtTamTinh.Text = temp.ToString("0,0.#");
+			txtTamTinh.Select(txtTamTinh.TextLength, 0);
+		}
 	}
 }

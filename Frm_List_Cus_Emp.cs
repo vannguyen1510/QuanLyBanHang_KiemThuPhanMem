@@ -18,13 +18,12 @@ namespace QLBH_KiemThuPhanMem
 	public partial class Frm_List_Cus_Emp : Form
 	{
 		string gender = string.Empty;
-        // ĐƯỜNG DẪN SQL
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-        //SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+		// ĐƯỜNG DẪN SQL
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
-        public Frm_List_Cus_Emp()
+		public Frm_List_Cus_Emp()
 		{
 			InitializeComponent();
 			//WaterMark
@@ -532,7 +531,7 @@ namespace QLBH_KiemThuPhanMem
 							}
 							catch (Exception)
 							{
-								tamp = false;
+								tamp = true;
 
 								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
 							}
@@ -543,29 +542,28 @@ namespace QLBH_KiemThuPhanMem
 						}
 						else
 						{
-                            //throw new InvalidOperationException("Ban chua nhap phan nay");
-                            tamp = false;
+							tamp = true;
 							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
 							txtMa.Text = string.Empty;
 						}
 					}
 					else
 					{
-						tamp = false;
+						tamp = true;
 						lbXuatTenDangNhap.Text = string.Empty;
 						errorProvider1.SetError(txtTen, " Do not accept blank field !");
 					}
 				}
 				else
 				{
-					tamp = false;
+					tamp = true;
 					lbXuatTenDangNhap.Text = string.Empty;
 					errorProvider1.SetError(txtHo, "Do not accept blank field !");
 				}
 			}
 			else
 			{
-				tamp = false;
+				tamp = true;
 				lbXuatTenDangNhap.Text = string.Empty;
 				errorProvider1.SetError(txtMa, "Do not accept blank field !");
 			}

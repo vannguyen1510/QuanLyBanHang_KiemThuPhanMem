@@ -17,11 +17,10 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_ChangePassword : Form
 	{
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
-        public Frm_ChangePassword()
+		public Frm_ChangePassword()
 		{
 			InitializeComponent();
 		}
@@ -49,7 +48,7 @@ namespace QLBH_KiemThuPhanMem
 					if (x == 1)// đúng id và password cũ
 					{
 						txtNpw.ReadOnly = false;
-		 				txtCNpw.ReadOnly = false;
+						txtCNpw.ReadOnly = false;
 						string Newpw = txtNpw.Text;
 						string Cfpw = txtCNpw.Text;
 						string pattern = @"^[ \s]+|[ \s]+$ ";
