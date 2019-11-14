@@ -585,6 +585,7 @@
 			this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(935, 391);
+			this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.listView1.TabIndex = 49;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.UseWaitCursor = true;

@@ -156,7 +156,6 @@ namespace QLBH_KiemThuPhanMem
 				i++;
 			}
 			listView2.View = View.Details;
-			listView2. = SortOrder.Ascending;
 		}
 
 		// TẢI LẠI DỮ LIỆU
