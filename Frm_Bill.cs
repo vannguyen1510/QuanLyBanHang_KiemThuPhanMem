@@ -38,6 +38,7 @@ namespace QLBH_KiemThuPhanMem
 			Load_combobShipper();
 			Load_combobCus_ID();
 			Load_combobEmp_ID();
+			sqlcon.Close();
 
 		}
 		// Chỉ được nhập số
@@ -120,6 +121,29 @@ namespace QLBH_KiemThuPhanMem
 			this.Opacity = 1;
 		}
 		
+		//---------------------------------------------------------------------------------
+		// XÓA CONTROLS
+		public void XoaFullTextbox()
+		{
+			foreach (Control ct in this.Controls)
+			{
+				if (ct is TextBox)
+				{
+					ct.Text = string.Empty;
+					dateTimePicker1.Value = DateTime.Today;
+				}
+			}
+		}
+		public void XoaFullCombobox()
+		{
+			foreach (Control cb in this.Controls)
+			{
+				if (cb is ComboBox)
+				{
+					cb.Text = string.Empty;
+				}
+			}
+		}
 
 		//---------------------------------------------------------------------------------
 		// Function - Random Bill No
@@ -394,7 +418,9 @@ namespace QLBH_KiemThuPhanMem
 		{
 			double total, quantity, price;
 			if (txtPro_SoLuong.Text == "")
+			{
 				quantity = 0;
+			}
 			else
 				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
 			if (txtPro_UnitPrice.Text == "")
@@ -456,16 +482,17 @@ namespace QLBH_KiemThuPhanMem
 			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
 			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
 		}
+
 		//-----------------------------------------------------------------------------------
 
-		// Function - Add in to Listview
+		// Function - Add into Listview
 		public void AddListview()
 		{
 			int counter;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			//try
-			//{
+			try
+			{
 				// Kiểm tra Mã sản phẩm
 				if (combobPro_No.SelectedValue != "")
 				{
@@ -473,12 +500,11 @@ namespace QLBH_KiemThuPhanMem
 					if (quantity != "")
 					{
 						// kiểm tra Mã hóa đơn rỗng
-						if (BillNo != "")
+						if (BillNo != null)
 						{
-							for(counter = 1; counter <= listView1.Items.Count - 1; counter ++)
+							for (counter = 1; counter <= listView1.Items.Count - 1; counter++)
 							{
 								listView1.Items[counter].Text = (counter + 1).ToString();
-								
 							}
 							string[] data = { counter.ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
 							ListViewItem item = new ListViewItem(data);
@@ -500,6 +526,193 @@ namespace QLBH_KiemThuPhanMem
 							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
 						}
 					}
+					else if (quantity == "0")
+					{
+						txtPro_SoLuong.Focus();
+						errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
+					}
+					else
+					{
+						txtPro_SoLuong.Focus();
+						errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+					}
+				}
+				else
+				{
+					combobPro_No.Focus();
+					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
+				}
+
+			}
+			catch
+			{
+				MessageBox.Show("Error connection. Pplease try again !");
+			}
+		}
+
+		// btn Thêm sản phẩm vào listview
+		private void btnThem_Click(object sender, EventArgs e)
+		{
+			CheckNullTextbox();
+			AddListview();
+		}
+
+		//------------------------------------------------------------------------------------ // chưa chạy được
+		// Function - Update product in Listview
+		public void UpdateListView()
+		{
+			ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm Mã trùng với mã trong combobox Pro_ID
+			if (item1 != null) // nếu Mã có trong Listview thì sửa
+			{
+
+			}
+			else // Nếu không có 
+			{
+				DialogResult dlr = MessageBox.Show("Code " + combobPro_No.Text + " does not exist in bill! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+				if (dlr == DialogResult.Yes)
+				{
+					AddListview();
+				}
+				else 
+				{
+					combobPro_No.Text = string.Empty;
+					txtPro_Name.Text = string.Empty;
+					txtPro_SoLuong.Text = string.Empty;
+					txtPro_UnitPrice.Text = string.Empty;
+					txtTamTinh.Text = string.Empty;
+				}
+			}
+		}
+
+		// btn Sửa sản phẩm trong listview
+		private void btnSua_Click(object sender, EventArgs e)
+		{
+			UpdateListView();
+		}
+		//------------------------------------------------------------------------------------ // chưa chạy được
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			foreach (ListViewItem item in listView1.SelectedItems)
+			{
+				//combobPro_No.Items.AddRange(item.SubItems[1].Text);
+				int x;
+				x = combobPro_No.FindString(item.SubItems[1].Text);
+				combobPro_No.SelectedIndex = x;
+				txtPro_Name.Text = item.SubItems[2].Text;
+				txtPro_SoLuong.Text = item.SubItems[3].Text;
+				txtPro_UnitPrice.Text = item.SubItems[4].Text;
+				txtTamTinh.Text = item.SubItems[5].Text;
+			}
+		}
+		//---------------------------------------------------------------------------------
+		// Function - Add bill into Database
+		public void AddDatabase()
+		{
+			int counter;
+			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
+			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
+			string odate = dateTimePicker1.Text;
+			//try
+			//{
+				// Kiểm tra Mã sản phẩm
+				if (combobPro_No.SelectedValue != "")
+				{
+				// kiểm tra số lượng sản phẩm
+				if (quantity != "")
+				{
+					// kiểm tra Mã hóa đơn rỗng
+					if (BillNo != null)
+					{
+						for (counter = 1; counter <= listView1.Items.Count - 1; counter++)
+						{
+							listView1.Items[counter].Text = (counter + 1).ToString();
+						}
+						// THÊM VÀO LISTVIEW
+						string[] data = { counter.ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+						ListViewItem item = new ListViewItem(data);
+						listView1.Items.Add(item);
+						// THÊM VÀO DATABASE
+						//try
+						//{
+						// Kiểm tra Mã khách và Mã NV 
+						//string check = "SELECT COUNT (*) FROM [KTPM].[dbo].Orders"
+						//+"WHERE(ID_Cus IN(SELECT Phone_Cus FROM[KTPM].[dbo].Info_Cus)) AND(ID_Emp IN(SELECT ID_Emp FROM[KTPM].[dbo].Info_Emp)); ";
+						//SqlCommand c = new SqlCommand(check, sqlcon);
+						//int x = (int)c.ExecuteNonQuery();
+						//if(x==1)
+						//{
+						// THÊM VÀO Order
+						//try
+						//{
+						sqlcon.Close();
+						sqlcon.Open();
+						string sql = "INSERT INTO [KTPM].[dbo].[Orders] (OrderID,ID_Cus,ID_Emp,OrderDate,ShipVia,Name_Cus,Address_Cus)"
+										+ "VALUES (@od,@cd,@ed,@date,@ship,@cn,@address)";
+										//+ "WHERE(ID_Cus IN(SELECT Phone_Cus FROM[KTPM].[dbo].Info_Cus)) AND(ID_Emp IN(SELECT ID_Emp FROM[KTPM].[dbo].Info_Emp))";
+						SqlCommand cmd = new SqlCommand(sql, sqlcon);
+						cmd.Parameters.AddWithValue("@od", BillNo);
+						cmd.Parameters.AddWithValue("@cd", combobCus_ID.Text);
+						cmd.Parameters.AddWithValue("@ed", combobEmp_ID.Text);
+						cmd.Parameters.AddWithValue("@date", odate);
+						cmd.Parameters.AddWithValue("@ship", combobShipper.Text);
+						cmd.Parameters.AddWithValue("@cn", txtCus_Name.Text);
+						cmd.Parameters.AddWithValue("@address", txtCus_Address.Text);
+						cmd.ExecuteNonQuery();
+						sqlcon.Close();
+						//}
+						//catch (Exception)
+						//{
+						//MessageBox.Show("Error connection /Order/. Please try again !");
+						//sqlcon.Close();
+						//}
+						// THÊM VÀO Order Details
+
+						sqlcon.Open();
+						foreach (ListViewItem item1 in listView1.Items)
+						{
+							string sql_od = "INSERT INTO [KTPM].[dbo].[Order Details] (OrderID,ProductID,UnitPrice,Quantity)"
+										+ "VALUES ('"
+										+ txtBillNo.Text + "','"
+										+ item1.SubItems[1].Text + "','"
+										+ item1.SubItems[4].Text + "','"
+										+ item1.SubItems[3].Text + "')";
+							SqlCommand cmd_od = new SqlCommand(sql_od, sqlcon);
+							cmd_od.ExecuteNonQuery();
+						}
+						//cmd.ExecuteNonQuery(); 
+						MessageBox.Show(" DATA ADDED SUCCESSFUL !");
+						XoaFullTextbox();
+						sqlcon.Close();
+						//}
+						//catch (Exception)
+						//{
+						//MessageBox.Show("Error connection /SQL/. Please try again !");
+						//sqlcon.Close();
+						//}
+						// TÍNH TIỀN
+						double total = 0;
+						string dis = txtDiscount.Text;
+						double discount;
+						foreach (ListViewItem i in listView1.Items)
+						{
+							total += double.Parse(i.SubItems[5].Text);
+						}
+						double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+						txtsum.Text = total.ToString();
+						txtTotalCost.Text = (total - total * (discount / 100)).ToString();
+					}
+					
+						else
+						{
+							txtBillNo.Focus();
+							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+						}
+					}
+					else if (quantity == "0")
+					{
+						txtPro_SoLuong.Focus();
+						errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
+					}
 					else
 					{
 						txtPro_SoLuong.Focus();
@@ -515,16 +728,18 @@ namespace QLBH_KiemThuPhanMem
 			//}
 			//catch
 			//{
-				//MessageBox.Show("Error connection. Pplease try again !");
+				//MessageBox.Show("Error connection. Please try again !");
 			//}
 		}
-
-		// btn Thêm sản phẩm vào listview
-		private void btnThem_Click(object sender, EventArgs e)
+		// btn Thêm vào CSDL
+		private void btnAdd_Bill_Click(object sender, EventArgs e)
 		{
 			CheckNullTextbox();
-			AddListview();
+			AddDatabase();
 		}
+
+
+		//--------------------------------------------------------------------------------
 		// btn Out
 		private void btnOut_Click(object sender, EventArgs e)
 		{
@@ -533,6 +748,17 @@ namespace QLBH_KiemThuPhanMem
 			this.Hide();
 			Visible = false;
 		}
+
+		
+		//-------------------------------------------------------------------------------
+		// btn Reset
+		private void btn_Reset_Click(object sender, EventArgs e)
+		{
+			XoaFullTextbox();
+			XoaFullCombobox();
+			Collumn_Load();
+		}
+
 		
 	}
 }
