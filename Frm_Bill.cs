@@ -614,9 +614,9 @@ namespace QLBH_KiemThuPhanMem
 			string odate = dateTimePicker1.Text;
 			//try
 			//{
-				// Kiểm tra Mã sản phẩm
-				if (combobPro_No.SelectedValue != "")
-				{
+			// Kiểm tra Mã sản phẩm
+			if (combobPro_No.SelectedValue != "")
+			{
 				// kiểm tra số lượng sản phẩm
 				if (quantity != "")
 				{
@@ -635,100 +635,118 @@ namespace QLBH_KiemThuPhanMem
 						//try
 						//{
 						// Kiểm tra Mã khách và Mã NV 
-						//string check = "SELECT COUNT (*) FROM [KTPM].[dbo].Orders"
-						//+"WHERE(ID_Cus IN(SELECT Phone_Cus FROM[KTPM].[dbo].Info_Cus)) AND(ID_Emp IN(SELECT ID_Emp FROM[KTPM].[dbo].Info_Emp)); ";
-						//SqlCommand c = new SqlCommand(check, sqlcon);
-						//int x = (int)c.ExecuteNonQuery();
-						//if(x==1)
-						//{
-						// THÊM VÀO Order
-						//try
-						//{
-						sqlcon.Close();
-						sqlcon.Open();
-						string sql = "INSERT INTO [KTPM].[dbo].[Orders] (OrderID,ID_Cus,ID_Emp,OrderDate,ShipVia,Name_Cus,Address_Cus)"
-										+ "VALUES (@od,@cd,@ed,@date,@ship,@cn,@address)";
-										//+ "WHERE(ID_Cus IN(SELECT Phone_Cus FROM[KTPM].[dbo].Info_Cus)) AND(ID_Emp IN(SELECT ID_Emp FROM[KTPM].[dbo].Info_Emp))";
-						SqlCommand cmd = new SqlCommand(sql, sqlcon);
-						cmd.Parameters.AddWithValue("@od", BillNo);
-						cmd.Parameters.AddWithValue("@cd", combobCus_ID.Text);
-						cmd.Parameters.AddWithValue("@ed", combobEmp_ID.Text);
-						cmd.Parameters.AddWithValue("@date", odate);
-						cmd.Parameters.AddWithValue("@ship", combobShipper.Text);
-						cmd.Parameters.AddWithValue("@cn", txtCus_Name.Text);
-						cmd.Parameters.AddWithValue("@address", txtCus_Address.Text);
-						cmd.ExecuteNonQuery();
-						sqlcon.Close();
-						//}
-						//catch (Exception)
-						//{
-						//MessageBox.Show("Error connection /Order/. Please try again !");
-						//sqlcon.Close();
-						//}
-						// THÊM VÀO Order Details
+						string e = combobEmp_ID.Text;
+						string cu = combobCus_ID.Text;
+						string check = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp = @em";
+						string check1 = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Cus] WHERE ID_Cus = @cus";
+						SqlCommand c = new SqlCommand(check, sqlcon);
+						c.Parameters.AddWithValue("@em", e);
+						int x = Convert.ToInt32(c.ExecuteScalar());
+						if (x > 0)
+						{
+							SqlCommand u = new SqlCommand(check1, sqlcon);
+							u.Parameters.AddWithValue("@cus", cu);
+							int y = Convert.ToInt32(u.ExecuteScalar());
+							if (y > 0)
+							{
+								// THÊM VÀO Order
+								//try
+								//{
+								sqlcon.Close();
+								sqlcon.Open();
+								string sql = "INSERT INTO [KTPM].[dbo].[Orders] (OrderID,ID_Cus,ID_Emp,OrderDate,ShipVia,Name_Cus,Address_Cus)"
+												+ "VALUES (@od,@cd,@ed,@date,@ship,@cn,@address)";
+								//+ "WHERE(ID_Cus IN(SELECT Phone_Cus FROM[KTPM].[dbo].Info_Cus)) AND(ID_Emp IN(SELECT ID_Emp FROM[KTPM].[dbo].Info_Emp))";
+								SqlCommand cmd = new SqlCommand(sql, sqlcon);
+								cmd.Parameters.AddWithValue("@od", BillNo);
+								cmd.Parameters.AddWithValue("@cd", combobCus_ID.Text);
+								cmd.Parameters.AddWithValue("@ed", combobEmp_ID.Text);
+								cmd.Parameters.AddWithValue("@date", odate);
+								cmd.Parameters.AddWithValue("@ship", combobShipper.Text);
+								cmd.Parameters.AddWithValue("@cn", txtCus_Name.Text);
+								cmd.Parameters.AddWithValue("@address", txtCus_Address.Text);
+								cmd.ExecuteNonQuery();
+								sqlcon.Close();
+								//}
+								//catch (Exception)
+								//{
+								//MessageBox.Show("Error connection /Order/. Please try again !");
+								//sqlcon.Close();
+								//}
+								// THÊM VÀO Order Details
 
-						sqlcon.Open();
-						foreach (ListViewItem item1 in listView1.Items)
-						{
-							string sql_od = "INSERT INTO [KTPM].[dbo].[Order Details] (OrderID,ProductID,UnitPrice,Quantity)"
-										+ "VALUES ('"
-										+ txtBillNo.Text + "','"
-										+ item1.SubItems[1].Text + "','"
-										+ item1.SubItems[4].Text + "','"
-										+ item1.SubItems[3].Text + "')";
-							SqlCommand cmd_od = new SqlCommand(sql_od, sqlcon);
-							cmd_od.ExecuteNonQuery();
+								sqlcon.Open();
+								foreach (ListViewItem item1 in listView1.Items)
+								{
+									string sql_od = "INSERT INTO [KTPM].[dbo].[Order Details] (OrderID,ProductID,UnitPrice,Quantity)"
+												+ "VALUES ('"
+												+ txtBillNo.Text + "','"
+												+ item1.SubItems[1].Text + "','"
+												+ item1.SubItems[4].Text + "','"
+												+ item1.SubItems[3].Text + "')";
+									SqlCommand cmd_od = new SqlCommand(sql_od, sqlcon);
+									cmd_od.ExecuteNonQuery();
+								}
+								//cmd.ExecuteNonQuery(); 
+								MessageBox.Show(" DATA ADDED SUCCESSFUL !");
+								XoaFullTextbox();
+								sqlcon.Close();
+								//}
+								//catch (Exception)
+								//{
+								//MessageBox.Show("Error connection /SQL/. Please try again !");
+								//sqlcon.Close();
+								//}
+								// TÍNH TIỀN
+								double total = 0;
+								string dis = txtDiscount.Text;
+								double discount;
+								foreach (ListViewItem i in listView1.Items)
+								{
+									total += double.Parse(i.SubItems[5].Text);
+								}
+								double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+								txtsum.Text = total.ToString();
+								txtTotalCost.Text = (total - total * (discount / 100)).ToString();
+							}
+							else
+							{
+
+							}
 						}
-						//cmd.ExecuteNonQuery(); 
-						MessageBox.Show(" DATA ADDED SUCCESSFUL !");
-						XoaFullTextbox();
-						sqlcon.Close();
-						//}
-						//catch (Exception)
-						//{
-						//MessageBox.Show("Error connection /SQL/. Please try again !");
-						//sqlcon.Close();
-						//}
-						// TÍNH TIỀN
-						double total = 0;
-						string dis = txtDiscount.Text;
-						double discount;
-						foreach (ListViewItem i in listView1.Items)
-						{
-							total += double.Parse(i.SubItems[5].Text);
-						}
-						double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
-						txtsum.Text = total.ToString();
-						txtTotalCost.Text = (total - total * (discount / 100)).ToString();
-					}
-					
 						else
 						{
-							txtBillNo.Focus();
-							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+
 						}
-					}
-					else if (quantity == "0")
-					{
-						txtPro_SoLuong.Focus();
-						errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
+
 					}
 					else
 					{
-						txtPro_SoLuong.Focus();
-						errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+						txtBillNo.Focus();
+						errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
 					}
+				}
+				else if (quantity == "0")
+				{
+					txtPro_SoLuong.Focus();
+					errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
 				}
 				else
 				{
-					combobPro_No.Focus();
-					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
+					txtPro_SoLuong.Focus();
+					errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 				}
+			}
+			else
+			{
+				combobPro_No.Focus();
+				errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
+			}
 
 			//}
 			//catch
 			//{
-				//MessageBox.Show("Error connection. Please try again !");
+			//MessageBox.Show("Error connection. Please try again !");
 			//}
 		}
 		// btn Thêm vào CSDL
