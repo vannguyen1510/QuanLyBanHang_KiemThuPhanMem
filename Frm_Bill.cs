@@ -503,7 +503,7 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Add into Listview
 		public void AddListview()
 		{
-			int counter;
+			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
 			try
@@ -517,11 +517,12 @@ namespace QLBH_KiemThuPhanMem
 						// kiểm tra Mã hóa đơn rỗng
 						if (BillNo != null)
 						{
-							for (counter = 1; counter <= listView1.Items.Count - 1; counter++)
+							for (counter = 0; counter < listView1.Items.Count - 1; counter++)
 							{
 								listView1.Items[counter].Text = (counter + 1).ToString();
 							}
-							string[] data = { counter.ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
+							//ListViewItem i = listView1.Items.Add((++counter).ToString());
+							string[] data = { listView1.Items[counter].Text, combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
 							ListViewItem item = new ListViewItem(data);
 							listView1.Items.Add(item);
 							double total = 0;
@@ -623,7 +624,6 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Add bill into Database
 		public void AddDatabase()
 		{
-			int counter;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
 			string odate = dateTimePicker1.Text;
@@ -638,14 +638,6 @@ namespace QLBH_KiemThuPhanMem
 						// kiểm tra Mã hóa đơn rỗng
 						if (BillNo != null)
 						{
-							for (counter = 1; counter <= listView1.Items.Count - 1; counter++)
-							{
-								listView1.Items[counter].Text = (counter + 1).ToString();
-							}
-							// THÊM VÀO LISTVIEW
-							string[] data = { counter.ToString(), combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
-							ListViewItem item = new ListViewItem(data);
-							listView1.Items.Add(item);
 							// THÊM VÀO DATABASE
 							try
 							{

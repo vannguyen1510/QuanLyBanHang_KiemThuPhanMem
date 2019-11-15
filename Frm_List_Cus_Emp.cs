@@ -849,20 +849,6 @@ namespace QLBH_KiemThuPhanMem
 					}
 						else // không tồn tại mã NV trong bảng Secret thì không cho xóa và yêu cầu đăng ký tài khoản 
 						{
-							// Xóa trong ListView
-							//foreach (ListViewItem item in listView1.SelectedItems)
-							//{
-							//	listView1.Items.Remove(item);
-							//	myReader = cmd.ExecuteReader(); // kết quả trả về là 1 tập các dòng
-							//	while (myReader.Read()) { }
-							//	myReader_detail = cmd_detail.ExecuteReader();
-							//	while (myReader_detail.Read()) { }
-							//	lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-							//	ma = string.Empty;
-							//	Frm_SignIn sin = new Frm_SignIn();
-							//	sin.Show();
-							//	this.Hide();
-							//}
 							MessageBox.Show("You have no permission \n Please sign up to countinue ! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 							Frm_SignIn sin = new Frm_SignIn();
 							sin.Show();
