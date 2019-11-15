@@ -19,9 +19,9 @@ namespace QLBH_KiemThuPhanMem
 	{
 		string gender = string.Empty;
         // ĐƯỜNG DẪN SQL
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-        //SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
 		public Frm_List_Cus_Emp()
@@ -151,7 +151,6 @@ namespace QLBH_KiemThuPhanMem
 			int i = 0;
 			foreach (DataRow dr in dt.Rows)
 			{
-				// Chưa xử lý được thêm icon giới tính khi load dữ liệu từ SQL lên listView
 				listView2.Items.Add(dr["ID_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["FirstName_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["LastName_Cus"].ToString());
@@ -412,7 +411,6 @@ namespace QLBH_KiemThuPhanMem
 		// Function - Thêm mới 
 		public void AddNew()
 		{
-
 			string ma = txtMa.Text.ToUpper().Trim();
 			string ho = txtHo.Text.Trim();
 			while (ho.IndexOf("  ") != -1)
@@ -735,7 +733,7 @@ namespace QLBH_KiemThuPhanMem
                     AddNew();
                     CloseConnect();
                 }
-                else // xóa trắng textbox
+                else 
                 {
                     XoaFullTextbox();
                 }
@@ -802,101 +800,115 @@ namespace QLBH_KiemThuPhanMem
             //MessageBox.Show("Tam: "+tamp);
             return tamp;
         }
-        // Function - Xoa
+		// Function - Xoa
 
-        public void Del()
+		public void Del()
 		{
 			lbXuatTenDangNhap.Text = string.Empty;
 			string ma = txtTimKiem.Text;
 			//try
 			//{
-			CloseConnect();
-			OpenConnect();
-			// Xóa trong SQL
-			string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
-			SqlCommand cmd = new SqlCommand(sql, sqlcon);
-			SqlDataReader myReader;
-			string sql_detail = "DELETE FROM [KTPM].[dbo].[Info_Secret] WHERE ID_Emp= '" + ma + "';";
-			SqlCommand cmd_detail = new SqlCommand(sql_detail, sqlcon);
-			SqlDataReader myReader_detail;
+				CloseConnect();
+				OpenConnect();
+				// Xóa trong SQL
+				string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmd = new SqlCommand(sql, sqlcon);
+				SqlDataReader myReader;
+				string sql_detail = "DELETE FROM [KTPM].[dbo].[Info_Secret] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmd_detail = new SqlCommand(sql_detail, sqlcon);
+				SqlDataReader myReader_detail;
 
-			string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
-			SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
-			int x = (int)cmdMa.ExecuteScalar(); // Tồn tại mã NV trong Bảng Info_Emp	
-			string sqlorder = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
-			SqlCommand cmdorder = new SqlCommand(sqlorder, sqlcon);
-			int y = (int)cmdorder.ExecuteScalar(); // Tồn tại mã NV trong bảng Orders
-			string secret = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
-			SqlCommand cmdsecret = new SqlCommand(secret, sqlcon);
-			int z = (int)cmdsecret.ExecuteScalar(); // Tồn tại mã NV trong bảng Info_Secret
-			if (x == 1)
-			{
-				if (y == 1)
+				string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
+				int x = (int)cmdMa.ExecuteScalar(); // Tồn tại mã NV trong Bảng Info_Emp	
+				string sqlorder = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmdorder = new SqlCommand(sqlorder, sqlcon);
+				int y = (int)cmdorder.ExecuteScalar(); // Tồn tại mã NV trong bảng Orders
+				string secret = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
+				SqlCommand cmdsecret = new SqlCommand(secret, sqlcon);
+				int z = (int)cmdsecret.ExecuteScalar(); // Tồn tại mã NV trong bảng Info_Secret
+				if (x == 1)
 				{
-					if(z==1)
+					if (y == 1)
 					{
-						MessageBox.Show("This employee have already exist in Database \n Can not delete information !","SORRY",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-					}
-					else // không tồn tại mã NV trong bảng Secret thì không cho xóa và yêu cầu đăng ký tài khoản 
-					{
-						// Xóa trong ListView
-						//foreach (ListViewItem item in listView1.SelectedItems)
-						//{
-						//	listView1.Items.Remove(item);
-						//	myReader = cmd.ExecuteReader(); // kết quả trả về là 1 tập các dòng
-						//	while (myReader.Read()) { }
-						//	myReader_detail = cmd_detail.ExecuteReader();
-						//	while (myReader_detail.Read()) { }
-						//	lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-						//	ma = string.Empty;
-						//	Frm_SignIn sin = new Frm_SignIn();
-						//	sin.Show();
-						//	this.Hide();
-						//}
-						MessageBox.Show("You have no permission ", "ERROR",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-
-					}
-				}
-				else // nếu mã NV không tồn tại trong bảng Orders
-				{
-					if(z==1) // tồn tại trong bảng Secret thì XÓA sạch tại bảng Emp và Secret
-					{
-						foreach (ListViewItem item in listView1.SelectedItems)
+						if (z == 1)
 						{
-							listView1.Items.Remove(item);
-							myReader = cmd.ExecuteReader();
-							while (myReader.Read()) { }
-							myReader_detail = cmd_detail.ExecuteReader();
-							while (myReader_detail.Read()) { }
-							lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-							ma = string.Empty;
+							//if (listView1.Items.Count <= 0)
+							//	return;
+							//for (int i = 0; i < listView1.Items.Count; i++)
+							//{
+							//	if (txtTimKiem.Text == listView1.Items[i].SubItems[0].Text)
+							//		MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							//	else
+							//		MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							//}
+							if(txtTimKiem.Text == label14.Text)
+								MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							else
+								MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					}
+						else // không tồn tại mã NV trong bảng Secret thì không cho xóa và yêu cầu đăng ký tài khoản 
+						{
+							// Xóa trong ListView
+							//foreach (ListViewItem item in listView1.SelectedItems)
+							//{
+							//	listView1.Items.Remove(item);
+							//	myReader = cmd.ExecuteReader(); // kết quả trả về là 1 tập các dòng
+							//	while (myReader.Read()) { }
+							//	myReader_detail = cmd_detail.ExecuteReader();
+							//	while (myReader_detail.Read()) { }
+							//	lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
+							//	ma = string.Empty;
+							//	Frm_SignIn sin = new Frm_SignIn();
+							//	sin.Show();
+							//	this.Hide();
+							//}
+							MessageBox.Show("You have no permission \n Please sign up to countinue ! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							Frm_SignIn sin = new Frm_SignIn();
+							sin.Show();
+							this.Hide();
 						}
 					}
-					else // XÓA sạch tại bảng Emp
+					else // nếu mã NV không tồn tại trong bảng Orders
 					{
-						foreach (ListViewItem item in listView1.SelectedItems)
+						if (z == 1) // tồn tại trong bảng Secret thì XÓA sạch tại bảng Emp và Secret
 						{
-							listView1.Items.Remove(item);
-							myReader = cmd.ExecuteReader();
-							while (myReader.Read()) { }
-							lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-							ma = string.Empty;
+							foreach (ListViewItem item in listView1.SelectedItems)
+							{
+								listView1.Items.Remove(item);
+								myReader = cmd.ExecuteReader();
+								while (myReader.Read()) { }
+								myReader_detail = cmd_detail.ExecuteReader();
+								while (myReader_detail.Read()) { }
+								lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
+								ma = string.Empty;
+							}
+						}
+						else // XÓA sạch tại bảng Emp
+						{
+							foreach (ListViewItem item in listView1.SelectedItems)
+							{
+								listView1.Items.Remove(item);
+								myReader = cmd.ExecuteReader();
+								while (myReader.Read()) { }
+								lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
+								ma = string.Empty;
+							}
 						}
 					}
 				}
-			}
-			else // không tồn tại mã NV trong bảng NV
-			{
-				MessageBox.Show(" This ID does not exist! \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			}
+				else // không tồn tại mã NV trong bảng NV
+				{
+					MessageBox.Show(" This ID does not exist! \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			//}
 			//catch (Exception)
 			//{
-			//lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
+			//	lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
 			//}
 			//finally
 			//{
-			//CloseConnect();
+			//	CloseConnect();
 			//}
 		}
 		public void Del_KH()
