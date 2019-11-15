@@ -5,12 +5,12 @@ using QLBH_KiemThuPhanMem;
 namespace UnitTest_1
 {
 	[TestClass]
-	public class UnitTest1
+	public class ThemNV
 	{
 		public TestContext TestContext { get; set; }
 		[DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV",
-					"|DataDirectory|\\TestSignIn.csv", "TestSignIn#csv", DataAccessMethod.Sequential),
-					DeploymentItem("UnitTest_1\\TestSignIn.csv"),
+					"|DataDirectory|\\themNV.csv", "themNV#csv", DataAccessMethod.Sequential),
+					DeploymentItem("UnitTest_1\\themNV.csv"),
 		TestMethod]
 		public void testThemNV()
 		{
@@ -20,11 +20,8 @@ namespace UnitTest_1
 			string ns = TestContext.DataRow[3].ToString();
 			string gt = TestContext.DataRow[4].ToString();
 			bool expected = bool.Parse(TestContext.DataRow[5].ToString());
-
 			Frm_List_Cus_Emp Cus = new Frm_List_Cus_Emp();         
-
 			bool actual = Cus.AddNew1(ma, ho, ten, ns, gt);
-
 			Assert.AreEqual(true, actual);
 		}
 	}

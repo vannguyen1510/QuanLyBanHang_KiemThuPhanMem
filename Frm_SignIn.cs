@@ -15,11 +15,11 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
-		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
-		public Frm_SignIn()
+        public Frm_SignIn()
 		{
 			InitializeComponent();
 		}
@@ -200,7 +200,62 @@ namespace QLBH_KiemThuPhanMem
 				sqlcon.Close();
 			}
 		}
-		private void btnDangNhap_Click(object sender, EventArgs e)
+        public bool DangNhap1(string username, string password)
+        {
+            bool tamp = true;
+            try
+            {
+                sqlcon.Open();
+
+                // Dò tìm SĐT khách hàng và ID nhân viên
+                string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
+                SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                cmd.Parameters.Add(new SqlParameter("@phone", username));
+                cmd.Parameters.Add(new SqlParameter("@id", username));
+                cmd.Parameters.Add(new SqlParameter("@pass", password));
+                int x = (int)cmd.ExecuteScalar();
+                if (x == 1)
+                {
+                    string sql_Permision = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE Phone_Cus=@phone AND Permision=@per";
+                    SqlCommand cmd_Permision = new SqlCommand(sql_Permision, sqlcon);
+                    cmd_Permision.Parameters.Add(new SqlParameter("@phone", username));
+                    cmd_Permision.Parameters.AddWithValue("@per", "Guess");
+                    int y = (int)cmd_Permision.ExecuteScalar();
+                    if (y == 1)
+                    {
+                        this.Hide();
+                        Frm_Main_Customers cus = new Frm_Main_Customers();
+                        cus.Show();
+                    }
+                    else
+                    {
+                        //tamp =false;
+                        this.Hide();
+                        Frm_Main_Admin admin = new Frm_Main_Admin();
+                        admin.Show();
+                    }
+                }
+                else
+                {
+
+                    tamp = false;
+                    //MessageBox.Show("Linh" + x+ "_" + username +"^" + password) ;
+                    MessageBox.Show(" User or Password is incorrect . \n Please try again!", "ERROR");
+                }
+            }
+            catch (Exception)
+            {
+                tamp = false;
+                MessageBox.Show("Error Connection!", "Try Again");
+            }
+            finally
+            {
+                sqlcon.Close();
+            }
+            // MessageBox.Show(""+tamp);
+            return tamp;
+        }
+        private void btnDangNhap_Click(object sender, EventArgs e)
 		{
 			DangNhap();
 		}
@@ -444,8 +499,177 @@ namespace QLBH_KiemThuPhanMem
 				errorProvider1.SetError(txtFName, "Enter your First Name please !");
 			}
 		}
+        public bool DangKy1(string F, string L,string P,string pw,string cpw,string A)
 
-		private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            bool tam = false;
+            sqlcon.Open();
+            // Không cho phép để trống textbox nào
+            if (F != "")
+            {
+                if (L != "")
+                {
+                    if (P != "")
+                    {
+                        try
+                        {
+                            // vào SQL kiểm tra SĐT 
+                            string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
+                            SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                            cmd.Parameters.Add(new SqlParameter("@sdt", P));
+                            int x = (int)cmd.ExecuteScalar();
+
+                            if (x == 1) // nếu SĐT trùng thì báo lỗi 
+                            {
+                                errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
+                                P = string.Empty;
+                            }
+                            else // nếu SĐT trùng thì kiểm tra tiếp MẬT KHẨU
+                            {
+
+                                if (pw != "")
+                                {
+                                    if (cpw != "")
+                                    {
+                                        try
+                                        {
+                                            int countSo = 0;
+                                            int countHoa = 0;
+                                            int countThuong = 0;
+                                            int countDB = 0;
+                                            int i = 0;
+                                            MessageBox.Show("Linh_" + F);
+                                            // Kiểm soát chiều dài PW
+                                            if (pw.Length < 6 || pw.Length > 8)
+                                            {
+                                                tam = true;
+                                                errorProvider1.SetError(txtPw, "Password must be at least 6 characters and no more than 8 !"); // [6,8]
+                                                txtPw.Text = string.Empty;
+                                                txtCPw.Text = string.Empty;
+                                            }
+                                            // Chiều dài hợp lệ thì kiểm tra ký tự bên trong
+                                            else
+                                            {
+                                                string pattern = @"^[ \s]+|[ \s]+$ ";
+                                                while (i < pw.Length)
+                                                {
+                                                    if (pw[i] >= 'a' && pw[i] <= 'z')
+                                                    {
+                                                        countThuong++;
+                                                    }
+                                                    else if (pw[i] >= 'A' && pw[i] <= 'Z')
+                                                    {
+                                                        countHoa++;
+                                                    }
+                                                    else if (pw[i] >= '0' && pw[i] <= '9')
+                                                    {
+                                                        countSo++;
+                                                    }
+                                                    else
+                                                    {
+                                                        Regex checkWhitespace = new Regex(pattern);
+                                                        if (checkWhitespace.IsMatch(pw))
+                                                        {
+                                                            tam = true;
+                                                            errorProvider1.SetError(txtPw, "Your password can't start or end with a blank space");
+                                                            txtPw.Text = string.Empty;
+                                                        }
+                                                        if (checkWhitespace.IsMatch(cpw))
+                                                        {
+                                                            tam = true;
+                                                            errorProvider1.SetError(txtCPw, "Your password can't start or end with a blank space");
+                                                            txtCPw.Text = string.Empty;
+                                                        }
+                                                        countDB++;
+                                                    }
+                                                    i++;
+                                                }
+                                                // Ít nhất: 1 chữ Hoa +1 chữ Thường + 1 Số + 1 Ký tự đặc biệt
+                                                if (countThuong >= 1 && countHoa >= 1 && countSo >= 1 && countDB >= 1 && (pw.Length >= 6 && pw.Length <= 8))
+                                                {
+                                                    // nếu hợp lệ + txtCpw không trống và trùng với PW thì báo ĐĂNG KÝ thành công
+                                                    if (pw != "" && cpw != "" && String.Compare(cpw, pw, false) == 0)
+                                                    {
+                                                        string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
+                                                                        + " VALUES (@sdt,@pass,@per)";
+                                                        SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
+                                                        cmd_id_pw.Parameters.AddWithValue("@sdt", P);
+                                                        cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
+                                                        cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
+
+                                                        MessageBox.Show("here");
+                                                        cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
+                                                        MessageBox.Show(" WELCOME " + L + " " + P + " !");
+                                                        tabPage_SignIn.Show();
+                                                        //txtTenDangNhap.Text = txtPhone.Text;
+                                                    }
+                                                    else
+                                                    {
+                                                        tam = true;
+                                                        errorProvider1.SetError(txtCPw, "You need to confirm excactly!");
+                                                        cpw = string.Empty;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    tam = true;
+                                                    errorProvider1.SetError(txtPw, "Please read the password setting instructions!");
+                                                }
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            tam = true;
+                                            MessageBox.Show("Error Connection at Password!", "Please Try Again");
+                                        }
+                                        finally
+                                        {
+                                            sqlcon.Close();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        tam = true;
+                                        errorProvider1.SetError(txtCPw, "Confirm your Password please !");
+                                    }
+                                }
+                                else
+                                {
+                                    tam = true;
+                                    errorProvider1.SetError(txtPw, "Enter your Password please !");
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            tam = true;
+                            MessageBox.Show("Error Connection at Phone!", "Try Again");
+                        }
+                        finally
+                        {
+                            sqlcon.Close();
+                        }
+                    }
+                    else
+                    {
+                        tam = true;
+                        errorProvider1.SetError(txtPhone, "Enter your Phone please !");
+                    }
+                }
+                else
+                {
+                    tam = true;
+                    errorProvider1.SetError(txtLName, "Enter your Last Name please !");
+                }
+            }
+            else
+            {
+                tam = true;
+                errorProvider1.SetError(txtFName, "Enter your First Name please !");
+            }
+            return tam;
+        }
+        private void btnDangKy_Click(object sender, EventArgs e)
 		{
 			DangKy();
 		}

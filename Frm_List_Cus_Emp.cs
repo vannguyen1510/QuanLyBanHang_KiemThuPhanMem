@@ -18,9 +18,10 @@ namespace QLBH_KiemThuPhanMem
 	public partial class Frm_List_Cus_Emp : Form
 	{
 		string gender = string.Empty;
-		// ĐƯỜNG DẪN SQL
-		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+        // ĐƯỜNG DẪN SQL
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
+        //SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
 		public Frm_List_Cus_Emp()
@@ -692,58 +693,118 @@ namespace QLBH_KiemThuPhanMem
 			AddNew();
 		}
 
-		// btn SỬA
-		private void btnSua_Click(object sender, EventArgs e)
-		{
-			ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
-			if (item1 != null) // nếu Mã có trong Listview thì sửa
-			{
-				if (rdbNam.Checked)
-					gender = "Male";
-				else
-					gender = "Female";
-				try
-				{
-					OpenConnect();
-					string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
-								+ "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birthday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
-								+ "WHERE ID_Emp='" + txtMa.Text + "'";
-					SqlCommand cmdSua = new SqlCommand(sql, sqlcon);
-					SqlDataAdapter dap = new SqlDataAdapter(cmdSua);
-					DataTable dt = new DataTable();
-					dap.Fill(dt);
-					cmdSua.ExecuteNonQuery();
-					lbXuatTenDangNhap.Text = " DATA UPDATE SUCCESSFUL !";
-					CloseConnect();
-				}
-				catch (Exception)
-				{
-					lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
-				}
-				finally
-				{
-					CloseConnect();
-				}
-			}
-			else
-			{
-				DialogResult dlr = MessageBox.Show("Code " + txtMa.Text + " does not exist in database! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-				if (dlr == DialogResult.Yes)
-				{
-					OpenConnect();
-					AddNew();
-					CloseConnect();
-				}
-				else // xóa trắng textbox
-				{
-					XoaFullTextbox();
-				}
-			}
-		}
+		// btn SỬA		
+        public void UpDate()
+        {
+            ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
+            if (item1 != null) // nếu Mã có trong Listview thì sửa
+            {
+                if (rdbNam.Checked)
+                    gender = "Male";
+                else
+                    gender = "Female";
+                try
+                {
+                    OpenConnect();
+                    string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
+                                + "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birthday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
+                                + "WHERE ID_Emp='" + txtMa.Text + "'";
+                    SqlCommand cmdSua = new SqlCommand(sql, sqlcon);
+                    SqlDataAdapter dap = new SqlDataAdapter(cmdSua);
+                    DataTable dt = new DataTable();
+                    dap.Fill(dt);
+                    cmdSua.ExecuteNonQuery();
+                    lbXuatTenDangNhap.Text = " DATA UPDATE SUCCESSFUL !";
+                    CloseConnect();
+                }
+                catch (Exception)
+                {
+                    lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
+                }
+                finally
+                {
+                    CloseConnect();
+                }
+            }
+            else
+            {
+                DialogResult dlr = MessageBox.Show("Code " + txtMa.Text + " does not exist in database! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dlr == DialogResult.Yes)
+                {
+                    OpenConnect();
+                    AddNew();
+                    CloseConnect();
+                }
+                else // xóa trắng textbox
+                {
+                    XoaFullTextbox();
+                }
+            }
+        }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            UpDate();
+        }
 
-		// Function - Xoa
+        public bool Update1(string LastName_Emp, string FirstName_Emp, string Birtday_Emp, string Sex_Emp, string ID_Emp)
+        {
+            bool tamp = true;
+            //ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
+            if (ID_Emp != null) // nếu Mã có trong Listview thì sửa
+            {
+                if (rdbNam.Checked)
+                    gender = "Male";
+                else
+                    gender = "Female";
+                try
+                {
+                    MessageBox.Show("Inside Try_" + ID_Emp);
+                    OpenConnect();
+                    string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
+                                + "SET LastName_Emp='" + LastName_Emp + "', FirstName_Emp='" + FirstName_Emp + "', Birtday_Emp='" + Birtday_Emp + "', Sex_Emp='" + Sex_Emp + "'"
+                                + "WHERE ID_Emp='" + ID_Emp + "'";
+                    SqlCommand cmdSua = new SqlCommand(sql, sqlcon);
+                    SqlDataAdapter dap = new SqlDataAdapter(cmdSua);
+                    DataTable dt = new DataTable();
+                    dap.Fill(dt);
+                    cmdSua.ExecuteNonQuery();
+                    lbXuatTenDangNhap.Text = " DATA UPDATE SUCCESSFUL !";
+                    CloseConnect();
+                }
+                catch (Exception)
+                {
+                    //MessageBox.Show("Inside Catch");
+                    tamp = false;
+                    lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
+                }
+                finally
+                {
+                    CloseConnect();
+                }
+            }
+            else
+            {
 
-		public void Del()
+                DialogResult dlr = MessageBox.Show("Code " + txtMa.Text + " does not exist in database! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dlr == DialogResult.Yes)
+                {
+                    OpenConnect();
+                    AddNew();
+                    CloseConnect();
+                }
+                else // xóa trắng textbox
+                {
+                    tamp = false;
+                    XoaFullTextbox();
+                }
+
+            }
+            //MessageBox.Show("Tam: "+tamp);
+            return tamp;
+        }
+        // Function - Xoa
+
+        public void Del()
 		{
 			lbXuatTenDangNhap.Text = string.Empty;
 			string ma = txtTimKiem.Text;

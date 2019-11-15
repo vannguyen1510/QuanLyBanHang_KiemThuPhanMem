@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Text;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QLBH_KiemThuPhanMem;
 
-namespace TestDangNhap
+namespace UnitTest_1
 {
     [TestClass]
-    public class DangNhap
+    public class TestDangNhap
     {
         public TestContext TestContext { get; set; }
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV",
-                    "|DataDirectory|\\Login.csv", "Login#csv", DataAccessMethod.Sequential),
-                    DeploymentItem("TestDangNhap\\Login.csv"),
+                    "|DataDirectory|\\DangNhap.csv", "DangNhap#csv", DataAccessMethod.Sequential),
+                    DeploymentItem("UnitTest_1\\DangNhap.csv"),
         TestMethod]
-        public void TestDangNhap()
+        public void TestDangNhap1()
         {
             string userName = TestContext.DataRow[0].ToString();
             string passWord = TestContext.DataRow[1].ToString();
