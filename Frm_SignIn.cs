@@ -385,7 +385,7 @@ namespace QLBH_KiemThuPhanMem
 														cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
 														cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
 														cmd_id_pw.ExecuteNonQuery();
-														MessageBox.Show(" WELCOME " + F + " " + L + " !");
+														MessageBox.Show(" WELCOME " + F + " " + L + " !","Hello",MessageBoxButtons.OK,MessageBoxIcon.Hand);
 														tabPage_SignIn.Show();
 													}
 													else

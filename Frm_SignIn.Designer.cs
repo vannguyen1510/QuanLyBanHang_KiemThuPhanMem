@@ -39,7 +39,6 @@
 			this.btnDoipw = new System.Windows.Forms.Button();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.btnDong = new System.Windows.Forms.Button();
-			this.txtMatKhau = new System.Windows.Forms.TextBox();
 			this.txtTenDangNhap = new System.Windows.Forms.TextBox();
 			this.lbMatKhau = new System.Windows.Forms.Label();
 			this.lbTenDangNhap = new System.Windows.Forms.Label();
@@ -65,6 +64,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.txtMatKhau = new System.Windows.Forms.TextBox();
 			btnDangNhap = new System.Windows.Forms.Button();
 			btnDangKy = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
@@ -116,13 +116,13 @@
 			// 
 			// tabPage_SignIn
 			// 
+			this.tabPage_SignIn.Controls.Add(this.txtMatKhau);
 			this.tabPage_SignIn.Controls.Add(this.pictureBox1);
 			this.tabPage_SignIn.Controls.Add(this.btnForgotPW);
 			this.tabPage_SignIn.Controls.Add(this.btnDoipw);
 			this.tabPage_SignIn.Controls.Add(this.checkBox1);
 			this.tabPage_SignIn.Controls.Add(this.btnDong);
 			this.tabPage_SignIn.Controls.Add(btnDangNhap);
-			this.tabPage_SignIn.Controls.Add(this.txtMatKhau);
 			this.tabPage_SignIn.Controls.Add(this.txtTenDangNhap);
 			this.tabPage_SignIn.Controls.Add(this.lbMatKhau);
 			this.tabPage_SignIn.Controls.Add(this.lbTenDangNhap);
@@ -199,15 +199,6 @@
 			this.toolTip1.SetToolTip(this.btnDong, "Press Escape to clos");
 			this.btnDong.UseVisualStyleBackColor = false;
 			this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-			// 
-			// txtMatKhau
-			// 
-			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
-			this.txtMatKhau.Name = "txtMatKhau";
-			this.txtMatKhau.PasswordChar = '*';
-			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
-			this.txtMatKhau.TabIndex = 13;
 			// 
 			// txtTenDangNhap
 			// 
@@ -475,6 +466,16 @@
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
 			// 
+			// txtMatKhau
+			// 
+			this.txtMatKhau.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
+			this.txtMatKhau.Name = "txtMatKhau";
+			this.txtMatKhau.PasswordChar = '*';
+			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
+			this.txtMatKhau.TabIndex = 20;
+			// 
 			// Frm_SignIn
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -508,7 +509,6 @@
 		private System.Windows.Forms.Button btnDoipw;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button btnDong;
-		private System.Windows.Forms.TextBox txtMatKhau;
 		private System.Windows.Forms.TextBox txtTenDangNhap;
 		private System.Windows.Forms.Label lbMatKhau;
 		private System.Windows.Forms.Label lbTenDangNhap;
@@ -534,5 +534,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.TextBox txtMatKhau;
 	}
 }

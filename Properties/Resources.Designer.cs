@@ -123,6 +123,26 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3643769_building_home_house_main_menu_start_113416 {
+            get {
+                object obj = ResourceManager.GetObject("3643769-building-home-house-main-menu-start_113416", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3643769_building_home_house_main_menu_start_113416__1_ {
+            get {
+                object obj = ResourceManager.GetObject("3643769-building-home-house-main-menu-start_113416 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _8medical_report_102120 {
             get {
                 object obj = ResourceManager.GetObject("8medical-report_102120", resourceCulture);

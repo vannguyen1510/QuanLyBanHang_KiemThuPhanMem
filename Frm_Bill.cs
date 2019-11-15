@@ -30,7 +30,10 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
-
+		public Frm_Bill(String id) : this()
+		{
+			label26.Text = id;
+		}
 		private void Frm_Bill_Load(object sender, EventArgs e)
 		{
 			Collumn_Load();
@@ -777,8 +780,8 @@ namespace QLBH_KiemThuPhanMem
 		// btn Out
 		private void btnOut_Click(object sender, EventArgs e)
 		{
-			Frm_Main_Admin admin = new Frm_Main_Admin();
-			admin.Show();
+			Frm_SignIn sin = new Frm_SignIn();
+			sin.Show();
 			this.Hide();
 			Visible = false;
 		}
@@ -793,5 +796,12 @@ namespace QLBH_KiemThuPhanMem
 			Collumn_Load();
 		}
 
+		private void btnMenu_Click(object sender, EventArgs e)
+		{
+			Frm_Main_Admin admin = new Frm_Main_Admin(label26.Text);
+			admin.Show();
+			this.Hide();
+			Visible = false;
+		}
 	}
 }

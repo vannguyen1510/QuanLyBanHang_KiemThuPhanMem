@@ -73,12 +73,6 @@
 			this.combobShipper = new System.Windows.Forms.ComboBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-			this.btnOut = new System.Windows.Forms.Button();
-			this.btnReport = new System.Windows.Forms.Button();
-			this.btn_Reset = new System.Windows.Forms.Button();
-			this.btnPrint_Bill = new System.Windows.Forms.Button();
-			this.btnDel_Bill = new System.Windows.Forms.Button();
-			this.btnAdd_Bill = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -89,6 +83,15 @@
 			this.label22 = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.btnMenu = new System.Windows.Forms.Button();
+			this.btnOut = new System.Windows.Forms.Button();
+			this.btnReport = new System.Windows.Forms.Button();
+			this.btn_Reset = new System.Windows.Forms.Button();
+			this.btnPrint_Bill = new System.Windows.Forms.Button();
+			this.btnDel_Bill = new System.Windows.Forms.Button();
+			this.btnAdd_Bill = new System.Windows.Forms.Button();
+			this.label26 = new System.Windows.Forms.Label();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -656,6 +659,134 @@
 			// 
 			this.errorProvider1.ContainerControl = this;
 			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(603, 786);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(182, 26);
+			this.label17.TabIndex = 61;
+			this.label17.Text = "Amount in words :";
+			this.label17.UseWaitCursor = true;
+			// 
+			// txtTotalInWord
+			// 
+			this.txtTotalInWord.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtTotalInWord.Location = new System.Drawing.Point(797, 784);
+			this.txtTotalInWord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtTotalInWord.Name = "txtTotalInWord";
+			this.txtTotalInWord.ReadOnly = true;
+			this.txtTotalInWord.Size = new System.Drawing.Size(653, 30);
+			this.txtTotalInWord.TabIndex = 62;
+			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.txtTotalInWord.UseWaitCursor = true;
+			// 
+			// toolTip1
+			// 
+			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+			this.toolTip1.ToolTipTitle = "Suggestion";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Location = new System.Drawing.Point(1126, 753);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(45, 23);
+			this.label20.TabIndex = 57;
+			this.label20.Text = "USD";
+			this.label20.UseWaitCursor = true;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(1126, 685);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(45, 23);
+			this.label21.TabIndex = 65;
+			this.label21.Text = "USD";
+			this.label21.UseWaitCursor = true;
+			// 
+			// txtsum
+			// 
+			this.txtsum.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtsum.Location = new System.Drawing.Point(797, 682);
+			this.txtsum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtsum.Name = "txtsum";
+			this.txtsum.ReadOnly = true;
+			this.txtsum.Size = new System.Drawing.Size(323, 30);
+			this.txtsum.TabIndex = 64;
+			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.txtsum.UseWaitCursor = true;
+			this.txtsum.TextChanged += new System.EventHandler(this.txtsum_TextChanged);
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label22.Location = new System.Drawing.Point(709, 686);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(70, 26);
+			this.label22.TabIndex = 63;
+			this.label22.Text = "Total :";
+			this.label22.UseWaitCursor = true;
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label23.Location = new System.Drawing.Point(969, 721);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(25, 23);
+			this.label23.TabIndex = 66;
+			this.label23.Text = "%";
+			this.label23.UseWaitCursor = true;
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label24.ForeColor = System.Drawing.Color.Red;
+			this.label24.Location = new System.Drawing.Point(554, 640);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(361, 25);
+			this.label24.TabIndex = 67;
+			this.label24.Text = "Double click on product rows want delete";
+			this.label24.UseWaitCursor = true;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label25.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label25.Location = new System.Drawing.Point(33, 786);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(65, 28);
+			this.label25.TabIndex = 68;
+			this.label25.Text = "User: ";
+			this.label25.UseWaitCursor = true;
+			// 
+			// btnMenu
+			// 
+			this.btnMenu.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMenu.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnMenu.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._3643769_building_home_house_main_menu_start_113416__1_;
+			this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnMenu.Location = new System.Drawing.Point(1520, 591);
+			this.btnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnMenu.Name = "btnMenu";
+			this.btnMenu.Size = new System.Drawing.Size(171, 47);
+			this.btnMenu.TabIndex = 69;
+			this.btnMenu.Text = "MENU";
+			this.btnMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnMenu.UseVisualStyleBackColor = false;
+			this.btnMenu.UseWaitCursor = true;
+			this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
+			// 
 			// btnOut
 			// 
 			this.btnOut.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -664,7 +795,7 @@
 			this.btnOut.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnOut.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.sign_error_icon_34362;
 			this.btnOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnOut.Location = new System.Drawing.Point(1520, 591);
+			this.btnOut.Location = new System.Drawing.Point(1520, 661);
 			this.btnOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnOut.Name = "btnOut";
 			this.btnOut.Size = new System.Drawing.Size(171, 47);
@@ -768,108 +899,26 @@
 			this.btnAdd_Bill.UseWaitCursor = true;
 			this.btnAdd_Bill.Click += new System.EventHandler(this.btnAdd_Bill_Click);
 			// 
-			// label17
+			// label26
 			// 
-			this.label17.AutoSize = true;
-			this.label17.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label17.Location = new System.Drawing.Point(603, 786);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(182, 26);
-			this.label17.TabIndex = 61;
-			this.label17.Text = "Amount in words :";
-			this.label17.UseWaitCursor = true;
-			// 
-			// txtTotalInWord
-			// 
-			this.txtTotalInWord.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTotalInWord.Location = new System.Drawing.Point(797, 784);
-			this.txtTotalInWord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtTotalInWord.Name = "txtTotalInWord";
-			this.txtTotalInWord.ReadOnly = true;
-			this.txtTotalInWord.Size = new System.Drawing.Size(653, 30);
-			this.txtTotalInWord.TabIndex = 62;
-			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.txtTotalInWord.UseWaitCursor = true;
-			// 
-			// toolTip1
-			// 
-			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-			this.toolTip1.ToolTipTitle = "Suggestion";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(1126, 753);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(45, 23);
-			this.label20.TabIndex = 57;
-			this.label20.Text = "USD";
-			this.label20.UseWaitCursor = true;
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(1126, 685);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(45, 23);
-			this.label21.TabIndex = 65;
-			this.label21.Text = "USD";
-			this.label21.UseWaitCursor = true;
-			// 
-			// txtsum
-			// 
-			this.txtsum.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtsum.Location = new System.Drawing.Point(797, 682);
-			this.txtsum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtsum.Name = "txtsum";
-			this.txtsum.ReadOnly = true;
-			this.txtsum.Size = new System.Drawing.Size(323, 30);
-			this.txtsum.TabIndex = 64;
-			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtsum.UseWaitCursor = true;
-			this.txtsum.TextChanged += new System.EventHandler(this.txtsum_TextChanged);
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label22.Location = new System.Drawing.Point(709, 686);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(70, 26);
-			this.label22.TabIndex = 63;
-			this.label22.Text = "Total :";
-			this.label22.UseWaitCursor = true;
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label23.Location = new System.Drawing.Point(969, 721);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(25, 23);
-			this.label23.TabIndex = 66;
-			this.label23.Text = "%";
-			this.label23.UseWaitCursor = true;
-			// 
-			// label24
-			// 
-			this.label24.AutoSize = true;
-			this.label24.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label24.ForeColor = System.Drawing.Color.Red;
-			this.label24.Location = new System.Drawing.Point(554, 640);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(361, 25);
-			this.label24.TabIndex = 67;
-			this.label24.Text = "Double click on product rows want delete";
-			this.label24.UseWaitCursor = true;
+			this.label26.AutoSize = true;
+			this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label26.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label26.Location = new System.Drawing.Point(94, 786);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(20, 28);
+			this.label26.TabIndex = 70;
+			this.label26.Text = "_";
+			this.label26.UseWaitCursor = true;
 			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1715, 832);
+			this.Controls.Add(this.label26);
+			this.Controls.Add(this.btnMenu);
+			this.Controls.Add(this.label25);
 			this.Controls.Add(this.label24);
 			this.Controls.Add(this.label23);
 			this.Controls.Add(this.label21);
@@ -975,5 +1024,8 @@
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.Button btnMenu;
+		private System.Windows.Forms.Label label26;
 	}
 }

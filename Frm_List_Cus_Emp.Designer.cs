@@ -82,6 +82,9 @@
 			this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.btnThoat = new System.Windows.Forms.Button();
 			this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+			this.label10 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.btnOut = new System.Windows.Forms.Button();
 			this.tabControl_Emp.SuspendLayout();
 			this.tabPage_Emp.SuspendLayout();
 			this.tabPage_Cus.SuspendLayout();
@@ -663,7 +666,6 @@
 			// 
 			// timer1
 			// 
-			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// errorProvider1
 			// 
@@ -684,11 +686,14 @@
 			this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnThoat.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnThoat.Location = new System.Drawing.Point(1103, 670);
+			this.btnThoat.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._3643769_building_home_house_main_menu_start_113416__1_;
+			this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnThoat.Location = new System.Drawing.Point(969, 670);
 			this.btnThoat.Name = "btnThoat";
-			this.btnThoat.Size = new System.Drawing.Size(230, 42);
+			this.btnThoat.Size = new System.Drawing.Size(171, 42);
 			this.btnThoat.TabIndex = 58;
-			this.btnThoat.Text = "OUT";
+			this.btnThoat.Text = "MENU";
+			this.btnThoat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnThoat.UseVisualStyleBackColor = false;
 			this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
 			// 
@@ -698,11 +703,55 @@
 			this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList2.Images.SetKeyName(0, "user_add_21977.ico");
 			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label10.Location = new System.Drawing.Point(32, 679);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(65, 28);
+			this.label10.TabIndex = 59;
+			this.label10.Text = "User: ";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label14.Location = new System.Drawing.Point(94, 679);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(20, 28);
+			this.label14.TabIndex = 60;
+			this.label14.Text = "_";
+			// 
+			// btnOut
+			// 
+			this.btnOut.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnOut.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnOut.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.sign_error_icon_34362;
+			this.btnOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnOut.Location = new System.Drawing.Point(1158, 669);
+			this.btnOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnOut.Name = "btnOut";
+			this.btnOut.Size = new System.Drawing.Size(171, 43);
+			this.btnOut.TabIndex = 61;
+			this.btnOut.Text = "OUT";
+			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnOut.UseVisualStyleBackColor = false;
+			this.btnOut.UseWaitCursor = true;
+			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
+			// 
 			// Frm_List_Cus_Emp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1362, 724);
+			this.Controls.Add(this.btnOut);
+			this.Controls.Add(this.label14);
+			this.Controls.Add(this.label10);
 			this.Controls.Add(this.btnThoat);
 			this.Controls.Add(this.tabControl_Emp);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -718,6 +767,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -775,6 +825,9 @@
 		private System.Windows.Forms.ErrorProvider errorProvider2;
 		private System.Windows.Forms.Button btnThoat;
 		private System.Windows.Forms.ImageList imageList2;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Button btnOut;
 	}
 }
 

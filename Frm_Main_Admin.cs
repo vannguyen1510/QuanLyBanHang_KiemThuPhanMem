@@ -23,12 +23,12 @@ namespace QLBH_KiemThuPhanMem
 		}
 		public Frm_Main_Admin(String id) : this()
 		{
-			label1.Text += id;
+			label2.Text = id;
 		}
 		private void btnBill_Click(object sender, EventArgs e)
 		{
 			this.Hide();
-			Frm_Bill bill = new Frm_Bill();
+			Frm_Bill bill = new Frm_Bill(label2.Text);
 			bill.Show();
 			Visible = false;
 		}
@@ -44,7 +44,7 @@ namespace QLBH_KiemThuPhanMem
         private void btnEmp_Click(object sender, EventArgs e)
         {
 			this.Hide();
-            Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp();
+            Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp(label2.Text);
             evc.Show();
 			Visible = false;
 		}
@@ -52,7 +52,7 @@ namespace QLBH_KiemThuPhanMem
         private void btnCus_Click(object sender, EventArgs e)
         {
 			this.Hide();
-            Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp();
+            Frm_List_Cus_Emp evc = new Frm_List_Cus_Emp(label2.Text);
             evc.Show();
 			Visible = false;
 		}
