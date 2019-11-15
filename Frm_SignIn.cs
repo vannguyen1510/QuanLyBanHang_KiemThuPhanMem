@@ -182,7 +182,7 @@ namespace QLBH_KiemThuPhanMem
 					else
 					{
 						this.Hide();
-						Frm_Main_Admin admin = new Frm_Main_Admin();
+						Frm_Main_Admin admin = new Frm_Main_Admin(txtTenDangNhap.Text);
 						admin.Show();
 					}
 				}

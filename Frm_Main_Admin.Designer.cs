@@ -36,6 +36,7 @@
 			this.btnCus = new System.Windows.Forms.Button();
 			this.btnEmp = new System.Windows.Forms.Button();
 			this.btnBill = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// lbQLNV
@@ -145,11 +146,23 @@
 			this.btnBill.UseVisualStyleBackColor = false;
 			this.btnBill.Click += new System.EventHandler(this.btnBill_Click);
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label1.Location = new System.Drawing.Point(369, 324);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(65, 28);
+			this.label1.TabIndex = 44;
+			this.label1.Text = "User: ";
+			// 
 			// Frm_Main_Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(918, 329);
+			this.ClientSize = new System.Drawing.Size(918, 375);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnOut);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.btnProduct);
@@ -165,6 +178,7 @@
 			this.Text = "Adminstrator";
 			this.TopMost = true;
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -177,5 +191,6 @@
         private System.Windows.Forms.Button btnProduct;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnOut;
+		private System.Windows.Forms.Label label1;
 	}
 }

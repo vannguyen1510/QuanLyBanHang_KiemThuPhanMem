@@ -613,6 +613,7 @@
 			this.txtDiscount.UseWaitCursor = true;
 			this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
 			this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
+			this.txtDiscount.Leave += new System.EventHandler(this.txtDiscount_Leave);
 			// 
 			// label10
 			// 

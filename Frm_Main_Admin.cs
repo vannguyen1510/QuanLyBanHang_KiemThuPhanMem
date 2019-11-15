@@ -21,7 +21,10 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
-
+		public Frm_Main_Admin(String id) : this()
+		{
+			label1.Text += id;
+		}
 		private void btnBill_Click(object sender, EventArgs e)
 		{
 			this.Hide();
