@@ -758,7 +758,7 @@ namespace QLBH_KiemThuPhanMem
                     gender = "Female";
                 try
                 {
-                    MessageBox.Show("Inside Try_" + ID_Emp);
+                    //MessageBox.Show("Inside Try_" + ID_Emp);
                     OpenConnect();
                     string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
                                 + "SET LastName_Emp='" + LastName_Emp + "', FirstName_Emp='" + FirstName_Emp + "', Birtday_Emp='" + Birtday_Emp + "', Sex_Emp='" + Sex_Emp + "'"
