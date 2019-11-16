@@ -118,6 +118,7 @@ namespace QLBH_KiemThuPhanMem
 		// TẢI DỮ LIỆU LÊN LISTVIEW
 		private void dataLoad()
 		{
+			CloseConnect();
 			OpenConnect();
 			String sql = "Select * From [KTPM].[dbo].[Info_Emp] ";
 			SqlCommand cmd = new SqlCommand(sql, sqlcon);
@@ -980,7 +981,7 @@ namespace QLBH_KiemThuPhanMem
 							txtHo.Text = listView1.Items[i].SubItems[1].Text;
 							txtTen.Text = listView1.Items[i].SubItems[2].Text;
 							// hiển thị Date trong listView lên DateTimePicker
-							DateTime time = DateTime.ParseExact(listView1.Items[i].SubItems[3].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+							DateTime time = DateTime.ParseExact(listView1.Items[i].SubItems[3].Text, "dd/MM/yyyy", CultureInfo.CurrentCulture);
 							dateTimePicker1.Value = time;
 							// hiển thị giới tính trong listview lên RadioButton
 							string gd = listView1.Items[i].SubItems[4].Text.ToString();
@@ -1031,7 +1032,7 @@ namespace QLBH_KiemThuPhanMem
 							txtTen_KH.Text = listView2.Items[i].SubItems[2].Text;
 							txtSDT_KH.Text = listView2.Items[i].SubItems[3].Text;
 							// hiển thị Date trong listView lên DateTimePicker
-							DateTime time = DateTime.ParseExact(listView2.Items[i].SubItems[4].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+							DateTime time = DateTime.ParseExact(listView2.Items[i].SubItems[4].Text, "dd/MM/yyyy", CultureInfo.CurrentCulture);
 							dateTimePicker2.Value = time;
 							// hiển thị giới tính trong listview lên RadioButton
 							string gd = listView2.Items[i].SubItems[5].Text.ToString();

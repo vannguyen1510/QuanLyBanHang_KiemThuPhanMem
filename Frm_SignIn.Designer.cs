@@ -34,6 +34,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_SignIn));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage_SignIn = new System.Windows.Forms.TabPage();
+			this.txtMatKhau = new System.Windows.Forms.TextBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnForgotPW = new System.Windows.Forms.Button();
 			this.btnDoipw = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.txtMatKhau = new System.Windows.Forms.TextBox();
 			btnDangNhap = new System.Windows.Forms.Button();
 			btnDangKy = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
@@ -83,7 +83,7 @@
 			btnDangNhap.Location = new System.Drawing.Point(70, 290);
 			btnDangNhap.Name = "btnDangNhap";
 			btnDangNhap.Size = new System.Drawing.Size(138, 44);
-			btnDangNhap.TabIndex = 15;
+			btnDangNhap.TabIndex = 4;
 			btnDangNhap.Text = "Sign In";
 			this.toolTip1.SetToolTip(btnDangNhap, "Press Enter to sign in");
 			btnDangNhap.UseVisualStyleBackColor = false;
@@ -112,7 +112,7 @@
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(750, 460);
-			this.tabControl1.TabIndex = 0;
+			this.tabControl1.TabIndex = 8;
 			// 
 			// tabPage_SignIn
 			// 
@@ -135,6 +135,16 @@
 			this.tabPage_SignIn.Text = "Sign In";
 			this.tabPage_SignIn.UseVisualStyleBackColor = true;
 			// 
+			// txtMatKhau
+			// 
+			this.txtMatKhau.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
+			this.txtMatKhau.Name = "txtMatKhau";
+			this.txtMatKhau.PasswordChar = '*';
+			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
+			this.txtMatKhau.TabIndex = 2;
+			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -153,7 +163,7 @@
 			this.btnForgotPW.Location = new System.Drawing.Point(448, 381);
 			this.btnForgotPW.Name = "btnForgotPW";
 			this.btnForgotPW.Size = new System.Drawing.Size(232, 36);
-			this.btnForgotPW.TabIndex = 18;
+			this.btnForgotPW.TabIndex = 7;
 			this.btnForgotPW.Text = "Forgot your password ?";
 			this.btnForgotPW.UseVisualStyleBackColor = true;
 			this.btnForgotPW.Click += new System.EventHandler(this.btnForgotPW_Click);
@@ -167,7 +177,7 @@
 			this.btnDoipw.Location = new System.Drawing.Point(277, 290);
 			this.btnDoipw.Name = "btnDoipw";
 			this.btnDoipw.Size = new System.Drawing.Size(204, 44);
-			this.btnDoipw.TabIndex = 17;
+			this.btnDoipw.TabIndex = 5;
 			this.btnDoipw.Text = "Change Password";
 			this.toolTip1.SetToolTip(this.btnDoipw, "Press P to change password");
 			this.btnDoipw.UseVisualStyleBackColor = false;
@@ -180,7 +190,7 @@
 			this.checkBox1.Location = new System.Drawing.Point(288, 242);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(181, 22);
-			this.checkBox1.TabIndex = 14;
+			this.checkBox1.TabIndex = 3;
 			this.checkBox1.Text = "Hide / Show Password";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -194,7 +204,7 @@
 			this.btnDong.Location = new System.Drawing.Point(538, 289);
 			this.btnDong.Name = "btnDong";
 			this.btnDong.Size = new System.Drawing.Size(142, 44);
-			this.btnDong.TabIndex = 16;
+			this.btnDong.TabIndex = 6;
 			this.btnDong.Text = "Close";
 			this.toolTip1.SetToolTip(this.btnDong, "Press Escape to clos");
 			this.btnDong.UseVisualStyleBackColor = false;
@@ -206,7 +216,7 @@
 			this.txtTenDangNhap.Location = new System.Drawing.Point(255, 165);
 			this.txtTenDangNhap.Name = "txtTenDangNhap";
 			this.txtTenDangNhap.Size = new System.Drawing.Size(242, 28);
-			this.txtTenDangNhap.TabIndex = 12;
+			this.txtTenDangNhap.TabIndex = 1;
 			// 
 			// lbMatKhau
 			// 
@@ -465,16 +475,6 @@
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
-			// 
-			// txtMatKhau
-			// 
-			this.txtMatKhau.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
-			this.txtMatKhau.Name = "txtMatKhau";
-			this.txtMatKhau.PasswordChar = '*';
-			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
-			this.txtMatKhau.TabIndex = 20;
 			// 
 			// Frm_SignIn
 			// 
