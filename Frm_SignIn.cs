@@ -596,12 +596,17 @@ namespace QLBH_KiemThuPhanMem
                                                         cmd_id_pw.Parameters.AddWithValue("@sdt", P);
                                                         cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
                                                         cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
-
-                                                        MessageBox.Show("here");
                                                         cmd_id_pw.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
                                                         MessageBox.Show(" WELCOME " + L + " " + P + " !");
-                                                        tabPage_SignIn.Show();
-                                                        //txtTenDangNhap.Text = txtPhone.Text;
+														foreach (Control ct in this.Controls)
+														{
+															if (ct is TextBox)
+															{
+																ct.Text = string.Empty;
+																dateTimePicker1.Value = DateTime.Today;
+															}
+														}
+															tabPage_SignIn.Show();
                                                     }
                                                     else
                                                     {

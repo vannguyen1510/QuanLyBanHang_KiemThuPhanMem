@@ -1003,7 +1003,7 @@ namespace QLBH_KiemThuPhanMem
 				errorProvider1.SetError(txtTimKiem, "Please enter ID Employee first !");
 			}
 		}
-		public void Find_KH()
+		public void Find_KH() // chua chay duoc
 		{
 			string maTimKiem = txtTimKiem_KH.Text.Trim().ToUpper();
 			while (maTimKiem.IndexOf("  ") != -1)
@@ -1032,7 +1032,7 @@ namespace QLBH_KiemThuPhanMem
 							txtTen_KH.Text = listView2.Items[i].SubItems[2].Text;
 							txtSDT_KH.Text = listView2.Items[i].SubItems[3].Text;
 							// hiển thị Date trong listView lên DateTimePicker
-							DateTime time = DateTime.ParseExact(listView2.Items[i].SubItems[4].Text, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+							DateTime time = DateTime.ParseExact(listView2.Items[i].SubItems[4].Text, @"dd/MM/yyyy", CultureInfo.InvariantCulture);
 							dateTimePicker2.Value = time;
 							// hiển thị giới tính trong listview lên RadioButton
 							string gd = listView2.Items[i].SubItems[5].Text.ToString();
