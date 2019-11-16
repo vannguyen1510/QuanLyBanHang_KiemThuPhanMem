@@ -514,50 +514,58 @@ namespace QLBH_KiemThuPhanMem
 				// Kiểm tra Mã sản phẩm
 				if (combobPro_No.SelectedValue != "")
 				{
-					// kiểm tra số lượng sản phẩm
-					if (quantity != "")
+					ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text);
+					if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
 					{
-						// kiểm tra Mã hóa đơn rỗng
-						if (BillNo != null)
-						{
-							for (counter = 0; counter < listView1.Items.Count; counter++)
-							{
-								listView1.Items[counter].Text = (counter + 1).ToString();
 
-							}
-							string[] data = {(counter + 1).ToString() ,
+					}
+					else // nếu mã không trùng
+					{
+						// kiểm tra số lượng sản phẩm
+						if (quantity != "")
+						{
+							// kiểm tra Mã hóa đơn rỗng
+							if (BillNo != null)
+							{
+								for (counter = 0; counter < listView1.Items.Count; counter++)
+								{
+									listView1.Items[counter].Text = (counter + 1).ToString();
+
+								}
+								string[] data = {(counter + 1).ToString() ,
 												combobPro_No.SelectedItem.ToString(),
 												txtPro_Name.Text, quantity,
 												txtPro_UnitPrice.Text,
 												txtTamTinh.Text };
-							ListViewItem item = new ListViewItem(data);
-							listView1.Items.Add(item);
-							double total = 0;
-							string dis = txtDiscount.Text;
-							double discount;
-							foreach (ListViewItem i in listView1.Items)
-							{
-								total += double.Parse(i.SubItems[5].Text);
+								ListViewItem item = new ListViewItem(data);
+								listView1.Items.Add(item);
+								double total = 0;
+								string dis = txtDiscount.Text;
+								double discount;
+								foreach (ListViewItem i in listView1.Items)
+								{
+									total += double.Parse(i.SubItems[5].Text);
+								}
+								double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+								txtsum.Text = total.ToString();
+								txtTotalCost.Text = (total - total * (discount / 100)).ToString();
 							}
-							double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
-							txtsum.Text = total.ToString();
-							txtTotalCost.Text = (total - total * (discount / 100)).ToString();
+							else
+							{
+								txtBillNo.Focus();
+								errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+							}
+						}
+						else if (quantity == "0")
+						{
+							txtPro_SoLuong.Focus();
+							errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
 						}
 						else
 						{
-							txtBillNo.Focus();
-							errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+							txtPro_SoLuong.Focus();
+							errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 						}
-					}
-					else if (quantity == "0")
-					{
-						txtPro_SoLuong.Focus();
-						errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
-					}
-					else
-					{
-						txtPro_SoLuong.Focus();
-						errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 					}
 				}
 				else
@@ -580,7 +588,7 @@ namespace QLBH_KiemThuPhanMem
 			AddListview();
 		}
 
-		//------------------------------------------------------------------------------------ // chưa chạy được
+		//------------------------------------------------------------------------------------ 
 		// Function - Update product in Listview
 		public void UpdateListView()
 		{
@@ -619,12 +627,11 @@ namespace QLBH_KiemThuPhanMem
 		{
 			UpdateListView();
 		}
-		//------------------------------------------------------------------------------------ // chưa chạy được
+		//------------------------------------------------------------------------------------
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			foreach (ListViewItem item in listView1.SelectedItems)
 			{
-				//combobPro_No.Items.AddRange(item.SubItems[1].Text);
 				int x;
 				x = combobPro_No.FindString(item.SubItems[1].Text);
 				combobPro_No.SelectedIndex = x;
@@ -816,6 +823,7 @@ namespace QLBH_KiemThuPhanMem
 		// Double click delete data in listview
 		private void listView1_DoubleClick(object sender, EventArgs e)
 		{
+			int counter = 0;
 			string maxoa;
 			double subtotal, quantity, total;
 			if(listView1.Items.Count == 0) // trong Listview không có dữ liệu 
@@ -825,7 +833,17 @@ namespace QLBH_KiemThuPhanMem
 			}
 			else
 			{
-
+				foreach(ListViewItem im in listView1.SelectedItems)
+				{
+					im.Remove();
+					for (counter = 0; counter < listView1.Items.Count; counter++)
+					{
+						listView1.Items[counter].Text = (counter + 1).ToString();
+					}
+					ListViewItem item3 = new ListViewItem();
+					item3 = this.listView1.SelectedItems[0];
+					item3.SubItems[0].Text = (counter + 1).ToString();
+				}
 			}
 		}
 	}

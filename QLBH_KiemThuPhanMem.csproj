@@ -90,6 +90,12 @@
     <Compile Include="Frm_Products.Designer.cs">
       <DependentUpon>Frm_Products.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Report.Designer.cs">
+      <DependentUpon>Frm_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Products.resx">
       <DependentUpon>Frm_Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Report.resx">
+      <DependentUpon>Frm_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_SignIn.resx">
       <DependentUpon>Frm_SignIn.cs</DependentUpon>
@@ -236,6 +245,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\3643769-building-home-house-main-menu-start_113416 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find_102325.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1904677-add-addition-calculate-charge-create-new-plus_122527.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mbriupdate_99477.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
