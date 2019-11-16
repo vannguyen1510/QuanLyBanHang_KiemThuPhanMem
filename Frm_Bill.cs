@@ -147,6 +147,9 @@ namespace QLBH_KiemThuPhanMem
 					ct.Text = string.Empty;
 					dateTimePicker1.Value = DateTime.Today;
 				}
+				txtBillNo.Text = "";
+				txtDiscount.Text = "";
+				txtPro_SoLuong.Text = "";
 			}
 		}
 		public void XoaFullCombobox()
@@ -158,6 +161,7 @@ namespace QLBH_KiemThuPhanMem
 					cb.Text = string.Empty;
 				}
 			}
+			combobCus_ID.SelectedIndex = 0;
 		}
 
 		//---------------------------------------------------------------------------------
@@ -506,8 +510,8 @@ namespace QLBH_KiemThuPhanMem
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			//try
-			//{
+			try
+			{
 				// Kiểm tra Mã sản phẩm
 				if (combobPro_No.SelectedValue != "")
 				{
@@ -520,16 +524,16 @@ namespace QLBH_KiemThuPhanMem
 							for (counter = 0; counter < listView1.Items.Count; counter++)
 							{
 								listView1.Items[counter].Text = (counter + 1).ToString();
-								
-						}
-						string[] data = {(counter + 1).ToString() ,
+
+							}
+							string[] data = {(counter + 1).ToString() ,
 												combobPro_No.SelectedItem.ToString(),
 												txtPro_Name.Text, quantity,
 												txtPro_UnitPrice.Text,
 												txtTamTinh.Text };
-						ListViewItem item = new ListViewItem(data);
-						listView1.Items.Add(item);
-						double total = 0;
+							ListViewItem item = new ListViewItem(data);
+							listView1.Items.Add(item);
+							double total = 0;
 							string dis = txtDiscount.Text;
 							double discount;
 							foreach (ListViewItem i in listView1.Items)
@@ -563,11 +567,11 @@ namespace QLBH_KiemThuPhanMem
 					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
 
-			//}
-			//catch
-			//{
-			//	MessageBox.Show("Error connection. Pplease try again !");
-			//}
+			}
+			catch
+			{
+				MessageBox.Show("Error connection. Pplease try again !");
+			}
 		}
 
 		// btn Thêm sản phẩm vào listview
@@ -584,7 +588,14 @@ namespace QLBH_KiemThuPhanMem
 			ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm Mã trùng với mã trong combobox Pro_ID
 			if (item1 != null) // nếu Mã có trong Listview thì sửa
 			{
-
+				ListViewItem item2 = new ListViewItem();
+				item2 = this.listView1.SelectedItems[0];
+				item2.SubItems[0].Text = item1.SubItems[0].Text;
+				item2.SubItems[1].Text = combobPro_No.SelectedItem.ToString();
+				item2.SubItems[2].Text = txtPro_Name.Text;
+				item2.SubItems[3].Text = txtPro_SoLuong.Text;
+				item2.SubItems[4].Text = txtPro_UnitPrice.Text;
+				item2.SubItems[5].Text = txtTamTinh.Text;
 			}
 			else // Nếu không có 
 			{
@@ -790,6 +801,11 @@ namespace QLBH_KiemThuPhanMem
 		{
 			XoaFullTextbox();
 			XoaFullCombobox();
+			for(int i =0; i<listView1.Items.Count;i++)
+			{
+				listView1.Items[i].Remove();
+				i--;
+			}
 			Collumn_Load();
 		}
 
@@ -799,6 +815,17 @@ namespace QLBH_KiemThuPhanMem
 			admin.Show();
 			this.Hide();
 			Visible = false;
+		}
+
+		private void listView1_DoubleClick(object sender, EventArgs e)
+		{
+			string maxoa;
+			double subtotal, quantity, total;
+			if(listView1.Items.Count == 0)
+			{
+				MessageBox.Show("No data to delete \n Please try again","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+				return;
+			}
 		}
 	}
 }

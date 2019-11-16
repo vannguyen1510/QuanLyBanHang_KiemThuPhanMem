@@ -421,6 +421,7 @@
 			this.btnSua.Size = new System.Drawing.Size(152, 41);
 			this.btnSua.TabIndex = 53;
 			this.btnSua.Text = "UPDATE";
+			this.toolTip1.SetToolTip(this.btnSua, "Edit current selected row");
 			this.btnSua.UseVisualStyleBackColor = false;
 			this.btnSua.UseWaitCursor = true;
 			this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
@@ -439,6 +440,7 @@
 			this.btnThem.Size = new System.Drawing.Size(151, 41);
 			this.btnThem.TabIndex = 51;
 			this.btnThem.Text = "ADD";
+			this.toolTip1.SetToolTip(this.btnThem, "Add data into Listview");
 			this.btnThem.UseVisualStyleBackColor = false;
 			this.btnThem.UseWaitCursor = true;
 			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
@@ -579,6 +581,7 @@
 			this.listView1.UseWaitCursor = true;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
 			// 
 			// txtTotalCost
 			// 
@@ -783,6 +786,7 @@
 			this.btnMenu.TabIndex = 69;
 			this.btnMenu.Text = "MENU";
 			this.btnMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnMenu, "Back to menu");
 			this.btnMenu.UseVisualStyleBackColor = false;
 			this.btnMenu.UseWaitCursor = true;
 			this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
@@ -802,6 +806,7 @@
 			this.btnOut.TabIndex = 60;
 			this.btnOut.Text = "OUT";
 			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnOut, "Sign out of system");
 			this.btnOut.UseVisualStyleBackColor = false;
 			this.btnOut.UseWaitCursor = true;
 			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
@@ -839,6 +844,7 @@
 			this.btn_Reset.TabIndex = 56;
 			this.btn_Reset.Text = "RESET";
 			this.btn_Reset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btn_Reset, "Clear all ");
 			this.btn_Reset.UseVisualStyleBackColor = false;
 			this.btn_Reset.UseWaitCursor = true;
 			this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
@@ -858,6 +864,7 @@
 			this.btnPrint_Bill.TabIndex = 54;
 			this.btnPrint_Bill.Text = "PRINT";
 			this.btnPrint_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnPrint_Bill, "Print bill now");
 			this.btnPrint_Bill.UseVisualStyleBackColor = false;
 			this.btnPrint_Bill.UseWaitCursor = true;
 			// 
@@ -895,6 +902,7 @@
 			this.btnAdd_Bill.TabIndex = 54;
 			this.btnAdd_Bill.Text = "ADD";
 			this.btnAdd_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnAdd_Bill, "Add new bill");
 			this.btnAdd_Bill.UseVisualStyleBackColor = false;
 			this.btnAdd_Bill.UseWaitCursor = true;
 			this.btnAdd_Bill.Click += new System.EventHandler(this.btnAdd_Bill_Click);
