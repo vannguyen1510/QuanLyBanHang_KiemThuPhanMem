@@ -43,8 +43,8 @@ namespace QLBH_KiemThuPhanMem
 					string id = txtTenDangNhap.Text;
 					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id AND Password=@pass";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
-					cmd.Parameters.Add("@id", id);
-					cmd.Parameters.Add("@pass", pass);
+					cmd.Parameters.AddWithValue("@id", id);
+					cmd.Parameters.AddWithValue("@pass", pass);
 					int x = (int)cmd.ExecuteScalar();
 					if (x == 1)// đúng id và password cũ
 					{

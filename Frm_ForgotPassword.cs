@@ -112,7 +112,7 @@ namespace QLBH_KiemThuPhanMem
 					sqlcon.Open();
 					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
-					cmd.Parameters.Add("@id", id);
+					cmd.Parameters.AddWithValue("@id", id);
 					//cmd.Parameters.Add("@pass", pass);
 					int x = (int)cmd.ExecuteScalar();
 					if (x == 1)// đúng id

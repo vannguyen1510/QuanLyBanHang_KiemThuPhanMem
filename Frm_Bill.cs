@@ -509,18 +509,23 @@ namespace QLBH_KiemThuPhanMem
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
+			double subtotal = 0;
 			try
 			{
 				// Kiểm tra Mã sản phẩm
 				if (combobPro_No.SelectedValue != "")
 				{
-					ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text);
-					if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
-					{
-
-					}
-					else // nếu mã không trùng
-					{
+					//ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm kiếm mã trùng
+					//if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
+					//{
+					//	foreach(ListViewItem im in listView1.Items)
+					//	{
+					//		subtotal += double.Parse(im.SubItems[3].Text);
+					//	}
+						
+					//}
+					//else // nếu mã không trùng
+					//{
 						// kiểm tra số lượng sản phẩm
 						if (quantity != "")
 						{
@@ -566,7 +571,7 @@ namespace QLBH_KiemThuPhanMem
 							txtPro_SoLuong.Focus();
 							errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
 						}
-					}
+					//}
 				}
 				else
 				{
@@ -824,8 +829,8 @@ namespace QLBH_KiemThuPhanMem
 		private void listView1_DoubleClick(object sender, EventArgs e)
 		{
 			int counter = 0;
-			string maxoa;
-			double subtotal, quantity, total;
+			//string maxoa;
+			//double subtotal, quantity, total;
 			if(listView1.Items.Count == 0) // trong Listview không có dữ liệu 
 			{
 				MessageBox.Show("No data to delete \n Please try again","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
