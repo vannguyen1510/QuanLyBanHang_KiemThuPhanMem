@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="KTPM">
+  <DataContextMoniker Name="/KTPMDataContext" />
+  <nestedChildShapes>
+    <classShape Id="bc71c602-2601-4526-98bc-fc702316c86f" absoluteBounds="2.25, 2.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/KTPMDataContext/Order_Detail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec68d8c8-e5ee-49a6-97c5-57a52cb0f2d0" absoluteBounds="2.265, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="75bf9813-97b9-41c6-99c5-3bbd34d4f1b4" absoluteBounds="4.875, 2.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/KTPMDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="20b87ea4-425c-451f-91bb-ec46d6dfb957" absoluteBounds="4.89, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.875 : 3.26044840494792); (4.25 : 3.26044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KTPMDataContext/Order/Order_Order_Detail" />
+      <nodes>
+        <classShapeMoniker Id="75bf9813-97b9-41c6-99c5-3bbd34d4f1b4" />
+        <classShapeMoniker Id="bc71c602-2601-4526-98bc-fc702316c86f" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

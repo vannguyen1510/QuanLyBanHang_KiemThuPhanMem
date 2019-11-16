@@ -894,6 +894,7 @@
 			this.toolTip1.SetToolTip(this.btnPrint_Bill, "Print bill now");
 			this.btnPrint_Bill.UseVisualStyleBackColor = false;
 			this.btnPrint_Bill.UseWaitCursor = true;
+			this.btnPrint_Bill.Click += new System.EventHandler(this.btnPrint_Bill_Click);
 			// 
 			// btnAdd_Bill
 			// 

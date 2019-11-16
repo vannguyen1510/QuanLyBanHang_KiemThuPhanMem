@@ -851,5 +851,10 @@ namespace QLBH_KiemThuPhanMem
 				}
 			}
 		}
+
+		private void btnPrint_Bill_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

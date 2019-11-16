@@ -104,6 +104,7 @@
 			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnReport.UseVisualStyleBackColor = false;
 			this.btnReport.UseWaitCursor = true;
+			this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
 			// 
 			// toolTip1
 			// 

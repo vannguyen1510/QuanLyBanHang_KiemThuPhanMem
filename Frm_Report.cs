@@ -16,5 +16,10 @@ namespace QLBH_KiemThuPhanMem
 		{
 			InitializeComponent();
 		}
+
+		private void btnReport_Click(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

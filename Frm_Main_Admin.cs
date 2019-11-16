@@ -65,5 +65,13 @@ namespace QLBH_KiemThuPhanMem
             sin.Show();
 			Visible = false;
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			Frm_Report rep = new Frm_Report();
+			rep.Show();
+			Visible = false;
+		}
 	}
 }
