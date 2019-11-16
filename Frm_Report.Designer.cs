@@ -35,6 +35,9 @@
 			this.btnOut = new System.Windows.Forms.Button();
 			this.btnReport = new System.Windows.Forms.Button();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.btnOpen = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lbQLNV
@@ -110,11 +113,43 @@
 			// 
 			this.toolTip1.ToolTipTitle = "Information";
 			// 
+			// btnOpen
+			// 
+			this.btnOpen.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnOpen.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnOpen.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._8medical_report_102120;
+			this.btnOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnOpen.Location = new System.Drawing.Point(210, 93);
+			this.btnOpen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnOpen.Name = "btnOpen";
+			this.btnOpen.Size = new System.Drawing.Size(171, 47);
+			this.btnOpen.TabIndex = 72;
+			this.btnOpen.Text = "OPEN";
+			this.btnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnOpen.UseVisualStyleBackColor = false;
+			this.btnOpen.UseWaitCursor = true;
+			this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(68, 174);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowHeadersWidth = 51;
+			this.dataGridView1.RowTemplate.Height = 24;
+			this.dataGridView1.Size = new System.Drawing.Size(1212, 472);
+			this.dataGridView1.TabIndex = 73;
+			// 
 			// Frm_Report
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1305, 658);
+			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.btnOpen);
 			this.Controls.Add(this.btnMenu);
 			this.Controls.Add(this.btnOut);
 			this.Controls.Add(this.btnReport);
@@ -122,6 +157,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Frm_Report";
 			this.Text = "Report";
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -133,5 +169,7 @@
 		private System.Windows.Forms.Button btnMenu;
 		private System.Windows.Forms.Button btnOut;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.Button btnOpen;
+		private System.Windows.Forms.DataGridView dataGridView1;
 	}
 }
