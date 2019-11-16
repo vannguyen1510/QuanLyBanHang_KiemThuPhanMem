@@ -161,7 +161,6 @@ namespace QLBH_KiemThuPhanMem
 					cb.Text = string.Empty;
 				}
 			}
-			combobCus_ID.SelectedIndex = 0;
 		}
 
 		//---------------------------------------------------------------------------------
@@ -773,9 +772,6 @@ namespace QLBH_KiemThuPhanMem
 				MessageBox.Show("Error connection. Please try again !");
 			}
 		}
-			
-
-		
 		// btn Thêm vào CSDL
 		private void btnAdd_Bill_Click(object sender, EventArgs e)
 		{
@@ -794,7 +790,6 @@ namespace QLBH_KiemThuPhanMem
 			Visible = false;
 		}
 
-		
 		//-------------------------------------------------------------------------------
 		// btn Reset
 		private void btn_Reset_Click(object sender, EventArgs e)
@@ -808,7 +803,8 @@ namespace QLBH_KiemThuPhanMem
 			}
 			Collumn_Load();
 		}
-
+		//------------------------------------------------------------------------------
+		// btn Menu
 		private void btnMenu_Click(object sender, EventArgs e)
 		{
 			Frm_Main_Admin admin = new Frm_Main_Admin(label26.Text);
@@ -816,15 +812,20 @@ namespace QLBH_KiemThuPhanMem
 			this.Hide();
 			Visible = false;
 		}
-
+		//-------------------------------------------------------------------------------
+		// Double click delete data in listview
 		private void listView1_DoubleClick(object sender, EventArgs e)
 		{
 			string maxoa;
 			double subtotal, quantity, total;
-			if(listView1.Items.Count == 0)
+			if(listView1.Items.Count == 0) // trong Listview không có dữ liệu 
 			{
 				MessageBox.Show("No data to delete \n Please try again","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
 				return;
+			}
+			else
+			{
+
 			}
 		}
 	}

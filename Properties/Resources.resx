@@ -121,9 +121,6 @@
   <data name="action_exit_close_remove_13915" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\action_exit_close_remove_13915.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="3643769-building-home-house-main-menu-start_113416" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3643769-building-home-house-main-menu-start_113416.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="1486395306-11-packaging_80579" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486395306-11-packaging_80579.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +135,9 @@
   </data>
   <data name="iconfinder-653-company-employee-group-people-team-4017596_113084 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder-653-company-employee-group-people-team-4017596_113084 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="document_add_256_icon-icons.com_75994" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document_add_256_icon-icons.com_75994.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="print_102332" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print_102332.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,6 +160,9 @@
   <data name="photo-photography-image-picture_108525" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\photo-photography-image-picture_108525.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1904677-add-addition-calculate-charge-create-new-plus_122527" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1904677-add-addition-calculate-charge-create-new-plus_122527.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="restart_120144" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restart_120144.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,19 +172,25 @@
   <data name="rotation_102346 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotation_102346 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="3643769-building-home-house-main-menu-start_113416 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3643769-building-home-house-main-menu-start_113416 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sign-error-icon_34362" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign-error-icon_34362.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="document_add_256_icon-icons.com_75994" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document_add_256_icon-icons.com_75994.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="find_102325" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find_102325.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bill_icon-icons.com_54416" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bill_icon-icons.com_54416.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="3643769-building-home-house-main-menu-start_113416" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3643769-building-home-house-main-menu-start_113416.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="8medical-report_102120" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8medical-report_102120.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="3643769-building-home-house-main-menu-start_113416 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3643769-building-home-house-main-menu-start_113416 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mbriupdate_99477" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mbriupdate_99477.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

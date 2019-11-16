@@ -52,9 +52,6 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.btnSua = new System.Windows.Forms.Button();
-			this.btnThem = new System.Windows.Forms.Button();
 			this.txtPro_SoLuong = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.txtPro_UnitPrice = new System.Windows.Forms.TextBox();
@@ -84,18 +81,25 @@
 			this.label23 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
+			this.label26 = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.combob_findBill = new System.Windows.Forms.ComboBox();
+			this.label27 = new System.Windows.Forms.Label();
+			this.btnTimKiemBill = new System.Windows.Forms.Button();
+			this.btnDel_Bill = new System.Windows.Forms.Button();
 			this.btnMenu = new System.Windows.Forms.Button();
 			this.btnOut = new System.Windows.Forms.Button();
-			this.btnReport = new System.Windows.Forms.Button();
 			this.btn_Reset = new System.Windows.Forms.Button();
 			this.btnPrint_Bill = new System.Windows.Forms.Button();
-			this.btnDel_Bill = new System.Windows.Forms.Button();
 			this.btnAdd_Bill = new System.Windows.Forms.Button();
-			this.label26 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.btnSua = new System.Windows.Forms.Button();
+			this.btnThem = new System.Windows.Forms.Button();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gb_PerInfo
@@ -398,52 +402,6 @@
 			this.label18.TabIndex = 55;
 			this.label18.Text = "USD";
 			this.label18.UseWaitCursor = true;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Location = new System.Drawing.Point(877, 20);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(249, 148);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 54;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.UseWaitCursor = true;
-			// 
-			// btnSua
-			// 
-			this.btnSua.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSua.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnSua.Location = new System.Drawing.Point(690, 126);
-			this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnSua.Name = "btnSua";
-			this.btnSua.Size = new System.Drawing.Size(152, 41);
-			this.btnSua.TabIndex = 53;
-			this.btnSua.Text = "UPDATE";
-			this.toolTip1.SetToolTip(this.btnSua, "Edit current selected row");
-			this.btnSua.UseVisualStyleBackColor = false;
-			this.btnSua.UseWaitCursor = true;
-			this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-			// 
-			// btnThem
-			// 
-			this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnThem.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnThem.Location = new System.Drawing.Point(522, 127);
-			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnThem.Name = "btnThem";
-			this.btnThem.Size = new System.Drawing.Size(151, 41);
-			this.btnThem.TabIndex = 51;
-			this.btnThem.Text = "ADD";
-			this.toolTip1.SetToolTip(this.btnThem, "Add data into Listview");
-			this.btnThem.UseVisualStyleBackColor = false;
-			this.btnThem.UseWaitCursor = true;
-			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
 			// 
 			// txtPro_SoLuong
 			// 
@@ -771,6 +729,93 @@
 			this.label25.Text = "User: ";
 			this.label25.UseWaitCursor = true;
 			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label26.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label26.Location = new System.Drawing.Point(94, 786);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(20, 28);
+			this.label26.TabIndex = 70;
+			this.label26.Text = "_";
+			this.label26.UseWaitCursor = true;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.btnTimKiemBill);
+			this.groupBox2.Controls.Add(this.btnDel_Bill);
+			this.groupBox2.Controls.Add(this.combob_findBill);
+			this.groupBox2.Controls.Add(this.label27);
+			this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.Location = new System.Drawing.Point(15, 612);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(521, 152);
+			this.groupBox2.TabIndex = 68;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Find Bill ";
+			// 
+			// combob_findBill
+			// 
+			this.combob_findBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.combob_findBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.combob_findBill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.combob_findBill.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.combob_findBill.FormattingEnabled = true;
+			this.combob_findBill.Location = new System.Drawing.Point(123, 29);
+			this.combob_findBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.combob_findBill.Name = "combob_findBill";
+			this.combob_findBill.Size = new System.Drawing.Size(176, 31);
+			this.combob_findBill.TabIndex = 49;
+			this.combob_findBill.UseWaitCursor = true;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label27.Location = new System.Drawing.Point(18, 35);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(79, 25);
+			this.label27.TabIndex = 48;
+			this.label27.Text = "Bill No :";
+			this.label27.UseWaitCursor = true;
+			// 
+			// btnTimKiemBill
+			// 
+			this.btnTimKiemBill.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnTimKiemBill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnTimKiemBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnTimKiemBill.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnTimKiemBill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.find_102325;
+			this.btnTimKiemBill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnTimKiemBill.Location = new System.Drawing.Point(199, 89);
+			this.btnTimKiemBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnTimKiemBill.Name = "btnTimKiemBill";
+			this.btnTimKiemBill.Size = new System.Drawing.Size(155, 45);
+			this.btnTimKiemBill.TabIndex = 57;
+			this.btnTimKiemBill.Text = "FIND";
+			this.btnTimKiemBill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnTimKiemBill.UseVisualStyleBackColor = false;
+			this.btnTimKiemBill.UseWaitCursor = true;
+			// 
+			// btnDel_Bill
+			// 
+			this.btnDel_Bill.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnDel_Bill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnDel_Bill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDel_Bill.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnDel_Bill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.trash_can_115312;
+			this.btnDel_Bill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnDel_Bill.Location = new System.Drawing.Point(24, 87);
+			this.btnDel_Bill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnDel_Bill.Name = "btnDel_Bill";
+			this.btnDel_Bill.Size = new System.Drawing.Size(155, 45);
+			this.btnDel_Bill.TabIndex = 56;
+			this.btnDel_Bill.Text = "DELETE";
+			this.btnDel_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnDel_Bill.UseVisualStyleBackColor = false;
+			this.btnDel_Bill.UseWaitCursor = true;
+			// 
 			// btnMenu
 			// 
 			this.btnMenu.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -779,7 +824,7 @@
 			this.btnMenu.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnMenu.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._3643769_building_home_house_main_menu_start_113416__1_;
 			this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnMenu.Location = new System.Drawing.Point(1520, 591);
+			this.btnMenu.Location = new System.Drawing.Point(1520, 463);
 			this.btnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnMenu.Name = "btnMenu";
 			this.btnMenu.Size = new System.Drawing.Size(171, 47);
@@ -799,7 +844,7 @@
 			this.btnOut.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnOut.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.sign_error_icon_34362;
 			this.btnOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnOut.Location = new System.Drawing.Point(1520, 661);
+			this.btnOut.Location = new System.Drawing.Point(1520, 528);
 			this.btnOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnOut.Name = "btnOut";
 			this.btnOut.Size = new System.Drawing.Size(171, 47);
@@ -811,24 +856,6 @@
 			this.btnOut.UseWaitCursor = true;
 			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
 			// 
-			// btnReport
-			// 
-			this.btnReport.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnReport.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnReport.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._8medical_report_102120;
-			this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnReport.Location = new System.Drawing.Point(1520, 462);
-			this.btnReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnReport.Name = "btnReport";
-			this.btnReport.Size = new System.Drawing.Size(171, 47);
-			this.btnReport.TabIndex = 59;
-			this.btnReport.Text = "REPORT";
-			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnReport.UseVisualStyleBackColor = false;
-			this.btnReport.UseWaitCursor = true;
-			// 
 			// btn_Reset
 			// 
 			this.btn_Reset.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -837,7 +864,7 @@
 			this.btn_Reset.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btn_Reset.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.restart_120144;
 			this.btn_Reset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btn_Reset.Location = new System.Drawing.Point(1520, 525);
+			this.btn_Reset.Location = new System.Drawing.Point(1520, 395);
 			this.btn_Reset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btn_Reset.Name = "btn_Reset";
 			this.btn_Reset.Size = new System.Drawing.Size(171, 47);
@@ -857,7 +884,7 @@
 			this.btnPrint_Bill.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnPrint_Bill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.print_102332;
 			this.btnPrint_Bill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnPrint_Bill.Location = new System.Drawing.Point(1520, 400);
+			this.btnPrint_Bill.Location = new System.Drawing.Point(1520, 334);
 			this.btnPrint_Bill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnPrint_Bill.Name = "btnPrint_Bill";
 			this.btnPrint_Bill.Size = new System.Drawing.Size(171, 47);
@@ -867,24 +894,6 @@
 			this.toolTip1.SetToolTip(this.btnPrint_Bill, "Print bill now");
 			this.btnPrint_Bill.UseVisualStyleBackColor = false;
 			this.btnPrint_Bill.UseWaitCursor = true;
-			// 
-			// btnDel_Bill
-			// 
-			this.btnDel_Bill.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnDel_Bill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnDel_Bill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDel_Bill.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnDel_Bill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.trash_can_115312;
-			this.btnDel_Bill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnDel_Bill.Location = new System.Drawing.Point(1520, 337);
-			this.btnDel_Bill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnDel_Bill.Name = "btnDel_Bill";
-			this.btnDel_Bill.Size = new System.Drawing.Size(171, 47);
-			this.btnDel_Bill.TabIndex = 54;
-			this.btnDel_Bill.Text = "DELETE";
-			this.btnDel_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnDel_Bill.UseVisualStyleBackColor = false;
-			this.btnDel_Bill.UseWaitCursor = true;
 			// 
 			// btnAdd_Bill
 			// 
@@ -907,23 +916,63 @@
 			this.btnAdd_Bill.UseWaitCursor = true;
 			this.btnAdd_Bill.Click += new System.EventHandler(this.btnAdd_Bill_Click);
 			// 
-			// label26
+			// pictureBox1
 			// 
-			this.label26.AutoSize = true;
-			this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label26.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label26.Location = new System.Drawing.Point(94, 786);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(20, 28);
-			this.label26.TabIndex = 70;
-			this.label26.Text = "_";
-			this.label26.UseWaitCursor = true;
+			this.pictureBox1.Location = new System.Drawing.Point(877, 20);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(249, 148);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 54;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.UseWaitCursor = true;
+			// 
+			// btnSua
+			// 
+			this.btnSua.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnSua.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSua.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnSua.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.mbriupdate_99477;
+			this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnSua.Location = new System.Drawing.Point(690, 130);
+			this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnSua.Name = "btnSua";
+			this.btnSua.Size = new System.Drawing.Size(152, 41);
+			this.btnSua.TabIndex = 53;
+			this.btnSua.Text = "UPDATE";
+			this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnSua, "Edit current selected row");
+			this.btnSua.UseVisualStyleBackColor = false;
+			this.btnSua.UseWaitCursor = true;
+			this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+			// 
+			// btnThem
+			// 
+			this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnThem.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnThem.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnThem.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._1904677_add_addition_calculate_charge_create_new_plus_122527;
+			this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnThem.Location = new System.Drawing.Point(510, 130);
+			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnThem.Name = "btnThem";
+			this.btnThem.Size = new System.Drawing.Size(152, 41);
+			this.btnThem.TabIndex = 51;
+			this.btnThem.Text = "ADD";
+			this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnThem, "Add data into Listview");
+			this.btnThem.UseVisualStyleBackColor = false;
+			this.btnThem.UseWaitCursor = true;
+			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
 			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1715, 832);
+			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.label26);
 			this.Controls.Add(this.btnMenu);
 			this.Controls.Add(this.label25);
@@ -936,14 +985,12 @@
 			this.Controls.Add(this.txtTotalInWord);
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.btnOut);
-			this.Controls.Add(this.btnReport);
 			this.Controls.Add(this.combobShipper);
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.txtDiscount);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.btn_Reset);
 			this.Controls.Add(this.btnPrint_Bill);
-			this.Controls.Add(this.btnDel_Bill);
 			this.Controls.Add(this.btnAdd_Bill);
 			this.Controls.Add(this.txtTotalCost);
 			this.Controls.Add(this.label9);
@@ -964,8 +1011,10 @@
 			this.gb_PerInfo.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1009,14 +1058,12 @@
 		private System.Windows.Forms.TextBox txtTotalCost;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Button btnAdd_Bill;
-		private System.Windows.Forms.Button btnDel_Bill;
 		private System.Windows.Forms.Button btnPrint_Bill;
 		private System.Windows.Forms.Button btn_Reset;
 		private System.Windows.Forms.TextBox txtDiscount;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.ComboBox combobShipper;
 		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.Button btnOut;
 		private System.Windows.Forms.PictureBox pictureBox1;
@@ -1035,5 +1082,10 @@
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.Button btnMenu;
 		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.ComboBox combob_findBill;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.Button btnTimKiemBill;
+		private System.Windows.Forms.Button btnDel_Bill;
 	}
 }

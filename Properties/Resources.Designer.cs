@@ -103,6 +103,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1904677_add_addition_calculate_charge_create_new_plus_122527 {
+            get {
+                object obj = ResourceManager.GetObject("1904677-add-addition-calculate-charge-create-new-plus_122527", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3592855_business_man_employee_general_human_member_office_tie_107745 {
             get {
                 object obj = ResourceManager.GetObject("3592855-business-man-employee-general-human-member-office-tie_107745", resourceCulture);
@@ -193,6 +203,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap find_102325 {
+            get {
+                object obj = ResourceManager.GetObject("find_102325", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_653_company_employee_group_people_team_4017596_113084__1_ {
             get {
                 object obj = ResourceManager.GetObject("iconfinder-653-company-employee-group-people-team-4017596_113084 (1)", resourceCulture);
@@ -206,6 +226,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         internal static System.Drawing.Bitmap iconfinder_653_company_employee_group_people_team_4017596_113084__1_1 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder-653-company-employee-group-people-team-4017596_113084 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mbriupdate_99477 {
+            get {
+                object obj = ResourceManager.GetObject("mbriupdate_99477", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
