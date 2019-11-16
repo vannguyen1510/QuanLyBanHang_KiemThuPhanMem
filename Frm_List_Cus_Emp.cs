@@ -706,7 +706,7 @@ namespace QLBH_KiemThuPhanMem
                 {
                     OpenConnect();
                     string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
-                                + "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birthday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
+                                + "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birtday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
                                 + "WHERE ID_Emp='" + txtMa.Text + "'";
                     SqlCommand cmdSua = new SqlCommand(sql, sqlcon);
                     SqlDataAdapter dap = new SqlDataAdapter(cmdSua);
@@ -715,16 +715,16 @@ namespace QLBH_KiemThuPhanMem
                     cmdSua.ExecuteNonQuery();
                     lbXuatTenDangNhap.Text = " DATA UPDATE SUCCESSFUL !";
                     CloseConnect();
-                }
-                catch (Exception)
-                {
-                    lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
-                }
-                finally
-                {
-                    CloseConnect();
-                }
-            }
+				}
+				catch (Exception)
+				{
+					lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
+				}
+				finally
+				{
+					CloseConnect();
+				}
+			}
             else
             {
                 DialogResult dlr = MessageBox.Show("Code " + txtMa.Text + " does not exist in database! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
