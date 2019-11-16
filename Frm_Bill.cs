@@ -506,8 +506,8 @@ namespace QLBH_KiemThuPhanMem
 			int counter = 0;
 			string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
 			string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-			try
-			{
+			//try
+			//{
 				// Kiểm tra Mã sản phẩm
 				if (combobPro_No.SelectedValue != "")
 				{
@@ -517,15 +517,19 @@ namespace QLBH_KiemThuPhanMem
 						// kiểm tra Mã hóa đơn rỗng
 						if (BillNo != null)
 						{
-							for (counter = 0; counter < listView1.Items.Count - 1; counter++)
+							for (counter = 0; counter < listView1.Items.Count; counter++)
 							{
 								listView1.Items[counter].Text = (counter + 1).ToString();
-							}
-							//ListViewItem i = listView1.Items.Add((++counter).ToString());
-							string[] data = { listView1.Items[counter].Text, combobPro_No.SelectedItem.ToString(), txtPro_Name.Text, quantity, txtPro_UnitPrice.Text, txtTamTinh.Text };
-							ListViewItem item = new ListViewItem(data);
-							listView1.Items.Add(item);
-							double total = 0;
+								
+						}
+						string[] data = {(counter + 1).ToString() ,
+												combobPro_No.SelectedItem.ToString(),
+												txtPro_Name.Text, quantity,
+												txtPro_UnitPrice.Text,
+												txtTamTinh.Text };
+						ListViewItem item = new ListViewItem(data);
+						listView1.Items.Add(item);
+						double total = 0;
 							string dis = txtDiscount.Text;
 							double discount;
 							foreach (ListViewItem i in listView1.Items)
@@ -559,11 +563,11 @@ namespace QLBH_KiemThuPhanMem
 					errorProvider1.SetError(combobPro_No, " Product ID does not exist !");
 				}
 
-			}
-			catch
-			{
-				MessageBox.Show("Error connection. Pplease try again !");
-			}
+			//}
+			//catch
+			//{
+			//	MessageBox.Show("Error connection. Pplease try again !");
+			//}
 		}
 
 		// btn Thêm sản phẩm vào listview
