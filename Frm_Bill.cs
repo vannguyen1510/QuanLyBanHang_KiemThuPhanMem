@@ -825,20 +825,19 @@ namespace QLBH_KiemThuPhanMem
 			Visible = false;
 		}
 		//-------------------------------------------------------------------------------
-		// Double click delete data in listview
-		private void listView1_DoubleClick(object sender, EventArgs e)
+		public void del()
 		{
 			int counter = 0;
 			//string maxoa;
 			//double subtotal, quantity, total;
-			if(listView1.Items.Count == 0) // trong Listview không có dữ liệu 
+			if (listView1.Items.Count == 0) // trong Listview không có dữ liệu 
 			{
-				MessageBox.Show("No data to delete \n Please try again","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+				MessageBox.Show("No data to delete \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			else
 			{
-				foreach(ListViewItem im in listView1.SelectedItems)
+				foreach (ListViewItem im in listView1.SelectedItems)
 				{
 					im.Remove();
 					for (counter = 0; counter < listView1.Items.Count; counter++)
@@ -850,6 +849,11 @@ namespace QLBH_KiemThuPhanMem
 					item3.SubItems[0].Text = (counter + 1).ToString();
 				}
 			}
+		}
+		// Double click delete data in listview
+		private void listView1_DoubleClick(object sender, EventArgs e)
+		{
+			del();
 		}
 
 		private void btnPrint_Bill_Click(object sender, EventArgs e)
