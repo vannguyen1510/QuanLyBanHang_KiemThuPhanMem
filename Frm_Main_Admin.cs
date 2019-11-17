@@ -26,6 +26,7 @@ namespace QLBH_KiemThuPhanMem
 		{
 			label2.Text = id;
 		}
+
 		private void btnBill_Click(object sender, EventArgs e)
 		{
 			this.Hide();
@@ -69,7 +70,7 @@ namespace QLBH_KiemThuPhanMem
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Hide();
-			Frm_Report rep = new Frm_Report();
+			Frm_Report rep = new Frm_Report(label2.Text);
 			rep.Show();
 			Visible = false;
 		}
