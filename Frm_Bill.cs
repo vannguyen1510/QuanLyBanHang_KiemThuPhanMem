@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace QLBH_KiemThuPhanMem
 {
@@ -21,6 +23,7 @@ namespace QLBH_KiemThuPhanMem
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+		ReportDocument rep = new ReportDocument();
 
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------
 		// RANDOM BILL NO
@@ -858,7 +861,11 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnPrint_Bill_Click(object sender, EventArgs e)
 		{
-
+			Frm_Print p = new Frm_Print();
+			//PrintBill print = new PrintBill();
+			TextObject text = (TextObject)rep.ReportDefinition.Sections["Section3"].ReportObjects[""];
+			text.Text = txtBillNo.Text;
+			p.Show();
 		}
 	}
 }
