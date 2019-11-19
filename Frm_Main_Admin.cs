@@ -74,5 +74,12 @@ namespace QLBH_KiemThuPhanMem
 			rep.Show();
 			Visible = false;
 		}
+
+		private void btnProduct_Click(object sender, EventArgs e)
+		{
+			Frm_Products pro = new Frm_Products();
+			pro.Show();
+			Visible = false;
+		}
 	}
 }

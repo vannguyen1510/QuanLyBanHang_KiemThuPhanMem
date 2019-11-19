@@ -99,6 +99,7 @@
 			this.btnProduct.Text = "Product Management";
 			this.btnProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnProduct.UseVisualStyleBackColor = false;
+			this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
 			// 
 			// btnCus
 			// 
