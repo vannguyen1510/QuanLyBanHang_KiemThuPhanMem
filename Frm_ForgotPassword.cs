@@ -110,7 +110,7 @@ namespace QLBH_KiemThuPhanMem
 				try
 				{
 					sqlcon.Open();
-					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id";
+					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
 					cmd.Parameters.AddWithValue("@id", id);
 					//cmd.Parameters.Add("@pass", pass);
@@ -172,7 +172,7 @@ namespace QLBH_KiemThuPhanMem
 									{
 										btnDoipw.Enabled = false;
 										string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] "
-																+"SET Password='" + Cfpw + "' WHERE Phone_Cus='" + id + "'";
+																+"SET Password='" + Cfpw + "' WHERE ID_Emp='" + id + "'";
 										SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
 										SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
 										DataTable dt = new DataTable();
