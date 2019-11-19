@@ -54,13 +54,13 @@ namespace QLBH_KiemThuPhanMem
 		{
 			if (txtTimKiem.Text == "")
 			{
-				txtTimKiem.Text = "ENTER ID (VD: NV01)";
+				txtTimKiem.Text = "ENTER ID (EX: NV01)";
 				txtTimKiem.ForeColor = Color.LightGray;
 			}
 		}
 		private void txtTimKiem_Enter(object sender, EventArgs e)
 		{
-			if (txtTimKiem.Text == "ENTER ID (VD: NV01)")
+			if (txtTimKiem.Text == "ENTER ID (EX: NV01)")
 			{
 				txtTimKiem.Text = "";
 				txtTimKiem.ForeColor = Color.Black;
@@ -70,13 +70,13 @@ namespace QLBH_KiemThuPhanMem
 		{
 			if (txtTimKiem_KH.Text == "")
 			{
-				txtTimKiem_KH.Text = "ENTER ID (VD: NV01)";
+				txtTimKiem_KH.Text = "ENTER ID (EX: NV01)";
 				txtTimKiem_KH.ForeColor = Color.LightGray;
 			}
 		}
 		private void txtTimKiem_KH_Enter(object sender, EventArgs e)
 		{
-			if (txtTimKiem_KH.Text == "ENTER ID (VD: NV01)")
+			if (txtTimKiem_KH.Text == "ENTER ID (EX: NV01)")
 			{
 				txtTimKiem_KH.Text = "";
 				txtTimKiem_KH.ForeColor = Color.Black;
@@ -88,8 +88,8 @@ namespace QLBH_KiemThuPhanMem
 		{
 			listView1.View = View.Details;
 			listView1.Columns.Add("ID", 100, HorizontalAlignment.Center);
-			listView1.Columns.Add("Last Name", 120, HorizontalAlignment.Center);
 			listView1.Columns.Add("First Name", 120, HorizontalAlignment.Center);
+			listView1.Columns.Add("Last Name", 120, HorizontalAlignment.Center);
 			listView1.Columns.Add("Birthday", 100, HorizontalAlignment.Center);
 			listView1.Columns.Add("Gender", 80, HorizontalAlignment.Center);
 			timer1.Enabled = true;
@@ -100,8 +100,8 @@ namespace QLBH_KiemThuPhanMem
 		{
 			listView2.View = View.Details;
 			listView2.Columns.Add("ID", 70, HorizontalAlignment.Center);
-			listView2.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
 			listView2.Columns.Add("First Name", 100, HorizontalAlignment.Center);
+			listView2.Columns.Add("Last Name", 100, HorizontalAlignment.Center);
 			listView2.Columns.Add("Phone", 100, HorizontalAlignment.Center);
 			listView2.Columns.Add("Birthday", 100, HorizontalAlignment.Center);
 			listView2.Columns.Add("Gender", 80, HorizontalAlignment.Center);
@@ -129,7 +129,6 @@ namespace QLBH_KiemThuPhanMem
 			int i = 0;
 			foreach (DataRow dr in dt.Rows)
 			{
-				// Đã load dữ liệu lên thành công 
 				listView1.Items.Add(dr["ID_Emp"].ToString());
 				listView1.Items[i].SubItems.Add(dr["FirstName_Emp"].ToString());
 				listView1.Items[i].SubItems.Add(dr["LastName_Emp"].ToString());
@@ -155,8 +154,8 @@ namespace QLBH_KiemThuPhanMem
 				listView2.Items.Add(dr["ID_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["FirstName_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["LastName_Cus"].ToString());
-				listView2.Items[i].SubItems.Add(dr["Birthday_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["Phone_Cus"].ToString());
+				listView2.Items[i].SubItems.Add(dr["Birthday_Cus"].ToString());
 				listView2.Items[i].SubItems.Add(dr["Sex_Cus"].ToString());
 				i++;
 			}
@@ -1075,10 +1074,7 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// btn CLEAR
-		private void btnClear_Click(object sender, EventArgs e)
-		{
-			XoaFullTextbox();
-		}
+		
 		private void btnClear_KH_Click(object sender, EventArgs e)
 		{
 			XoaFullTextbox_KH();
@@ -1154,6 +1150,20 @@ namespace QLBH_KiemThuPhanMem
 			this.Hide();
 			Frm_SignIn sin = new Frm_SignIn();
 			sin.Show();
+		}
+
+		private void btnClear_Click(object sender, EventArgs e)
+		{
+				//XoaFullTextbox();
+				foreach (Control ct in this.Controls)
+				{
+					if (ct is TextBox)
+					{
+						ct.Text = string.Empty;
+						dateTimePicker1.Value = DateTime.Today;
+						rdbNam.Checked = true;
+					}
+				}
 		}
 	}
 }

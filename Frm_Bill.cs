@@ -861,11 +861,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnPrint_Bill_Click(object sender, EventArgs e)
 		{
-			Frm_Print p = new Frm_Print();
-			//PrintBill print = new PrintBill();
-			TextObject text = (TextObject)rep.ReportDefinition.Sections["Section3"].ReportObjects[""];
-			text.Text = txtBillNo.Text;
-			p.Show();
+			
 		}
 	}
 }

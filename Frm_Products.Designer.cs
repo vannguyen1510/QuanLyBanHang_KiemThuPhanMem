@@ -28,29 +28,38 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Products));
 			this.gb_PerInfo = new System.Windows.Forms.GroupBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtStock = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.txtprice = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtName = new System.Windows.Forms.TextBox();
 			this.txtBillNo = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.textBox5 = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
 			this.btnOut = new System.Windows.Forms.Button();
 			this.btnReport = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.btnDel_Bill = new System.Windows.Forms.Button();
-			this.btnAdd_Bill = new System.Windows.Forms.Button();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.btnReset = new System.Windows.Forms.Button();
+			this.btnDel = new System.Windows.Forms.Button();
+			this.btnAdd = new System.Windows.Forms.Button();
 			this.lbQLNV = new System.Windows.Forms.Label();
+			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+			this.btnMenu = new System.Windows.Forms.Button();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.UnitInStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.UnitOnOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Image = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gb_PerInfo.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -59,13 +68,11 @@
 			this.gb_PerInfo.Controls.Add(this.button2);
 			this.gb_PerInfo.Controls.Add(this.textBox5);
 			this.gb_PerInfo.Controls.Add(this.label6);
-			this.gb_PerInfo.Controls.Add(this.textBox4);
-			this.gb_PerInfo.Controls.Add(this.label5);
-			this.gb_PerInfo.Controls.Add(this.textBox3);
+			this.gb_PerInfo.Controls.Add(this.txtStock);
 			this.gb_PerInfo.Controls.Add(this.label3);
-			this.gb_PerInfo.Controls.Add(this.textBox2);
+			this.gb_PerInfo.Controls.Add(this.txtprice);
 			this.gb_PerInfo.Controls.Add(this.label2);
-			this.gb_PerInfo.Controls.Add(this.textBox1);
+			this.gb_PerInfo.Controls.Add(this.txtName);
 			this.gb_PerInfo.Controls.Add(this.txtBillNo);
 			this.gb_PerInfo.Controls.Add(this.label4);
 			this.gb_PerInfo.Controls.Add(this.label1);
@@ -74,10 +81,94 @@
 			this.gb_PerInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.gb_PerInfo.Name = "gb_PerInfo";
 			this.gb_PerInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.gb_PerInfo.Size = new System.Drawing.Size(439, 374);
+			this.gb_PerInfo.Size = new System.Drawing.Size(439, 327);
 			this.gb_PerInfo.TabIndex = 1;
 			this.gb_PerInfo.TabStop = false;
 			this.gb_PerInfo.Text = "Products";
+			// 
+			// button2
+			// 
+			this.button2.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button2.ForeColor = System.Drawing.Color.GhostWhite;
+			this.button2.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.photo_photography_image_picture_108525;
+			this.button2.Location = new System.Drawing.Point(365, 248);
+			this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(51, 39);
+			this.button2.TabIndex = 67;
+			this.button2.UseVisualStyleBackColor = false;
+			// 
+			// textBox5
+			// 
+			this.textBox5.Location = new System.Drawing.Point(133, 226);
+			this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.textBox5.Multiline = true;
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(226, 80);
+			this.textBox5.TabIndex = 56;
+			this.textBox5.Validating += new System.ComponentModel.CancelEventHandler(this.textBox5_Validating);
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.Location = new System.Drawing.Point(55, 231);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(72, 23);
+			this.label6.TabIndex = 55;
+			this.label6.Text = "Picture :";
+			// 
+			// txtStock
+			// 
+			this.txtStock.Location = new System.Drawing.Point(133, 178);
+			this.txtStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtStock.Name = "txtStock";
+			this.txtStock.Size = new System.Drawing.Size(226, 31);
+			this.txtStock.TabIndex = 52;
+			this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
+			this.txtStock.Validating += new System.ComponentModel.CancelEventHandler(this.txtStock_Validating);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(47, 183);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(80, 23);
+			this.label3.TabIndex = 51;
+			this.label3.Text = "Quantity:";
+			// 
+			// txtprice
+			// 
+			this.txtprice.Location = new System.Drawing.Point(133, 129);
+			this.txtprice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtprice.Name = "txtprice";
+			this.txtprice.Size = new System.Drawing.Size(226, 31);
+			this.txtprice.TabIndex = 50;
+			this.txtprice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprice_KeyPress);
+			this.txtprice.Validating += new System.ComponentModel.CancelEventHandler(this.txtprice_Validating);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(34, 134);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(93, 23);
+			this.label2.TabIndex = 49;
+			this.label2.Text = "Unit Price :";
+			// 
+			// txtName
+			// 
+			this.txtName.Location = new System.Drawing.Point(133, 79);
+			this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtName.Name = "txtName";
+			this.txtName.Size = new System.Drawing.Size(226, 31);
+			this.txtName.TabIndex = 48;
+			this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
+			this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
 			// 
 			// txtBillNo
 			// 
@@ -86,6 +177,8 @@
 			this.txtBillNo.Name = "txtBillNo";
 			this.txtBillNo.Size = new System.Drawing.Size(176, 31);
 			this.txtBillNo.TabIndex = 8;
+			this.txtBillNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBillNo_KeyPress);
+			this.txtBillNo.Validating += new System.ComponentModel.CancelEventHandler(this.txtBillNo_Validating);
 			// 
 			// label4
 			// 
@@ -107,101 +200,6 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "ID :";
 			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(133, 79);
-			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(226, 31);
-			this.textBox1.TabIndex = 48;
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(133, 129);
-			this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(226, 31);
-			this.textBox2.TabIndex = 50;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(34, 134);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(93, 23);
-			this.label2.TabIndex = 49;
-			this.label2.Text = "Unit Price :";
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(133, 178);
-			this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(226, 31);
-			this.textBox3.TabIndex = 52;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(13, 183);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(114, 23);
-			this.label3.TabIndex = 51;
-			this.label3.Text = "Unit in stock :";
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(133, 225);
-			this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(226, 31);
-			this.textBox4.TabIndex = 54;
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(5, 230);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(122, 23);
-			this.label5.TabIndex = 53;
-			this.label5.Text = "Unit on order :";
-			// 
-			// textBox5
-			// 
-			this.textBox5.Location = new System.Drawing.Point(133, 270);
-			this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.textBox5.Multiline = true;
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(226, 80);
-			this.textBox5.TabIndex = 56;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(55, 275);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(72, 23);
-			this.label6.TabIndex = 55;
-			this.label6.Text = "Picture :";
-			// 
-			// button2
-			// 
-			this.button2.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button2.ForeColor = System.Drawing.Color.GhostWhite;
-			this.button2.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.photo_photography_image_picture_108525;
-			this.button2.Location = new System.Drawing.Point(365, 292);
-			this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(51, 39);
-			this.button2.TabIndex = 67;
-			this.button2.UseVisualStyleBackColor = false;
-			// 
 			// btnOut
 			// 
 			this.btnOut.BackColor = System.Drawing.Color.LightSeaGreen;
@@ -210,7 +208,7 @@
 			this.btnOut.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnOut.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.sign_error_icon_34362;
 			this.btnOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnOut.Location = new System.Drawing.Point(1080, 606);
+			this.btnOut.Location = new System.Drawing.Point(1080, 580);
 			this.btnOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnOut.Name = "btnOut";
 			this.btnOut.Size = new System.Drawing.Size(171, 47);
@@ -227,7 +225,7 @@
 			this.btnReport.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnReport.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._8medical_report_102120;
 			this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnReport.Location = new System.Drawing.Point(238, 520);
+			this.btnReport.Location = new System.Drawing.Point(243, 474);
 			this.btnReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnReport.Name = "btnReport";
 			this.btnReport.Size = new System.Drawing.Size(171, 47);
@@ -236,69 +234,57 @@
 			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnReport.UseVisualStyleBackColor = false;
 			// 
-			// button1
+			// btnReset
 			// 
-			this.button1.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.GhostWhite;
-			this.button1.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.restart_120144;
-			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.Location = new System.Drawing.Point(238, 455);
-			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(171, 47);
-			this.button1.TabIndex = 64;
-			this.button1.Text = "RESET";
-			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.button1.UseVisualStyleBackColor = false;
+			this.btnReset.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnReset.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnReset.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.restart_120144;
+			this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnReset.Location = new System.Drawing.Point(243, 409);
+			this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnReset.Name = "btnReset";
+			this.btnReset.Size = new System.Drawing.Size(171, 47);
+			this.btnReset.TabIndex = 64;
+			this.btnReset.Text = "RESET";
+			this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnReset.UseVisualStyleBackColor = false;
 			// 
-			// btnDel_Bill
+			// btnDel
 			// 
-			this.btnDel_Bill.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnDel_Bill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnDel_Bill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDel_Bill.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnDel_Bill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.trash_can_115312;
-			this.btnDel_Bill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnDel_Bill.Location = new System.Drawing.Point(39, 520);
-			this.btnDel_Bill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnDel_Bill.Name = "btnDel_Bill";
-			this.btnDel_Bill.Size = new System.Drawing.Size(171, 47);
-			this.btnDel_Bill.TabIndex = 62;
-			this.btnDel_Bill.Text = "DELETE";
-			this.btnDel_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnDel_Bill.UseVisualStyleBackColor = false;
+			this.btnDel.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDel.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnDel.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.trash_can_115312;
+			this.btnDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnDel.Location = new System.Drawing.Point(44, 474);
+			this.btnDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnDel.Name = "btnDel";
+			this.btnDel.Size = new System.Drawing.Size(171, 47);
+			this.btnDel.TabIndex = 62;
+			this.btnDel.Text = "DELETE";
+			this.btnDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnDel.UseVisualStyleBackColor = false;
 			// 
-			// btnAdd_Bill
+			// btnAdd
 			// 
-			this.btnAdd_Bill.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnAdd_Bill.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.btnAdd_Bill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnAdd_Bill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAdd_Bill.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnAdd_Bill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.document_add_256_icon_icons_com_75994;
-			this.btnAdd_Bill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnAdd_Bill.Location = new System.Drawing.Point(39, 455);
-			this.btnAdd_Bill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnAdd_Bill.Name = "btnAdd_Bill";
-			this.btnAdd_Bill.Size = new System.Drawing.Size(171, 47);
-			this.btnAdd_Bill.TabIndex = 63;
-			this.btnAdd_Bill.Text = "ADD";
-			this.btnAdd_Bill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnAdd_Bill.UseVisualStyleBackColor = false;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.GridColor = System.Drawing.Color.LightSeaGreen;
-			this.dataGridView1.Location = new System.Drawing.Point(481, 72);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.RowHeadersWidth = 51;
-			this.dataGridView1.RowTemplate.Height = 24;
-			this.dataGridView1.Size = new System.Drawing.Size(770, 518);
-			this.dataGridView1.TabIndex = 67;
+			this.btnAdd.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAdd.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnAdd.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.document_add_256_icon_icons_com_75994;
+			this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnAdd.Location = new System.Drawing.Point(44, 409);
+			this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.Size = new System.Drawing.Size(171, 47);
+			this.btnAdd.TabIndex = 63;
+			this.btnAdd.Text = "ADD";
+			this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnAdd.UseVisualStyleBackColor = false;
 			// 
 			// lbQLNV
 			// 
@@ -313,24 +299,109 @@
 			this.lbQLNV.Text = "BILLING SYSTEM";
 			this.lbQLNV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// errorProvider1
+			// 
+			this.errorProvider1.ContainerControl = this;
+			// 
+			// btnMenu
+			// 
+			this.btnMenu.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMenu.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnMenu.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._3643769_building_home_house_main_menu_start_113416__1_;
+			this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnMenu.Location = new System.Drawing.Point(891, 580);
+			this.btnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnMenu.Name = "btnMenu";
+			this.btnMenu.Size = new System.Drawing.Size(171, 47);
+			this.btnMenu.TabIndex = 70;
+			this.btnMenu.Text = "MENU";
+			this.btnMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnMenu.UseVisualStyleBackColor = false;
+			this.btnMenu.UseWaitCursor = true;
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProductID,
+            this.ProductName,
+            this.UnitPrice,
+            this.UnitInStock,
+            this.UnitOnOrder,
+            this.Image});
+			this.dataGridView1.Location = new System.Drawing.Point(457, 70);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowHeadersWidth = 51;
+			this.dataGridView1.RowTemplate.Height = 24;
+			this.dataGridView1.Size = new System.Drawing.Size(794, 493);
+			this.dataGridView1.TabIndex = 71;
+			// 
+			// ProductID
+			// 
+			this.ProductID.HeaderText = "ID";
+			this.ProductID.MinimumWidth = 6;
+			this.ProductID.Name = "ProductID";
+			this.ProductID.Width = 125;
+			// 
+			// ProductName
+			// 
+			this.ProductName.HeaderText = "Product Name";
+			this.ProductName.MinimumWidth = 6;
+			this.ProductName.Name = "ProductName";
+			this.ProductName.Width = 125;
+			// 
+			// UnitPrice
+			// 
+			this.UnitPrice.HeaderText = "Unit Price";
+			this.UnitPrice.MinimumWidth = 6;
+			this.UnitPrice.Name = "UnitPrice";
+			this.UnitPrice.Width = 125;
+			// 
+			// UnitInStock
+			// 
+			this.UnitInStock.HeaderText = "Quantity";
+			this.UnitInStock.MinimumWidth = 6;
+			this.UnitInStock.Name = "UnitInStock";
+			this.UnitInStock.Width = 125;
+			// 
+			// UnitOnOrder
+			// 
+			this.UnitOnOrder.HeaderText = "Unit on order";
+			this.UnitOnOrder.MinimumWidth = 6;
+			this.UnitOnOrder.Name = "UnitOnOrder";
+			this.UnitOnOrder.Width = 125;
+			// 
+			// Image
+			// 
+			this.Image.HeaderText = "Image";
+			this.Image.MinimumWidth = 6;
+			this.Image.Name = "Image";
+			this.Image.Width = 125;
+			// 
 			// Frm_Products
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1263, 664);
-			this.Controls.Add(this.lbQLNV);
+			this.ClientSize = new System.Drawing.Size(1263, 641);
 			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.btnMenu);
+			this.Controls.Add(this.lbQLNV);
 			this.Controls.Add(this.btnOut);
 			this.Controls.Add(this.btnReport);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.btnDel_Bill);
-			this.Controls.Add(this.btnAdd_Bill);
+			this.Controls.Add(this.btnReset);
+			this.Controls.Add(this.btnDel);
+			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.gb_PerInfo);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Frm_Products";
 			this.Text = "Products Management";
+			this.Load += new System.EventHandler(this.Frm_Products_Load);
 			this.gb_PerInfo.ResumeLayout(false);
 			this.gb_PerInfo.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 
@@ -341,23 +412,30 @@
 		private System.Windows.Forms.GroupBox gb_PerInfo;
 		private System.Windows.Forms.TextBox textBox5;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox txtStock;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox txtprice;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtName;
 		private System.Windows.Forms.TextBox txtBillNo;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnOut;
 		private System.Windows.Forms.Button btnReport;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button btnDel_Bill;
-		private System.Windows.Forms.Button btnAdd_Bill;
+		private System.Windows.Forms.Button btnReset;
+		private System.Windows.Forms.Button btnDel;
+		private System.Windows.Forms.Button btnAdd;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Label lbQLNV;
+		private System.Windows.Forms.ErrorProvider errorProvider1;
+		private System.Windows.Forms.Button btnMenu;
+		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn UnitInStock;
+		private System.Windows.Forms.DataGridViewTextBoxColumn UnitOnOrder;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Image;
 	}
 }

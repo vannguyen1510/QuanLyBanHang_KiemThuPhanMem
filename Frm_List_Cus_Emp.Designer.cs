@@ -170,7 +170,7 @@
 			this.txtTimKiem.Name = "txtTimKiem";
 			this.txtTimKiem.Size = new System.Drawing.Size(474, 42);
 			this.txtTimKiem.TabIndex = 48;
-			this.txtTimKiem.Text = "ENTER ID (VD: NV01)";
+			this.txtTimKiem.Text = "ENTER ID (EX: NV01)";
 			this.txtTimKiem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimKiem_KeyPress);
 			// 
 			// btnTimKiem
@@ -663,9 +663,6 @@
 			this.label12.TabIndex = 57;
 			this.label12.Text = "CUSTOMERS MANAGEMENT";
 			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// timer1
-			// 
 			// 
 			// errorProvider1
 			// 

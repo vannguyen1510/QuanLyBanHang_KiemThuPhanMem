@@ -157,7 +157,7 @@ namespace QLBH_KiemThuPhanMem
 			try
 			{
 				sqlcon.Open();
-				string user = txtTenDangNhap.Text;
+				string user = txtTenDangNhap.Text.Trim();
 				string pass = txtMatKhau.Text;
 				// Dò tìm SĐT khách hàng và ID nhân viên
 				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
@@ -269,7 +269,7 @@ namespace QLBH_KiemThuPhanMem
 				string id = txtTenDangNhap.Text.ToUpper().Trim();
 				if (id != null) // Textbox không bỏ trống
 				{
-					string sql = "Select Count(*) From [KTPM].[dbo].[Info_Secret] Where Phone_Cus=@id ";
+					string sql = "Select Count(*) From [KTPM].[dbo].[Info_Secret] Where ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS ";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
 					cmd.Parameters.Add(new SqlParameter("@id", id));
 					int x = (int)cmd.ExecuteScalar();
@@ -709,6 +709,9 @@ namespace QLBH_KiemThuPhanMem
 			return base.ProcessDialogKey(keyData);
 		}
 
-		
+		private void txtFName_TextChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

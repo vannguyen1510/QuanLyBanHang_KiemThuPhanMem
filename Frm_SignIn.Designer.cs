@@ -34,11 +34,9 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_SignIn));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage_SignIn = new System.Windows.Forms.TabPage();
-			this.txtMatKhau = new System.Windows.Forms.TextBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnForgotPW = new System.Windows.Forms.Button();
 			this.btnDoipw = new System.Windows.Forms.Button();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.btnDong = new System.Windows.Forms.Button();
 			this.txtTenDangNhap = new System.Windows.Forms.TextBox();
 			this.lbMatKhau = new System.Windows.Forms.Label();
@@ -65,6 +63,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.txtMatKhau = new System.Windows.Forms.TextBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			btnDangNhap = new System.Windows.Forms.Button();
 			btnDangKy = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
@@ -116,11 +116,11 @@
 			// 
 			// tabPage_SignIn
 			// 
+			this.tabPage_SignIn.Controls.Add(this.checkBox1);
 			this.tabPage_SignIn.Controls.Add(this.txtMatKhau);
 			this.tabPage_SignIn.Controls.Add(this.pictureBox1);
 			this.tabPage_SignIn.Controls.Add(this.btnForgotPW);
 			this.tabPage_SignIn.Controls.Add(this.btnDoipw);
-			this.tabPage_SignIn.Controls.Add(this.checkBox1);
 			this.tabPage_SignIn.Controls.Add(this.btnDong);
 			this.tabPage_SignIn.Controls.Add(btnDangNhap);
 			this.tabPage_SignIn.Controls.Add(this.txtTenDangNhap);
@@ -134,16 +134,6 @@
 			this.tabPage_SignIn.TabIndex = 0;
 			this.tabPage_SignIn.Text = "Sign In";
 			this.tabPage_SignIn.UseVisualStyleBackColor = true;
-			// 
-			// txtMatKhau
-			// 
-			this.txtMatKhau.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMatKhau.Location = new System.Drawing.Point(255, 208);
-			this.txtMatKhau.Name = "txtMatKhau";
-			this.txtMatKhau.PasswordChar = '*';
-			this.txtMatKhau.Size = new System.Drawing.Size(242, 28);
-			this.txtMatKhau.TabIndex = 2;
 			// 
 			// pictureBox1
 			// 
@@ -182,18 +172,6 @@
 			this.toolTip1.SetToolTip(this.btnDoipw, "Press P to change password");
 			this.btnDoipw.UseVisualStyleBackColor = false;
 			this.btnDoipw.Click += new System.EventHandler(this.btnDoipw_Click);
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox1.Location = new System.Drawing.Point(288, 242);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(181, 22);
-			this.checkBox1.TabIndex = 3;
-			this.checkBox1.Text = "Hide / Show Password";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
 			// 
 			// btnDong
 			// 
@@ -391,6 +369,7 @@
 			this.txtFName.Name = "txtFName";
 			this.txtFName.Size = new System.Drawing.Size(243, 35);
 			this.txtFName.TabIndex = 0;
+			this.txtFName.TextChanged += new System.EventHandler(this.txtFName_TextChanged);
 			this.txtFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFName_KeyPress);
 			// 
 			// label4
@@ -476,6 +455,26 @@
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
 			// 
+			// txtMatKhau
+			// 
+			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMatKhau.Location = new System.Drawing.Point(255, 199);
+			this.txtMatKhau.Name = "txtMatKhau";
+			this.txtMatKhau.PasswordChar = '*';
+			this.txtMatKhau.Size = new System.Drawing.Size(244, 28);
+			this.txtMatKhau.TabIndex = 20;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox1.Location = new System.Drawing.Point(290, 244);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(181, 22);
+			this.checkBox1.TabIndex = 21;
+			this.checkBox1.Text = "Hide / Show Password";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// Frm_SignIn
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -507,7 +506,6 @@
 		private System.Windows.Forms.TabPage tabPage_SignUp;
 		private System.Windows.Forms.Button btnForgotPW;
 		private System.Windows.Forms.Button btnDoipw;
-		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button btnDong;
 		private System.Windows.Forms.TextBox txtTenDangNhap;
 		private System.Windows.Forms.Label lbMatKhau;
@@ -535,5 +533,6 @@
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.TextBox txtMatKhau;
+		private System.Windows.Forms.CheckBox checkBox1;
 	}
 }
