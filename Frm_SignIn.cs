@@ -16,8 +16,8 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
-		//SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
-		SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 		MD5 md = MD5.Create();
         public Frm_SignIn()
@@ -113,23 +113,30 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		// Chỉ nhận ký tự số
-		private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
-				|| (e.KeyChar == (char)8)) // backspace
-			{
-				txtPhone.ShortcutsEnabled = false;
-				e.Handled = false;
-			}
-			else
-			{
-				errorProvider1.SetError(txtPhone, "Accept only numbers!");
-				e.Handled = true;
-			}
-		}
+		//private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+		//{
+		//	if ((e.KeyChar > (char)47) && (e.KeyChar < (char)58) // 0-9
+		//		|| (e.KeyChar == (char)8)) // backspace
+		//	{
+		//		txtPhone.ShortcutsEnabled = false;
+		//		e.Handled = false;
+		//	}
+		//	else
+		//	{
+		//		errorProvider1.SetError(txtPhone, "Accept only numbers!");
+		//		e.Handled = true;
+		//	}
+		//}
 
 		// ẨN HIỆN PASSWORD
-		
+		private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+		{
+			if (checkBox1.Checked)
+				txtMatKhau.UseSystemPasswordChar = false;
+			else
+				txtMatKhau.UseSystemPasswordChar = true;
+
+		}
 		private void checkBox2_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox2.Checked)
@@ -155,12 +162,22 @@ namespace QLBH_KiemThuPhanMem
                 sqlcon.Open();
                 string user = txtTenDangNhap.Text;
                 string pass = txtMatKhau.Text;
-                // Dò tìm SĐT khách hàng và ID nhân viên
-                string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
+
+				// Mã hóa mật khẩu 
+				string str = "";
+				Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(pass);
+				MD5CryptoServiceProvider md = new MD5CryptoServiceProvider();
+				buffer = md.ComputeHash(buffer);
+				foreach (Byte b in buffer)
+				{
+					str += b.ToString("X2");
+				}
+				// Dò tìm SĐT khách hàng và ID nhân viên
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
                 SqlCommand cmd = new SqlCommand(sql, sqlcon);
                 cmd.Parameters.Add(new SqlParameter("@phone", user));
                 cmd.Parameters.Add(new SqlParameter("@id", user));
-                cmd.Parameters.Add(new SqlParameter("@pass", pass));
+                cmd.Parameters.Add(new SqlParameter("@pass", str));
                 int x = (int)cmd.ExecuteScalar();
                 if (x == 1)
                 {
@@ -230,19 +247,19 @@ namespace QLBH_KiemThuPhanMem
                     else
                     {
                         PassFlag = false;
-                        MessageBox.Show("Thông tin đăng nhập không đúng. \n Vui lòng nhập lại!", "ERROR");
+                        MessageBox.Show("Wrong log in information. \n Please try again!", "ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
                     PassFlag = false;
-                    errorProvider1.SetError(txtTenDangNhap, "Bạn chưa nhập ID !");
+                    errorProvider1.SetError(txtTenDangNhap, "Do not accept blank fields !");
                 }
             }
             catch (Exception)
             {
                 PassFlag = false;
-                MessageBox.Show("Lỗi kết nối!", "Try Again");
+                MessageBox.Show("Error connection!", "Try Again");
             }
             finally
             {
@@ -270,50 +287,49 @@ namespace QLBH_KiemThuPhanMem
         {
             sqlcon.Close();
             sqlcon.Open();
+			string I = txtID.Text.Trim();
             string F = txtFName.Text.Trim();
             while (F.IndexOf("  ") != -1)
                 F = F.Replace("  ", " ");
             string L = txtLName.Text.Trim();
             while (L.IndexOf("  ") != -1)
                 L = L.Replace("  ", " ");
-            string P = txtPhone.Text.Trim();
+            //string P = txtPhone.Text.Trim();
             string pw = txtPw.Text;
             string cpw = txtCPw.Text;
-            string A = txtAddress.Text.Trim();
+            //string A = txtAddress.Text.Trim();
             string ns = dateTimePicker1.Text;
             string gt = rdbNam.Checked ? "Male" : "Female";
-            string[] data = { F, L, ns, P, gt, A };
+            string[] data = {I, F, L, ns, gt };
             // Không cho phép để trống textbox nào
             if (F != "")
             {
                 if (L != "")
                 {
-                    if (P != "")
+                    if (I != "")
                     {
-                        try
-                        {
-                            // vào SQL kiểm tra SĐT 
-                            string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Cus] Where Phone_Cus=@sdt";
+						try
+						{
+							// vào SQL kiểm tra ID_Emp
+							string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] Where ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS";
                             SqlCommand cmd = new SqlCommand(sql, sqlcon);
-                            cmd.Parameters.Add(new SqlParameter("@sdt", P));
+                            cmd.Parameters.Add(new SqlParameter("@id", I));
                             int x = (int)cmd.ExecuteScalar();
-
                             if (x == 1) // nếu SĐT trùng thì báo lỗi 
                             {
                                 DKFlag = false;
-                                errorProvider1.SetError(txtPhone, " Phone number is already existed. Please try again!");
-                                P = string.Empty;
+                                errorProvider1.SetError(txtID, " ID is already existed. Please try again!");
+                                I = string.Empty;
                             }
-                            else // nếu SĐT không trùng thì kiểm tra tiếp MẬT KHẨU
+                            else // nếu ID không trùng thì kiểm tra tiếp MẬT KHẨU
                             {
-
                                 if (pw != "")
                                 {
                                     if (cpw != "")
                                     {
-                                        try
-                                        {
-                                            int countSo = 0;
+										try
+										{
+											int countSo = 0;
                                             int countHoa = 0;
                                             int countThuong = 0;
                                             int countDB = 0;
@@ -375,29 +391,36 @@ namespace QLBH_KiemThuPhanMem
                                                             gender = "Male";
                                                         else
                                                             gender = "Female";
-                                                        // Thêm vào bảng Info_Cus
-                                                        string sql_cus = "INSERT INTO [KTPM].[dbo].[Info_Cus] (FirstName_Cus,LastName_Cus,Birthday_Cus,Phone_Cus,Sex_Cus,Address_Cus)"
-                                                                        + "VALUES (@fn,@ln,@bd,@phone,@sex,@add)";
-                                                        SqlCommand cmd_cus = new SqlCommand(sql_cus, sqlcon);
-                                                        cmd_cus.Parameters.AddWithValue("@fn", F);
-                                                        cmd_cus.Parameters.AddWithValue("@ln", L);
-                                                        cmd_cus.Parameters.AddWithValue("@bd", ns);
-                                                        cmd_cus.Parameters.AddWithValue("@phone", P);
-                                                        cmd_cus.Parameters.AddWithValue("@sex", gender);
-                                                        cmd_cus.Parameters.AddWithValue("@add", A);
-                                                        cmd_cus.ExecuteNonQuery();
+													// Thêm vào bảng Info_Emp
+													string sql_emp = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birtday_Emp,Sex_Emp)"
+																	+"VALUES (@ide,@fe,@le,@be,@se)";
+													SqlCommand cmd_emp = new SqlCommand(sql_emp, sqlcon);
+													cmd_emp.Parameters.AddWithValue("@ide",I);
+													cmd_emp.Parameters.AddWithValue("@fe", F);
+													cmd_emp.Parameters.AddWithValue("@le", L);
+													cmd_emp.Parameters.AddWithValue("@be", ns);
+													cmd_emp.Parameters.AddWithValue("@se", gender);
+													cmd_emp.ExecuteNonQuery();
                                                         // Thêm vào bảng Info_Secret
                                                         sqlcon.Close();
                                                         sqlcon.Open();
-                                                        string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (Phone_Cus,Password,Permision)"
-                                                                                + " VALUES (@sdt,@pass,@per)";
+														string str = "";
+														Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(cpw);
+														MD5CryptoServiceProvider md = new MD5CryptoServiceProvider();
+														buffer = md.ComputeHash(buffer);
+														foreach (Byte b in buffer)
+														{
+															str += b.ToString("X2");
+														}
+														string id_pw = "INSERT INTO [KTPM].[dbo].[Info_Secret] (ID_Emp,Password,Permision)"
+                                                                                + " VALUES (@ide,@pass,@per)";
                                                         SqlCommand cmd_id_pw = new SqlCommand(id_pw, sqlcon);
-                                                        cmd_id_pw.Parameters.AddWithValue("@sdt", P);
-                                                        cmd_id_pw.Parameters.AddWithValue("@pass", cpw);
-                                                        cmd_id_pw.Parameters.AddWithValue("@per", "Guess");
+                                                        cmd_id_pw.Parameters.AddWithValue("@ide", I);
+                                                        cmd_id_pw.Parameters.AddWithValue("@pass", str);
+                                                        cmd_id_pw.Parameters.AddWithValue("@per", "Admin");
                                                         cmd_id_pw.ExecuteNonQuery();
                                                         DKFlag = true;
-                                                        MessageBox.Show(" WELCOME " + F + " " + L + " !", "Hello", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                                        MessageBox.Show(" WELCOME " + F + " " + L + " !", "Hello", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                         tabPage_SignIn.Show();
                                                     }
                                                     else
@@ -413,17 +436,17 @@ namespace QLBH_KiemThuPhanMem
                                                     errorProvider1.SetError(txtPw, "Please read the password setting instructions!");
                                                 }
                                             }
-                                        }
-                                        catch (Exception)
-                                        {
-                                            DKFlag = false;
-                                            MessageBox.Show("Error Connection at Password!", "Please Try Again");
-                                        }
-                                        finally
-                                        {
-                                            sqlcon.Close();
-                                        }
-                                    }
+										}
+										catch (Exception)
+										{
+											DKFlag = false;
+											MessageBox.Show("Error Connection at Password!", "Please Try Again");
+										}
+										finally
+										{
+											sqlcon.Close();
+										}
+									}
                                     else
                                     {
                                         DKFlag = false;
@@ -436,21 +459,21 @@ namespace QLBH_KiemThuPhanMem
                                     errorProvider1.SetError(txtPw, "Enter your Password please !");
                                 }
                             }
-                        }
-                        catch (Exception)
-                        {
-                            DKFlag = false;
-                            MessageBox.Show("Error Connection at Phone!", "Try Again");
-                        }
-                        finally
-                        {
-                            sqlcon.Close();
-                        }
-                    }
+						}
+						catch (Exception)
+						{
+							DKFlag = false;
+							MessageBox.Show("Error Connection !", "Try Again");
+						}
+						finally
+						{
+							sqlcon.Close();
+						}
+					}
                     else
                     {
                         DKFlag = false;
-                        errorProvider1.SetError(txtPhone, "Enter your Phone please !");
+                        errorProvider1.SetError(txtID, "Enter Employee ID please !");
                     }
                 }
                 else
@@ -506,13 +529,9 @@ namespace QLBH_KiemThuPhanMem
 
 		}
 
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
-        {
-                if (checkBox1.Checked)
-                    txtMatKhau.UseSystemPasswordChar = false;
-                else
-                    txtMatKhau.UseSystemPasswordChar = true;
-            
-        }
-    }
+		private void tabPage_SignUp_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

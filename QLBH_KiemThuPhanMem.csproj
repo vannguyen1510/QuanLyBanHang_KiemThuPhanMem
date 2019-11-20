@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class_ChuyenSoThanhChu.cs" />
+    <Compile Include="Class_MaHoaPassword.cs" />
     <Compile Include="Frm_Bill.cs">
       <SubType>Form</SubType>
     </Compile>

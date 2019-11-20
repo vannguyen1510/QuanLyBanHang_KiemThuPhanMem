@@ -12,13 +12,14 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Globalization;
 using System.Configuration;
+using System.Security.Cryptography;
 
 namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_ChangePassword : Form
 	{
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=QLBH;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
         public Frm_ChangePassword()
@@ -41,10 +42,19 @@ namespace QLBH_KiemThuPhanMem
 					sqlcon.Open();
 					string pass = txtEpw.Text;
 					string id = txtTenDangNhap.Text;
+					// Mã hóa mật khẩu 
+					string str = "";
+					Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(pass);
+					MD5CryptoServiceProvider md = new MD5CryptoServiceProvider();
+					buffer = md.ComputeHash(buffer);
+					foreach (Byte b in buffer)
+					{
+						str += b.ToString("X2");
+					}
 					string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] Where ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass";
 					SqlCommand cmd = new SqlCommand(sql, sqlcon);
 					cmd.Parameters.AddWithValue("@id", id);
-					cmd.Parameters.AddWithValue("@pass", pass);
+					cmd.Parameters.AddWithValue("@pass", str);
 					int x = (int)cmd.ExecuteScalar();
 					if (x == 1)// đúng id và password cũ
 					{
@@ -106,7 +116,16 @@ namespace QLBH_KiemThuPhanMem
 									if (String.Compare(Newpw, Cfpw, false) == 0)
 									{
 										btnDoipw.Enabled = false;
-										string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] SET Password='" + txtCNpw.Text + "' WHERE ID_Emp='" + txtTenDangNhap.Text + "'";
+										// Mã hóa mật khẩu 
+										string str1 = "";
+										Byte[] buffer1 = System.Text.Encoding.UTF8.GetBytes(txtCNpw.Text);
+										MD5CryptoServiceProvider md1 = new MD5CryptoServiceProvider();
+										buffer1 = md1.ComputeHash(buffer1);
+										foreach (Byte b1 in buffer1)
+										{
+											str1 += b1.ToString("X2");
+										}
+										string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] SET Password='" + str1 + "' WHERE ID_Emp='" + txtTenDangNhap.Text + "'";
 										SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
 										SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
 										DataTable dt = new DataTable();

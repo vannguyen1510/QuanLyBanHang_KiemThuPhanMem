@@ -12,13 +12,14 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Globalization;
 using System.Configuration;
+using System.Security.Cryptography;
 
 namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_ForgotPassword : Form
 	{
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
         public Frm_ForgotPassword()
@@ -171,8 +172,17 @@ namespace QLBH_KiemThuPhanMem
 									if (String.Compare(Newpw, Cfpw, false) == 0)
 									{
 										btnDoipw.Enabled = false;
+										// Mã hóa mật khẩu 
+										string str = "";
+										Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(Cfpw);
+										MD5CryptoServiceProvider md = new MD5CryptoServiceProvider();
+										buffer = md.ComputeHash(buffer);
+										foreach (Byte b in buffer)
+										{
+											str += b.ToString("X2");
+										}
 										string sqlUpdatePW = "UPDATE [KTPM].[dbo].[Info_Secret] "
-																+"SET Password='" + Cfpw + "' WHERE ID_Emp='" + id + "'";
+																+"SET Password='" + str + "' WHERE ID_Emp='" + id + "'";
 										SqlCommand cmdUpDatePW = new SqlCommand(sqlUpdatePW, sqlcon);
 										SqlDataAdapter dap = new SqlDataAdapter(cmdUpDatePW);
 										DataTable dt = new DataTable();
