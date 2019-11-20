@@ -17,7 +17,8 @@ namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_Products : Form
 	{
-		SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        //SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
 		public Frm_Products()
 		{
 			InitializeComponent();

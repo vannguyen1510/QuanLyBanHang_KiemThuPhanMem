@@ -19,9 +19,9 @@ namespace QLBH_KiemThuPhanMem
 	{
 		string gender = string.Empty;
         // ĐƯỜNG DẪN SQL
-        //SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
-        SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
+        ///SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
 		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
 
 		public Frm_List_Cus_Emp()
@@ -408,281 +408,200 @@ namespace QLBH_KiemThuPhanMem
 			}
 		}
 
-		// Function - Thêm mới 
-		public void AddNew()
-		{
-			string ma = txtMa.Text.ToUpper().Trim();
-			string ho = txtHo.Text.Trim();
-			while (ho.IndexOf("  ") != -1)
-			{
-				ho = ho.Replace("  ", " ");
-			}
-			string ten = (txtTen.Text).Trim();
-			while (ten.IndexOf("  ") != -1)
-			{
-				ten = ten.Replace("  ", " ");
-			}
-			string ns = dateTimePicker1.Text;
-			string gt = rdbNam.Checked ? "Male" : "Female";
-			string[] data = { ma, ho, ten, ns, gt };
-			if (ma != "")
-			{
-				if (ho != "")
-				{
-					if (ten != "")
-					{
-						ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
-						if (item1 == null) // nếu Mã chưa có trong Listview thì thêm mới
-						{
-							// Thêm vào listview
-							ListViewItem item = new ListViewItem(data);
-							listView1.Items.Add(item);
-							item.ImageIndex = rdbNam.Checked ? 0 : 1;
-							// Thêm vào SQL
-							try
-							{
-								if (rdbNam.Checked)
-									gender = "Male";
-								else
-									gender = "Female";
-								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birtday_Emp,Sex_Emp)"
-												+ "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
-								SqlCommand cmd = new SqlCommand(sql, sqlcon);
-								cmd.Parameters.AddWithValue("@ma", ma);
-								cmd.Parameters.AddWithValue("@ho", ho);
-								cmd.Parameters.AddWithValue("@ten", ten);
-								cmd.Parameters.AddWithValue("@ngaysinh", ns);
-								cmd.Parameters.AddWithValue("@gt", gender);
-								cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
-								lbXuatTenDangNhap.Text = " DATA ADDED SUCCESSFUL !";
-								XoaFullTextbox();
-								CloseConnect();
-							}
-							catch (Exception)
-							{
+        // Function - Thêm mới 
+        public static bool themFlag = true;
+        public void AddNew()
+        {
+            string ma = txtMa.Text.ToUpper().Trim();
+            string ho = txtHo.Text.Trim();
+            while (ho.IndexOf("  ") != -1)
+            {
+                ho = ho.Replace("  ", " ");
+            }
+            string ten = (txtTen.Text).Trim();
+            while (ten.IndexOf("  ") != -1)
+            {
+                ten = ten.Replace("  ", " ");
+            }
+            string ns = dateTimePicker1.Text;
+            string gt = rdbNam.Checked ? "Male" : "Female";
+            string[] data = { ma, ho, ten, ns, gt };
+            if (ma != "")
+            {
+                if (ho != "")
+                {
+                    if (ten != "")
+                    {
+                        ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
+                        if (item1 == null) // nếu Mã chưa có trong Listview thì thêm mới
+                        {
+                            // Thêm vào listview
+                            ListViewItem item = new ListViewItem(data);
+                            listView1.Items.Add(item);
+                            item.ImageIndex = rdbNam.Checked ? 0 : 1;
+                            // Thêm vào SQL
+                            try
+                            {
+                                if (rdbNam.Checked)
+                                    gender = "Male";
+                                else
+                                    gender = "Female";
+                                string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birtday_Emp,Sex_Emp)"
+                                                + "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
+                                SqlCommand cmd = new SqlCommand(sql, sqlcon);
+                                cmd.Parameters.AddWithValue("@ma", ma);
+                                cmd.Parameters.AddWithValue("@ho", ho);
+                                cmd.Parameters.AddWithValue("@ten", ten);
+                                cmd.Parameters.AddWithValue("@ngaysinh", ns);
+                                cmd.Parameters.AddWithValue("@gt", gender);
+                                cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
+                                lbXuatTenDangNhap.Text = " DATA ADDED SUCCESSFUL !";
+                                XoaFullTextbox();
+                                themFlag = true;
+                                CloseConnect();
+                            }
+                            catch (Exception)
+                            {
+                                themFlag = false;
 
-								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
-							}
-							finally
-							{
-								CloseConnect();
-							}
-						}
-						else
-						{
+                                lbXuatTenDangNhap.Text = "Error connection. Please try again!";
+                            }
+                            finally
+                            {
+                                CloseConnect();
+                            }
+                        }
+                        else
+                        {
+                            themFlag = false;
 
-							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
-							txtMa.Text = string.Empty;
-						}
-					}
-					else
-					{
-						lbXuatTenDangNhap.Text = string.Empty;
-						errorProvider1.SetError(txtTen, " Do not accept blank field !");
-					}
-				}
-				else
-				{
-					lbXuatTenDangNhap.Text = string.Empty;
-					errorProvider1.SetError(txtHo, "Do not accept blank field !");
-				}
-			}
-			else
-			{
+                            lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
+                            txtMa.Text = string.Empty;
+                        }
+                    }
+                    else
+                    {
+                        themFlag = false;
 
-				lbXuatTenDangNhap.Text = string.Empty;
-				errorProvider1.SetError(txtMa, "Do not accept blank field !");
-			}
+                        lbXuatTenDangNhap.Text = string.Empty;
+                        errorProvider1.SetError(txtTen, " Do not accept blank field !");
+                    }
+                }
+                else
+                {
+                    themFlag = false;
 
-		}
-		// test
-		public bool AddNew1(string ma, string ho, string ten, string ns, string gt)
-		{
-			bool tamp = false;
-			//string ma = txtMa.Text.ToUpper().Trim();
-			//string ho = txtHo.Text.Trim();
-			while (ho.IndexOf("  ") != -1)
-			{
-				ho = ho.Replace("  ", " ");
-			}
-			//string ten = (txtTen.Text).Trim();
-			while (ten.IndexOf("  ") != -1)
-			{
-				ten = ten.Replace("  ", " ");
-			}
-			//string ns = dateTimePicker1.Text;
-			//string gt = rdbNam.Checked ? "Male" : "Female";
-			string[] data = { ma, ho, ten, ns, gt };
-			if (ma != "")
-			{
-				if (ho != "")
-				{
-					if (ten != "")
-					{
-						ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
-						if (item1 == null) // nếu Mã chưa có trong Listview thì thêm mới
-						{
-							// Thêm vào listview
-							ListViewItem item = new ListViewItem(data);
-							listView1.Items.Add(item);
-							item.ImageIndex = rdbNam.Checked ? 0 : 1;
-							// Thêm vào SQL
-							try
-							{
-								if (rdbNam.Checked)
-									gender = "Male";
-								else
-									gender = "Female";
-								string sql = "INSERT INTO [KTPM].[dbo].[Info_Emp] (ID_Emp,FirstName_Emp,LastName_Emp,Birthday_Emp,Sex_Emp)"
-												+ "VALUES (@ma,@ho,@ten,@ngaysinh,@gt)";
-								SqlCommand cmd = new SqlCommand(sql, sqlcon);
-								cmd.Parameters.AddWithValue("@ma", ma);
-								cmd.Parameters.AddWithValue("@ho", ho);
-								cmd.Parameters.AddWithValue("@ten", ten);
-								cmd.Parameters.AddWithValue("@ngaysinh", ns);
-								cmd.Parameters.AddWithValue("@gt", gender);
-								cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
-								lbXuatTenDangNhap.Text = " DATA ADDED SUCCESSFUL !";
-								XoaFullTextbox();
-								CloseConnect();
-							}
-							catch (Exception)
-							{
-								tamp = true;
+                    lbXuatTenDangNhap.Text = string.Empty;
+                    errorProvider1.SetError(txtHo, "Do not accept blank field !");
+                }
+            }
+            else
+            {
+                themFlag = false;
+                lbXuatTenDangNhap.Text = string.Empty;
+                errorProvider1.SetError(txtMa, "Do not accept blank field !");
+            }
 
-								lbXuatTenDangNhap.Text = "Error connection. Please try again!";
-							}
-							finally
-							{
-								CloseConnect();
-							}
-						}
-						else
-						{
-							tamp = true;
-							lbXuatTenDangNhap.Text = " ID Employee is already exist ! Please try again.";
-							txtMa.Text = string.Empty;
-						}
-					}
-					else
-					{
-						tamp = true;
-						lbXuatTenDangNhap.Text = string.Empty;
-						errorProvider1.SetError(txtTen, " Do not accept blank field !");
-					}
-				}
-				else
-				{
-					tamp = true;
-					lbXuatTenDangNhap.Text = string.Empty;
-					errorProvider1.SetError(txtHo, "Do not accept blank field !");
-				}
-			}
-			else
-			{
-				tamp = true;
-				lbXuatTenDangNhap.Text = string.Empty;
-				errorProvider1.SetError(txtMa, "Do not accept blank field !");
-			}
-			return tamp;
-		}
+        }
+        // test
 
-		///// -----------------------------------
-		//public void AddNew_KH()
-		//{
-		//	string ma = txtMa_KH.Text.ToUpper().Trim();
-		//	string ho = txtHo_KH.Text.Trim();
-		//	while (ho.IndexOf("  ") != -1)
-		//	{
-		//		ho = ho.Replace("  ", " ");
-		//	}
-		//	string ten = txtTen_KH.Text.Trim();
-		//	while (ten.IndexOf("  ") != -1)
-		//	{
-		//		ten = ten.Replace("  ", " ");
-		//	}
-		//	string sdt = txtSDT_KH.Text;
-		//	string ns = dateTimePicker2.Text;
-		//	string gt = rdbNam_KH.Checked ? "Male" : "Female";
-		//	string[] data_2 = { ma, ho, ten, sdt, ns, gt };
-		//	if (ma != "")
-		//	{
-		//		if (ho != "")
-		//		{
-		//			if (ten != "")
-		//			{
-		//				if (sdt != "")
-		//				{
-		//					ListViewItem item2 = listView1.FindItemWithText(txtMa_KH.Text); // tìm Mã trùng với txtMa_KH
-		//					if (item2 == null) // nếu Mã chưa có trong Listview thì thêm mới
-		//					{
-		//						// Thêm vào listview
-		//						ListViewItem item_2 = new ListViewItem(data_2);
-		//						listView2.Items.Add(item_2);
-		//						// Thêm vào SQL
-		//						try
-		//						{
-		//							if (rdbNam.Checked)
-		//								gender = "Male";
-		//							else
-		//								gender = "Female";
-		//							string sql = "INSERT INTO [KTPM].[dbo].[Info_Cus] (ID_Cus,FirstName_Cus,LastName_Cus,Phone_Cus,Birthday_Cus,Sex_Cus)"
-		//											+ "VALUES (@ma,@ho,@ten,@dt,@ngaysinh,@gt)";
-		//							SqlCommand cmd = new SqlCommand(sql, sqlcon);
-		//							cmd.Parameters.AddWithValue("@ma", ma);
-		//							cmd.Parameters.AddWithValue("@ho", ho);
-		//							cmd.Parameters.AddWithValue("@ten", ten);
-		//							cmd.Parameters.AddWithValue("@dt", sdt);
-		//							cmd.Parameters.AddWithValue("@ngaysinh", ns);
-		//							cmd.Parameters.AddWithValue("@gt", gender);
-		//							cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
-		//							lbXuatTenDangNhap_KH.Text = " DATA ADDED SUCCESSFUL !";
-		//							XoaFullTextbox();
-		//							CloseConnect();
-		//						}
-		//						catch (Exception)
-		//						{
-		//							lbXuatTenDangNhap_KH.Text = "Error connection. Please try again!";
-		//						}
-		//						finally
-		//						{
-		//							CloseConnect();
-		//						}
-		//					}
-		//					else
-		//					{
-		//						lbXuatTenDangNhap_KH.Text = " ID Customer is already exist ! Please try again.";
-		//						txtMa_KH.Text = string.Empty;
-		//					}
-		//				}
-		//				else
-		//				{
-		//					lbXuatTenDangNhap_KH.Text = string.Empty;
-		//					errorProvider2.SetError(txtSDT_KH, " Do not accept blank field !");
-		//				}
-		//			}
-		//			else
-		//			{
-		//				lbXuatTenDangNhap_KH.Text = string.Empty;
-		//				errorProvider2.SetError(txtTen_KH, " Do not accept blank field !");
-		//			}
-		//		}
-		//		else
-		//		{
-		//			lbXuatTenDangNhap_KH.Text = string.Empty;
-		//			errorProvider2.SetError(txtHo_KH, "Do not accept blank field !");
-		//		}
-		//	}
-		//	else
-		//	{
-		//		lbXuatTenDangNhap_KH.Text = string.Empty;
-		//		errorProvider2.SetError(txtMa_KH, "Do not accept blank field !");
-		//	}
-		//}
-		/// -----------------------------------
 
-		// btn THÊM
-		private void btnThem_Click(object sender, EventArgs e)
+        ///// -----------------------------------
+        //public void AddNew_KH()
+        //{
+        //	string ma = txtMa_KH.Text.ToUpper().Trim();
+        //	string ho = txtHo_KH.Text.Trim();
+        //	while (ho.IndexOf("  ") != -1)
+        //	{
+        //		ho = ho.Replace("  ", " ");
+        //	}
+        //	string ten = txtTen_KH.Text.Trim();
+        //	while (ten.IndexOf("  ") != -1)
+        //	{
+        //		ten = ten.Replace("  ", " ");
+        //	}
+        //	string sdt = txtSDT_KH.Text;
+        //	string ns = dateTimePicker2.Text;
+        //	string gt = rdbNam_KH.Checked ? "Male" : "Female";
+        //	string[] data_2 = { ma, ho, ten, sdt, ns, gt };
+        //	if (ma != "")
+        //	{
+        //		if (ho != "")
+        //		{
+        //			if (ten != "")
+        //			{
+        //				if (sdt != "")
+        //				{
+        //					ListViewItem item2 = listView1.FindItemWithText(txtMa_KH.Text); // tìm Mã trùng với txtMa_KH
+        //					if (item2 == null) // nếu Mã chưa có trong Listview thì thêm mới
+        //					{
+        //						// Thêm vào listview
+        //						ListViewItem item_2 = new ListViewItem(data_2);
+        //						listView2.Items.Add(item_2);
+        //						// Thêm vào SQL
+        //						try
+        //						{
+        //							if (rdbNam.Checked)
+        //								gender = "Male";
+        //							else
+        //								gender = "Female";
+        //							string sql = "INSERT INTO [KTPM].[dbo].[Info_Cus] (ID_Cus,FirstName_Cus,LastName_Cus,Phone_Cus,Birthday_Cus,Sex_Cus)"
+        //											+ "VALUES (@ma,@ho,@ten,@dt,@ngaysinh,@gt)";
+        //							SqlCommand cmd = new SqlCommand(sql, sqlcon);
+        //							cmd.Parameters.AddWithValue("@ma", ma);
+        //							cmd.Parameters.AddWithValue("@ho", ho);
+        //							cmd.Parameters.AddWithValue("@ten", ten);
+        //							cmd.Parameters.AddWithValue("@dt", sdt);
+        //							cmd.Parameters.AddWithValue("@ngaysinh", ns);
+        //							cmd.Parameters.AddWithValue("@gt", gender);
+        //							cmd.ExecuteNonQuery(); // kết quả trả về là số dòng bị ảnh hưởng
+        //							lbXuatTenDangNhap_KH.Text = " DATA ADDED SUCCESSFUL !";
+        //							XoaFullTextbox();
+        //							CloseConnect();
+        //						}
+        //						catch (Exception)
+        //						{
+        //							lbXuatTenDangNhap_KH.Text = "Error connection. Please try again!";
+        //						}
+        //						finally
+        //						{
+        //							CloseConnect();
+        //						}
+        //					}
+        //					else
+        //					{
+        //						lbXuatTenDangNhap_KH.Text = " ID Customer is already exist ! Please try again.";
+        //						txtMa_KH.Text = string.Empty;
+        //					}
+        //				}
+        //				else
+        //				{
+        //					lbXuatTenDangNhap_KH.Text = string.Empty;
+        //					errorProvider2.SetError(txtSDT_KH, " Do not accept blank field !");
+        //				}
+        //			}
+        //			else
+        //			{
+        //				lbXuatTenDangNhap_KH.Text = string.Empty;
+        //				errorProvider2.SetError(txtTen_KH, " Do not accept blank field !");
+        //			}
+        //		}
+        //		else
+        //		{
+        //			lbXuatTenDangNhap_KH.Text = string.Empty;
+        //			errorProvider2.SetError(txtHo_KH, "Do not accept blank field !");
+        //		}
+        //	}
+        //	else
+        //	{
+        //		lbXuatTenDangNhap_KH.Text = string.Empty;
+        //		errorProvider2.SetError(txtMa_KH, "Do not accept blank field !");
+        //	}
+        //}
+        /// -----------------------------------
+
+        // btn THÊM
+        private void btnThem_Click(object sender, EventArgs e)
 		{
 			OpenConnect();
 			// Bỏ trống textbox
@@ -691,7 +610,8 @@ namespace QLBH_KiemThuPhanMem
 			AddNew();
 		}
 
-		// btn SỬA		
+        // btn SỬA		
+        public static bool suaFlag = true;
         public void UpDate()
         {
             ListViewItem item1 = listView1.FindItemWithText(txtMa.Text); // tìm Mã trùng với txtMa
@@ -703,6 +623,7 @@ namespace QLBH_KiemThuPhanMem
                     gender = "Female";
                 try
                 {
+                    suaFlag = true;
                     OpenConnect();
                     string sql = "UPDATE [KTPM].[dbo].[Info_Emp]"
                                 + "SET LastName_Emp='" + txtHo.Text + "', FirstName_Emp='" + txtTen.Text + "', Birtday_Emp='" + dateTimePicker1.Text + "', Sex_Emp='" + gender + "'"
@@ -714,18 +635,20 @@ namespace QLBH_KiemThuPhanMem
                     cmdSua.ExecuteNonQuery();
                     lbXuatTenDangNhap.Text = " DATA UPDATE SUCCESSFUL !";
                     CloseConnect();
-				}
-				catch (Exception)
-				{
-					lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
-				}
-				finally
-				{
-					CloseConnect();
-				}
-			}
+                }
+                catch (Exception)
+                {
+                    suaFlag = false;
+                    lbXuatTenDangNhap.Text = " DATA UPDATE FAIL !";
+                }
+                finally
+                {
+                    CloseConnect();
+                }
+            }
             else
             {
+                suaFlag = false;
                 DialogResult dlr = MessageBox.Show("Code " + txtMa.Text + " does not exist in database! Do you want to add new ?", "HELP", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dlr == DialogResult.Yes)
                 {
@@ -733,8 +656,9 @@ namespace QLBH_KiemThuPhanMem
                     AddNew();
                     CloseConnect();
                 }
-                else 
+                else
                 {
+                    suaFlag = false;
                     XoaFullTextbox();
                 }
             }
@@ -800,104 +724,114 @@ namespace QLBH_KiemThuPhanMem
             //MessageBox.Show("Tam: "+tamp);
             return tamp;
         }
-		// Function - Xoa
+        // Function - Xoa
 
-		public void Del()
-		{
-			lbXuatTenDangNhap.Text = string.Empty;
-			string ma = txtTimKiem.Text;
-			//try
-			//{
-				CloseConnect();
-				OpenConnect();
-				// Xóa trong SQL
-				string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
-				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				SqlDataReader myReader;
-				string sql_detail = "DELETE FROM [KTPM].[dbo].[Info_Secret] WHERE ID_Emp= '" + ma + "';";
-				SqlCommand cmd_detail = new SqlCommand(sql_detail, sqlcon);
-				SqlDataReader myReader_detail;
+        public static bool DelFlag = true;
+        public void Del()
+        {
+            lbXuatTenDangNhap.Text = string.Empty;
+            string ma = txtTimKiem.Text;
+            //try
+            //{
+            CloseConnect();
+            OpenConnect();
+            // Xóa trong SQL
+            string sql = "DELETE FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
+            SqlCommand cmd = new SqlCommand(sql, sqlcon);
+            SqlDataReader myReader;
+            string sql_detail = "DELETE FROM [KTPM].[dbo].[Info_Secret] WHERE ID_Emp= '" + ma + "';";
+            SqlCommand cmd_detail = new SqlCommand(sql_detail, sqlcon);
+            SqlDataReader myReader_detail;
 
-				string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
-				SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
-				int x = (int)cmdMa.ExecuteScalar(); // Tồn tại mã NV trong Bảng Info_Emp	
-				string sqlorder = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
-				SqlCommand cmdorder = new SqlCommand(sqlorder, sqlcon);
-				int y = (int)cmdorder.ExecuteScalar(); // Tồn tại mã NV trong bảng Orders
-				string secret = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
-				SqlCommand cmdsecret = new SqlCommand(secret, sqlcon);
-				int z = (int)cmdsecret.ExecuteScalar(); // Tồn tại mã NV trong bảng Info_Secret
-				if (x == 1)
-				{
-					if (y == 1)
-					{
-						if (z == 1)
-						{
-							//if (listView1.Items.Count <= 0)
-							//	return;
-							//for (int i = 0; i < listView1.Items.Count; i++)
-							//{
-							//	if (txtTimKiem.Text == listView1.Items[i].SubItems[0].Text)
-							//		MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-							//	else
-							//		MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-							//}
-							if(txtTimKiem.Text == label14.Text)
-								MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-							else
-								MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					}
-						else // không tồn tại mã NV trong bảng Secret thì không cho xóa và yêu cầu đăng ký tài khoản 
-						{
-							MessageBox.Show("You have no permission \n Please sign up to countinue ! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-							Frm_SignIn sin = new Frm_SignIn();
-							sin.Show();
-							this.Hide();
-						}
-					}
-					else // nếu mã NV không tồn tại trong bảng Orders
-					{
-						if (z == 1) // tồn tại trong bảng Secret thì XÓA sạch tại bảng Emp và Secret
-						{
-							foreach (ListViewItem item in listView1.SelectedItems)
-							{
-								listView1.Items.Remove(item);
-								myReader = cmd.ExecuteReader();
-								while (myReader.Read()) { }
-								myReader_detail = cmd_detail.ExecuteReader();
-								while (myReader_detail.Read()) { }
-								lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-								ma = string.Empty;
-							}
-						}
-						else // XÓA sạch tại bảng Emp
-						{
-							foreach (ListViewItem item in listView1.SelectedItems)
-							{
-								listView1.Items.Remove(item);
-								myReader = cmd.ExecuteReader();
-								while (myReader.Read()) { }
-								lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
-								ma = string.Empty;
-							}
-						}
-					}
-				}
-				else // không tồn tại mã NV trong bảng NV
-				{
-					MessageBox.Show(" This ID does not exist! \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				}
-			//}
-			//catch (Exception)
-			//{
-			//	lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
-			//}
-			//finally
-			//{
-			//	CloseConnect();
-			//}
-		}
-		public void Del_KH()
+            string sqlMa = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Emp] WHERE ID_Emp= '" + ma + "';";
+            SqlCommand cmdMa = new SqlCommand(sqlMa, sqlcon);
+            int x = (int)cmdMa.ExecuteScalar(); // Tồn tại mã NV trong Bảng Info_Emp	
+            string sqlorder = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
+            SqlCommand cmdorder = new SqlCommand(sqlorder, sqlcon);
+            int y = (int)cmdorder.ExecuteScalar(); // Tồn tại mã NV trong bảng Orders
+            string secret = "SELECT COUNT (*) FROM [KTPM].[dbo].[Orders] WHERE ID_Emp= '" + ma + "';";
+            SqlCommand cmdsecret = new SqlCommand(secret, sqlcon);
+            int z = (int)cmdsecret.ExecuteScalar(); // Tồn tại mã NV trong bảng Info_Secret
+            if (x == 1)
+            {
+                if (y == 1)
+                {
+                    if (z == 1)
+                    {
+                        //if (listView1.Items.Count <= 0)
+                        //	return;
+                        //for (int i = 0; i < listView1.Items.Count; i++)
+                        //{
+                        //	if (txtTimKiem.Text == listView1.Items[i].SubItems[0].Text)
+                        //		MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //	else
+                        //		MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
+                        if (txtTimKiem.Text == label14.Text)
+                        {
+                            DelFlag = true;
+                            MessageBox.Show("You can not delete yourself", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        else
+                        {
+                            DelFlag = true;
+                            MessageBox.Show("This employee have already exist in Database \n Can not delete information !", "SORRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else // không tồn tại mã NV trong bảng Secret thì không cho xóa và yêu cầu đăng ký tài khoản 
+                    {
+                        DelFlag = true;
+                        MessageBox.Show("You have no permission \n Please sign up to countinue ! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Frm_SignIn sin = new Frm_SignIn();
+                        sin.Show();
+                        this.Hide();
+                    }
+                }
+                else // nếu mã NV không tồn tại trong bảng Orders
+                {
+                    if (z == 1) // tồn tại trong bảng Secret thì XÓA sạch tại bảng Emp và Secret
+                    {
+                        foreach (ListViewItem item in listView1.SelectedItems)
+                        {
+                            listView1.Items.Remove(item);
+                            myReader = cmd.ExecuteReader();
+                            while (myReader.Read()) { }
+                            myReader_detail = cmd_detail.ExecuteReader();
+                            while (myReader_detail.Read()) { }
+                            lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
+                            ma = string.Empty;
+                        }
+                    }
+                    else // XÓA sạch tại bảng Emp
+                    {
+                        foreach (ListViewItem item in listView1.SelectedItems)
+                        {
+                            listView1.Items.Remove(item);
+                            myReader = cmd.ExecuteReader();
+                            while (myReader.Read()) { }
+                            lbXuatTenDangNhap.Text = " DELETE SUCCESSFUL " + ma;
+                            ma = string.Empty;
+                        }
+                    }
+                }
+            }
+            else // không tồn tại mã NV trong bảng NV
+            {
+                DelFlag = false;
+                MessageBox.Show(" This ID does not exist! \n Please try again", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //}
+            //catch (Exception)
+            //{
+            //	lbXuatTenDangNhap.Text = " DELETE " + ma + " FAIL ! ";
+            //}
+            //finally
+            //{
+            //	CloseConnect();
+            //}
+        }
+        public void Del_KH()
 		{
 			lbXuatTenDangNhap_KH.Text = string.Empty;
 			string ma = txtTimKiem_KH.Text;
@@ -951,58 +885,61 @@ namespace QLBH_KiemThuPhanMem
 			Del_KH();
 		}
 
-		// Function - Tìm kiếm 
-		public void Find()
-		{
-			string maTimKiem = txtTimKiem.Text.Trim().ToUpper();
-			while (maTimKiem.IndexOf("  ") != -1)
-			{
-				maTimKiem = maTimKiem.Replace("  ", "");
-			}
-			if (maTimKiem != null) // Textbox không bỏ trống
-			{
-				ListViewItem item2 = listView1.FindItemWithText(maTimKiem); // tìm Mã trùng với txtTimKiem
-				if (item2 == null) // Mã không có trong Listview 
-				{
-					lbXuatTenDangNhap.Text = "ID " + maTimKiem + " does not exist !";
-					maTimKiem = string.Empty;
-				}
-				else // Mã có trong Listview 
-				{
-					string temp1 = maTimKiem;
-					for (int i = 0; i < listView1.Items.Count; i++)
-					{
-						if (temp1 == listView1.Items[i].SubItems[0].Text)
-						{
-							lbXuatTenDangNhap.Text = "ID " + temp1 + " is available!";
-							maTimKiem = string.Empty;
-							txtMa.Text = listView1.Items[i].SubItems[0].Text;
-							txtHo.Text = listView1.Items[i].SubItems[1].Text;
-							txtTen.Text = listView1.Items[i].SubItems[2].Text;
-							// hiển thị Date trong listView lên DateTimePicker
-							DateTime time = DateTime.ParseExact(listView1.Items[i].SubItems[3].Text, "dd/MM/yyyy", CultureInfo.CurrentCulture);
-							dateTimePicker1.Value = time;
-							// hiển thị giới tính trong listview lên RadioButton
-							string gd = listView1.Items[i].SubItems[4].Text.ToString();
-							if (gd.Trim() == "Male")
-								rdbNam.Checked = true;
-							else
-								rdbNu.Checked = true;
-						}
-						//else
-						//{
-						//	lbXuatTenDangNhap.Text = "Mã " + temp1 + " không tồn tại !";
-						//	maTimKiem = string.Empty;
-						//}
-					}
-				}
-			}
-			else
-			{
-				errorProvider1.SetError(txtTimKiem, "Please enter ID Employee first !");
-			}
-		}
-		public void Find_KH() // chua chay duoc
+        // Function - Tìm kiếm 
+        public static bool TiemKiemFlag = true;
+        public void Find()
+        {
+            string maTimKiem = txtTimKiem.Text.Trim().ToUpper();
+            while (maTimKiem.IndexOf("  ") != -1)
+            {
+                maTimKiem = maTimKiem.Replace("  ", "");
+            }
+            if (maTimKiem != null) // Textbox không bỏ trống
+            {
+                ListViewItem item2 = listView1.FindItemWithText(maTimKiem); // tìm Mã trùng với txtTimKiem
+                if (item2 == null) // Mã không có trong Listview 
+                {
+                    TiemKiemFlag = false;
+                    lbXuatTenDangNhap.Text = "ID " + maTimKiem + " does not exist !";
+                    maTimKiem = string.Empty;
+                }
+                else // Mã có trong Listview 
+                {
+                    string temp1 = maTimKiem;
+                    for (int i = 0; i < listView1.Items.Count; i++)
+                    {
+                        if (temp1 == listView1.Items[i].SubItems[0].Text)
+                        {
+                            lbXuatTenDangNhap.Text = "ID " + temp1 + " is available!";
+                            maTimKiem = string.Empty;
+                            txtMa.Text = listView1.Items[i].SubItems[0].Text;
+                            txtHo.Text = listView1.Items[i].SubItems[1].Text;
+                            txtTen.Text = listView1.Items[i].SubItems[2].Text;
+                            // hiển thị Date trong listView lên DateTimePicker
+                            DateTime time = DateTime.ParseExact(listView1.Items[i].SubItems[3].Text, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+                            dateTimePicker1.Value = time;
+                            // hiển thị giới tính trong listview lên RadioButton
+                            string gd = listView1.Items[i].SubItems[4].Text.ToString();
+                            if (gd.Trim() == "Male")
+                                rdbNam.Checked = true;
+                            else
+                                rdbNu.Checked = true;
+                        }
+                        //else
+                        //{
+                        //	lbXuatTenDangNhap.Text = "Mã " + temp1 + " không tồn tại !";
+                        //	maTimKiem = string.Empty;
+                        //}
+                    }
+                }
+            }
+            else
+            {
+                TiemKiemFlag = false;
+                errorProvider1.SetError(txtTimKiem, "Please enter ID Employee first !");
+            }
+        }
+        public void Find_KH() // chua chay duoc
 		{
 			string maTimKiem = txtTimKiem_KH.Text.Trim().ToUpper();
 			while (maTimKiem.IndexOf("  ") != -1)

@@ -10,16 +10,17 @@ using System.Windows.Forms;
 namespace UnitTest_1
 {
     [TestClass]
-    public class TestUpDate
+    public class TestFind
     {
+
         [TestMethod]
-        public void Testupdate()
+        public void TestFind1()
         {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Frm_List_Cus_Emp());
-            bool actual = Frm_List_Cus_Emp.suaFlag;
+            bool actual = Frm_List_Cus_Emp.TiemKiemFlag;
             bool expected = true;
             Assert.AreEqual(expected, actual);
         }
