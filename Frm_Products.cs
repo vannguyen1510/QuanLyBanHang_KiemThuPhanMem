@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Excel = Microsoft.Office.Interop.Excel.Application;
+using System.Configuration;
+using System.Data.OleDb;
 
 namespace QLBH_KiemThuPhanMem
 {
@@ -275,10 +278,32 @@ namespace QLBH_KiemThuPhanMem
 			Frm_SignIn sin = new Frm_SignIn();
 			sin.Show();
 		}
-
+		private void ExportExcel(DataGridView d, string con, string name)
+		{
+			Excel obj = new Excel();
+			obj.Application.Workbooks.Add(Type.Missing);
+			obj.Columns.ColumnWidth = 25;
+			for (int i = 1; i < d.Columns.Count + 1; i++)
+			{
+				obj.Cells[1, i] = d.Columns[i - 1].HeaderText;
+			}
+			for (int i = 0; i < d.Rows.Count; i++)
+			{
+				for (int j = 0; j < d.Columns.Count; j++)
+				{
+					if (d.Rows[i].Cells[j].Value != null)
+					{
+						obj.Cells[i + 2, j + 1] = d.Rows[i].Cells[j].Value.ToString();
+					}
+				}
+			}
+			obj.ActiveWorkbook.SaveCopyAs(con + name + ".xlsx");
+			obj.ActiveWorkbook.Saved = true;
+		}
 		private void btnReport_Click(object sender, EventArgs e)
 		{
-
+			ExportExcel(dataGridView1, @"D:\", "KTPM_Report_Product");
+			System.Diagnostics.Process.Start("D:\\KTPM_Report_Product.xlsx");
 		}
 	}
 }
