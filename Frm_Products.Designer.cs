@@ -45,19 +45,15 @@
 			this.btnOut = new System.Windows.Forms.Button();
 			this.btnReport = new System.Windows.Forms.Button();
 			this.btnReset = new System.Windows.Forms.Button();
-			this.btnDel = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.lbQLNV = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.btnMenu = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.UnitInStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.UnitOnOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Image = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label24 = new System.Windows.Forms.Label();
 			this.gb_PerInfo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -99,9 +95,11 @@
 			this.button2.Size = new System.Drawing.Size(51, 39);
 			this.button2.TabIndex = 67;
 			this.button2.UseVisualStyleBackColor = false;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// textBox5
 			// 
+			this.textBox5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox5.Location = new System.Drawing.Point(133, 226);
 			this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.textBox5.Multiline = true;
@@ -122,6 +120,7 @@
 			// 
 			// txtStock
 			// 
+			this.txtStock.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtStock.Location = new System.Drawing.Point(133, 178);
 			this.txtStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtStock.Name = "txtStock";
@@ -142,6 +141,7 @@
 			// 
 			// txtprice
 			// 
+			this.txtprice.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtprice.Location = new System.Drawing.Point(133, 129);
 			this.txtprice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtprice.Name = "txtprice";
@@ -162,6 +162,7 @@
 			// 
 			// txtName
 			// 
+			this.txtName.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtName.Location = new System.Drawing.Point(133, 79);
 			this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtName.Name = "txtName";
@@ -225,7 +226,7 @@
 			this.btnReport.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnReport.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._8medical_report_102120;
 			this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnReport.Location = new System.Drawing.Point(243, 474);
+			this.btnReport.Location = new System.Drawing.Point(243, 471);
 			this.btnReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnReport.Name = "btnReport";
 			this.btnReport.Size = new System.Drawing.Size(171, 47);
@@ -250,23 +251,7 @@
 			this.btnReset.Text = "RESET";
 			this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnReset.UseVisualStyleBackColor = false;
-			// 
-			// btnDel
-			// 
-			this.btnDel.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDel.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnDel.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.trash_can_115312;
-			this.btnDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnDel.Location = new System.Drawing.Point(44, 474);
-			this.btnDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnDel.Name = "btnDel";
-			this.btnDel.Size = new System.Drawing.Size(171, 47);
-			this.btnDel.TabIndex = 62;
-			this.btnDel.Text = "DELETE";
-			this.btnDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnDel.UseVisualStyleBackColor = false;
+			this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
 			// 
 			// btnAdd
 			// 
@@ -285,6 +270,7 @@
 			this.btnAdd.Text = "ADD";
 			this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnAdd.UseVisualStyleBackColor = false;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// lbQLNV
 			// 
@@ -296,7 +282,7 @@
 			this.lbQLNV.Name = "lbQLNV";
 			this.lbQLNV.Size = new System.Drawing.Size(1272, 36);
 			this.lbQLNV.TabIndex = 68;
-			this.lbQLNV.Text = "BILLING SYSTEM";
+			this.lbQLNV.Text = "PRODUCTS MANAGEMENT";
 			this.lbQLNV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// errorProvider1
@@ -311,7 +297,7 @@
 			this.btnMenu.ForeColor = System.Drawing.Color.GhostWhite;
 			this.btnMenu.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._3643769_building_home_house_main_menu_start_113416__1_;
 			this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnMenu.Location = new System.Drawing.Point(891, 580);
+			this.btnMenu.Location = new System.Drawing.Point(44, 471);
 			this.btnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnMenu.Name = "btnMenu";
 			this.btnMenu.Size = new System.Drawing.Size(171, 47);
@@ -320,79 +306,68 @@
 			this.btnMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnMenu.UseVisualStyleBackColor = false;
 			this.btnMenu.UseWaitCursor = true;
+			this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
 			// 
 			// dataGridView1
 			// 
 			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProductID,
-            this.ProductName,
-            this.UnitPrice,
-            this.UnitInStock,
-            this.UnitOnOrder,
-            this.Image});
 			this.dataGridView1.Location = new System.Drawing.Point(457, 70);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowTemplate.Height = 24;
 			this.dataGridView1.Size = new System.Drawing.Size(794, 493);
 			this.dataGridView1.TabIndex = 71;
+			this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
 			// 
-			// ProductID
+			// label14
 			// 
-			this.ProductID.HeaderText = "ID";
-			this.ProductID.MinimumWidth = 6;
-			this.ProductID.Name = "ProductID";
-			this.ProductID.Width = 125;
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label14.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label14.Location = new System.Drawing.Point(107, 591);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(20, 28);
+			this.label14.TabIndex = 73;
+			this.label14.Text = "_";
 			// 
-			// ProductName
+			// label10
 			// 
-			this.ProductName.HeaderText = "Product Name";
-			this.ProductName.MinimumWidth = 6;
-			this.ProductName.Name = "ProductName";
-			this.ProductName.Width = 125;
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label10.Location = new System.Drawing.Point(45, 591);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(65, 28);
+			this.label10.TabIndex = 72;
+			this.label10.Text = "User: ";
 			// 
-			// UnitPrice
+			// label24
 			// 
-			this.UnitPrice.HeaderText = "Unit Price";
-			this.UnitPrice.MinimumWidth = 6;
-			this.UnitPrice.Name = "UnitPrice";
-			this.UnitPrice.Width = 125;
-			// 
-			// UnitInStock
-			// 
-			this.UnitInStock.HeaderText = "Quantity";
-			this.UnitInStock.MinimumWidth = 6;
-			this.UnitInStock.Name = "UnitInStock";
-			this.UnitInStock.Width = 125;
-			// 
-			// UnitOnOrder
-			// 
-			this.UnitOnOrder.HeaderText = "Unit on order";
-			this.UnitOnOrder.MinimumWidth = 6;
-			this.UnitOnOrder.Name = "UnitOnOrder";
-			this.UnitOnOrder.Width = 125;
-			// 
-			// Image
-			// 
-			this.Image.HeaderText = "Image";
-			this.Image.MinimumWidth = 6;
-			this.Image.Name = "Image";
-			this.Image.Width = 125;
+			this.label24.AutoSize = true;
+			this.label24.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label24.ForeColor = System.Drawing.Color.Red;
+			this.label24.Location = new System.Drawing.Point(452, 566);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(361, 25);
+			this.label24.TabIndex = 74;
+			this.label24.Text = "Double click on product rows want delete";
+			this.label24.UseWaitCursor = true;
 			// 
 			// Frm_Products
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1263, 641);
+			this.Controls.Add(this.label24);
+			this.Controls.Add(this.label14);
+			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.btnMenu);
 			this.Controls.Add(this.lbQLNV);
 			this.Controls.Add(this.btnOut);
 			this.Controls.Add(this.btnReport);
 			this.Controls.Add(this.btnReset);
-			this.Controls.Add(this.btnDel);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.gb_PerInfo);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -404,6 +379,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -423,7 +399,6 @@
 		private System.Windows.Forms.Button btnOut;
 		private System.Windows.Forms.Button btnReport;
 		private System.Windows.Forms.Button btnReset;
-		private System.Windows.Forms.Button btnDel;
 		private System.Windows.Forms.Button btnAdd;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label lbQLNV;
@@ -431,11 +406,8 @@
 		private System.Windows.Forms.Button btnMenu;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
-		private System.Windows.Forms.DataGridViewTextBoxColumn UnitInStock;
-		private System.Windows.Forms.DataGridViewTextBoxColumn UnitOnOrder;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Image;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label24;
 	}
 }

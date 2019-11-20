@@ -10,15 +10,16 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Security.Cryptography;
 
 namespace QLBH_KiemThuPhanMem
 {
 	public partial class Frm_SignIn : Form
 	{
 		SqlConnection sqlcon = new SqlConnection(@"Data Source=VAN;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
-        //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
-
+		//SqlConnection sqlcon = new SqlConnection(@"Data Source=DESKTOP-LFN81CO\MINHLINH;Initial Catalog=KTPM;Integrated Security=True");
+		//SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
+		MD5 md = MD5.Create();
         public Frm_SignIn()
 		{
 			InitializeComponent();
@@ -159,8 +160,18 @@ namespace QLBH_KiemThuPhanMem
 				sqlcon.Open();
 				string user = txtTenDangNhap.Text.Trim();
 				string pass = txtMatKhau.Text;
+				// Chuyen chuoi thanh byte
+				byte[] passByte = System.Text.Encoding.ASCII.GetBytes(pass);
+				byte[] hash = md.ComputeHash(passByte);
+				StringBuilder sb = new StringBuilder();
+				for(int i=0;i<hash.Length;i++)
+				{
+					sb.Append(hash[i].ToString("X2"));
+				}
 				// Dò tìm SĐT khách hàng và ID nhân viên
-				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] " 
+							+"WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) "
+							+"OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
 				cmd.Parameters.Add(new SqlParameter("@phone", user));
 				cmd.Parameters.Add(new SqlParameter("@id", user));

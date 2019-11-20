@@ -77,7 +77,7 @@ namespace QLBH_KiemThuPhanMem
 
 		private void btnProduct_Click(object sender, EventArgs e)
 		{
-			Frm_Products pro = new Frm_Products();
+			Frm_Products pro = new Frm_Products(label2.Text);
 			pro.Show();
 			Visible = false;
 		}
