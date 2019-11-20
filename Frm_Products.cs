@@ -183,10 +183,25 @@ namespace QLBH_KiemThuPhanMem
 				}
 			}
 		}
+		private void ClearTextBoxes()
+		{
+			Action<Control.ControlCollection> func = null;
+
+			func = (controls) =>
+			{
+				foreach (Control control in controls)
+					if (control is TextBox)
+						(control as TextBox).Clear();
+					else
+						func(control.Controls);
+			};
+
+			func(Controls);
+		}
 
 		private void btnReset_Click(object sender, EventArgs e)
 		{
-			XoaFullTextBox();
+			ClearTextBoxes();
 			dataLoad();
 		}
 
@@ -253,6 +268,17 @@ namespace QLBH_KiemThuPhanMem
 				textBox5.Text = open.FileName;
 			}
 		}
-		
+
+		private void btnOut_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			Frm_SignIn sin = new Frm_SignIn();
+			sin.Show();
+		}
+
+		private void btnReport_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

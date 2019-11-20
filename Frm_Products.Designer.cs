@@ -217,6 +217,7 @@
 			this.btnOut.Text = "OUT";
 			this.btnOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnOut.UseVisualStyleBackColor = false;
+			this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
 			// 
 			// btnReport
 			// 
@@ -234,6 +235,7 @@
 			this.btnReport.Text = "REPORT";
 			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnReport.UseVisualStyleBackColor = false;
+			this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
 			// 
 			// btnReset
 			// 

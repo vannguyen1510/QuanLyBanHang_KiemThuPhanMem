@@ -1152,18 +1152,24 @@ namespace QLBH_KiemThuPhanMem
 			sin.Show();
 		}
 
+		private void ClearTextBoxes()
+		{
+			Action<Control.ControlCollection> func = null;
+
+			func = (controls) =>
+			{
+				foreach (Control control in controls)
+					if (control is TextBox)
+						(control as TextBox).Clear();
+					else
+						func(control.Controls);
+			};
+
+			func(Controls);
+		}
 		private void btnClear_Click(object sender, EventArgs e)
 		{
-				//XoaFullTextbox();
-				foreach (Control ct in this.Controls)
-				{
-					if (ct is TextBox)
-					{
-						ct.Text = string.Empty;
-						dateTimePicker1.Value = DateTime.Today;
-						rdbNam.Checked = true;
-					}
-				}
+			ClearTextBoxes();
 		}
 	}
 }
