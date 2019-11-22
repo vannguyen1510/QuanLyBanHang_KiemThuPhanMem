@@ -87,16 +87,16 @@ namespace QLBH_KiemThuPhanMem
 		private void checkBox2_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox2.Checked)
-				txtNpw.UseSystemPasswordChar = true;
-			else
 				txtNpw.UseSystemPasswordChar = false;
+			else
+				txtNpw.UseSystemPasswordChar = true;
 		}
 		private void checkBox3_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox3.Checked)
-				txtCNpw.UseSystemPasswordChar = true;
-			else
 				txtCNpw.UseSystemPasswordChar = false;
+			else
+				txtCNpw.UseSystemPasswordChar = true;
 		}
 
 		// Function - Quên mật khẩu

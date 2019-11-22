@@ -44,6 +44,8 @@
 			this.lbMatKhau = new System.Windows.Forms.Label();
 			this.lbTenDangNhap = new System.Windows.Forms.Label();
 			this.tabPage_SignUp = new System.Windows.Forms.TabPage();
+			this.txtID = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.txtCPw = new System.Windows.Forms.TextBox();
 			this.txtPw = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.label2 = new System.Windows.Forms.Label();
-			this.txtID = new System.Windows.Forms.TextBox();
 			btnDangNhap = new System.Windows.Forms.Button();
 			btnDangKy = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
@@ -150,6 +150,7 @@
 			this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtMatKhau.Location = new System.Drawing.Point(255, 199);
 			this.txtMatKhau.Name = "txtMatKhau";
+			this.txtMatKhau.ShortcutsEnabled = false;
 			this.txtMatKhau.Size = new System.Drawing.Size(244, 28);
 			this.txtMatKhau.TabIndex = 20;
 			this.txtMatKhau.UseSystemPasswordChar = true;
@@ -212,6 +213,7 @@
 			this.txtTenDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtTenDangNhap.Location = new System.Drawing.Point(255, 165);
 			this.txtTenDangNhap.Name = "txtTenDangNhap";
+			this.txtTenDangNhap.ShortcutsEnabled = false;
 			this.txtTenDangNhap.Size = new System.Drawing.Size(242, 28);
 			this.txtTenDangNhap.TabIndex = 1;
 			// 
@@ -264,6 +266,27 @@
 			this.tabPage_SignUp.Text = "Sign Up";
 			this.tabPage_SignUp.UseVisualStyleBackColor = true;
 			this.tabPage_SignUp.Click += new System.EventHandler(this.tabPage_SignUp_Click);
+			// 
+			// txtID
+			// 
+			this.txtID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+			this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtID.Location = new System.Drawing.Point(271, 22);
+			this.txtID.Multiline = true;
+			this.txtID.Name = "txtID";
+			this.txtID.Size = new System.Drawing.Size(243, 35);
+			this.txtID.TabIndex = 33;
+			this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(212, 31);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(42, 25);
+			this.label2.TabIndex = 32;
+			this.label2.Text = "ID :";
 			// 
 			// txtCPw
 			// 
@@ -433,27 +456,6 @@
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(212, 31);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(42, 25);
-			this.label2.TabIndex = 32;
-			this.label2.Text = "ID :";
-			// 
-			// txtID
-			// 
-			this.txtID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtID.Location = new System.Drawing.Point(271, 22);
-			this.txtID.Multiline = true;
-			this.txtID.Name = "txtID";
-			this.txtID.Size = new System.Drawing.Size(243, 35);
-			this.txtID.TabIndex = 33;
-			this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// Frm_SignIn
 			// 

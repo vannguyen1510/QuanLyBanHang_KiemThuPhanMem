@@ -52,8 +52,6 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
-			this.btnSua = new System.Windows.Forms.Button();
-			this.btnThem = new System.Windows.Forms.Button();
 			this.txtPro_SoLuong = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.txtPro_UnitPrice = new System.Windows.Forms.TextBox();
@@ -76,11 +74,6 @@
 			this.txtTotalInWord = new System.Windows.Forms.TextBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.btnMenu = new System.Windows.Forms.Button();
-			this.btnOut = new System.Windows.Forms.Button();
-			this.btn_Reset = new System.Windows.Forms.Button();
-			this.btnPrint_Bill = new System.Windows.Forms.Button();
-			this.btnAdd_Bill = new System.Windows.Forms.Button();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
 			this.txtsum = new System.Windows.Forms.TextBox();
@@ -90,9 +83,16 @@
 			this.label25 = new System.Windows.Forms.Label();
 			this.label26 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.btnTimKiemBill = new System.Windows.Forms.Button();
 			this.combob_findBill = new System.Windows.Forms.ComboBox();
 			this.label27 = new System.Windows.Forms.Label();
+			this.btnTimKiemBill = new System.Windows.Forms.Button();
+			this.btnMenu = new System.Windows.Forms.Button();
+			this.btnOut = new System.Windows.Forms.Button();
+			this.btn_Reset = new System.Windows.Forms.Button();
+			this.btnPrint_Bill = new System.Windows.Forms.Button();
+			this.btnAdd_Bill = new System.Windows.Forms.Button();
+			this.btnSua = new System.Windows.Forms.Button();
+			this.btnThem = new System.Windows.Forms.Button();
 			this.gb_PerInfo.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -131,6 +131,7 @@
 			// 
 			// txtCus_Phone
 			// 
+			this.txtCus_Phone.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtCus_Phone.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCus_Phone.Location = new System.Drawing.Point(199, 418);
 			this.txtCus_Phone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -142,6 +143,7 @@
 			// 
 			// txtCus_Address
 			// 
+			this.txtCus_Address.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtCus_Address.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCus_Address.Location = new System.Drawing.Point(199, 364);
 			this.txtCus_Address.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -153,6 +155,7 @@
 			// 
 			// txtCus_Name
 			// 
+			this.txtCus_Name.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtCus_Name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtCus_Name.Location = new System.Drawing.Point(199, 306);
 			this.txtCus_Name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -194,6 +197,7 @@
 			// 
 			// txtEmp_Name
 			// 
+			this.txtEmp_Name.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtEmp_Name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEmp_Name.Location = new System.Drawing.Point(199, 196);
 			this.txtEmp_Name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -207,6 +211,7 @@
 			// cbRandomBillNo
 			// 
 			this.cbRandomBillNo.AutoSize = true;
+			this.cbRandomBillNo.BackColor = System.Drawing.SystemColors.Control;
 			this.cbRandomBillNo.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cbRandomBillNo.Location = new System.Drawing.Point(328, 38);
 			this.cbRandomBillNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -214,7 +219,7 @@
 			this.cbRandomBillNo.Size = new System.Drawing.Size(152, 27);
 			this.cbRandomBillNo.TabIndex = 11;
 			this.cbRandomBillNo.Text = "Random Bill No";
-			this.cbRandomBillNo.UseVisualStyleBackColor = true;
+			this.cbRandomBillNo.UseVisualStyleBackColor = false;
 			this.cbRandomBillNo.UseWaitCursor = true;
 			this.cbRandomBillNo.CheckedChanged += new System.EventHandler(this.cbRandomBillNo_CheckedChanged);
 			// 
@@ -238,6 +243,7 @@
 			// 
 			// txtBillNo
 			// 
+			this.txtBillNo.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtBillNo.Location = new System.Drawing.Point(123, 36);
 			this.txtBillNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtBillNo.Name = "txtBillNo";
@@ -399,47 +405,6 @@
 			this.label18.Text = "USD";
 			this.label18.UseWaitCursor = true;
 			// 
-			// btnSua
-			// 
-			this.btnSua.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnSua.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSua.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnSua.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.mbriupdate_99477;
-			this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnSua.Location = new System.Drawing.Point(759, 127);
-			this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnSua.Name = "btnSua";
-			this.btnSua.Size = new System.Drawing.Size(152, 41);
-			this.btnSua.TabIndex = 53;
-			this.btnSua.Text = "UPDATE";
-			this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.btnSua, "Edit current selected row");
-			this.btnSua.UseVisualStyleBackColor = false;
-			this.btnSua.UseWaitCursor = true;
-			this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-			// 
-			// btnThem
-			// 
-			this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnThem.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnThem.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnThem.Image = global::QLBH_KiemThuPhanMem.Properties.Resources._1904677_add_addition_calculate_charge_create_new_plus_122527;
-			this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnThem.Location = new System.Drawing.Point(589, 127);
-			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnThem.Name = "btnThem";
-			this.btnThem.Size = new System.Drawing.Size(152, 41);
-			this.btnThem.TabIndex = 51;
-			this.btnThem.Text = "ADD";
-			this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.toolTip1.SetToolTip(this.btnThem, "Add data into Listview");
-			this.btnThem.UseVisualStyleBackColor = false;
-			this.btnThem.UseWaitCursor = true;
-			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-			// 
 			// txtPro_SoLuong
 			// 
 			this.txtPro_SoLuong.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -447,6 +412,7 @@
 			this.txtPro_SoLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtPro_SoLuong.MaxLength = 9999;
 			this.txtPro_SoLuong.Name = "txtPro_SoLuong";
+			this.txtPro_SoLuong.ShortcutsEnabled = false;
 			this.txtPro_SoLuong.Size = new System.Drawing.Size(135, 30);
 			this.txtPro_SoLuong.TabIndex = 48;
 			this.toolTip1.SetToolTip(this.txtPro_SoLuong, "Please enter no more 4-digit numbers");
@@ -467,6 +433,7 @@
 			// 
 			// txtPro_UnitPrice
 			// 
+			this.txtPro_UnitPrice.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtPro_UnitPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtPro_UnitPrice.Location = new System.Drawing.Point(119, 86);
 			this.txtPro_UnitPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -496,6 +463,7 @@
 			// 
 			// txtPro_Name
 			// 
+			this.txtPro_Name.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtPro_Name.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtPro_Name.Location = new System.Drawing.Point(667, 35);
 			this.txtPro_Name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -607,8 +575,10 @@
 			this.txtDiscount.Location = new System.Drawing.Point(797, 716);
 			this.txtDiscount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.txtDiscount.Name = "txtDiscount";
+			this.txtDiscount.ShortcutsEnabled = false;
 			this.txtDiscount.Size = new System.Drawing.Size(166, 30);
 			this.txtDiscount.TabIndex = 57;
+			this.txtDiscount.Text = "0";
 			this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.toolTip1.SetToolTip(this.txtDiscount, "Discount per bill");
 			this.txtDiscount.UseWaitCursor = true;
@@ -629,6 +599,7 @@
 			// 
 			// combobShipper
 			// 
+			this.combobShipper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.combobShipper.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.combobShipper.FormattingEnabled = true;
 			this.combobShipper.Location = new System.Drawing.Point(214, 562);
@@ -679,11 +650,162 @@
 			this.txtTotalInWord.TabIndex = 62;
 			this.txtTotalInWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtTotalInWord.UseWaitCursor = true;
+			this.txtTotalInWord.TextChanged += new System.EventHandler(this.txtTotalInWord_TextChanged);
 			// 
 			// toolTip1
 			// 
 			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
 			this.toolTip1.ToolTipTitle = "Suggestion";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Location = new System.Drawing.Point(1126, 753);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(45, 23);
+			this.label20.TabIndex = 57;
+			this.label20.Text = "USD";
+			this.label20.UseWaitCursor = true;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(1126, 685);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(45, 23);
+			this.label21.TabIndex = 65;
+			this.label21.Text = "USD";
+			this.label21.UseWaitCursor = true;
+			// 
+			// txtsum
+			// 
+			this.txtsum.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtsum.Location = new System.Drawing.Point(797, 682);
+			this.txtsum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtsum.Name = "txtsum";
+			this.txtsum.ReadOnly = true;
+			this.txtsum.Size = new System.Drawing.Size(323, 30);
+			this.txtsum.TabIndex = 64;
+			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.txtsum.UseWaitCursor = true;
+			this.txtsum.TextChanged += new System.EventHandler(this.txtsum_TextChanged);
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label22.Location = new System.Drawing.Point(709, 686);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(70, 26);
+			this.label22.TabIndex = 63;
+			this.label22.Text = "Total :";
+			this.label22.UseWaitCursor = true;
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label23.Location = new System.Drawing.Point(969, 721);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(25, 23);
+			this.label23.TabIndex = 66;
+			this.label23.Text = "%";
+			this.label23.UseWaitCursor = true;
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label24.ForeColor = System.Drawing.Color.Red;
+			this.label24.Location = new System.Drawing.Point(1133, 642);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(361, 25);
+			this.label24.TabIndex = 67;
+			this.label24.Text = "Double click on product rows want delete";
+			this.label24.UseWaitCursor = true;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label25.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label25.Location = new System.Drawing.Point(33, 786);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(65, 28);
+			this.label25.TabIndex = 68;
+			this.label25.Text = "User: ";
+			this.label25.UseWaitCursor = true;
+			// 
+			// label26
+			// 
+			this.label26.AutoSize = true;
+			this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label26.ForeColor = System.Drawing.Color.LightSeaGreen;
+			this.label26.Location = new System.Drawing.Point(94, 786);
+			this.label26.Name = "label26";
+			this.label26.Size = new System.Drawing.Size(20, 28);
+			this.label26.TabIndex = 70;
+			this.label26.Text = "_";
+			this.label26.UseWaitCursor = true;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.btnTimKiemBill);
+			this.groupBox2.Controls.Add(this.combob_findBill);
+			this.groupBox2.Controls.Add(this.label27);
+			this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.Location = new System.Drawing.Point(15, 612);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(521, 80);
+			this.groupBox2.TabIndex = 68;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Find Bill ";
+			this.groupBox2.UseWaitCursor = true;
+			// 
+			// combob_findBill
+			// 
+			this.combob_findBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.combob_findBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.combob_findBill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.combob_findBill.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.combob_findBill.FormattingEnabled = true;
+			this.combob_findBill.Location = new System.Drawing.Point(123, 29);
+			this.combob_findBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.combob_findBill.Name = "combob_findBill";
+			this.combob_findBill.Size = new System.Drawing.Size(176, 31);
+			this.combob_findBill.TabIndex = 49;
+			this.combob_findBill.UseWaitCursor = true;
+			// 
+			// label27
+			// 
+			this.label27.AutoSize = true;
+			this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label27.Location = new System.Drawing.Point(18, 35);
+			this.label27.Name = "label27";
+			this.label27.Size = new System.Drawing.Size(79, 25);
+			this.label27.TabIndex = 48;
+			this.label27.Text = "Bill No :";
+			this.label27.UseWaitCursor = true;
+			// 
+			// btnTimKiemBill
+			// 
+			this.btnTimKiemBill.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnTimKiemBill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnTimKiemBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnTimKiemBill.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnTimKiemBill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.find_102325;
+			this.btnTimKiemBill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnTimKiemBill.Location = new System.Drawing.Point(317, 22);
+			this.btnTimKiemBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnTimKiemBill.Name = "btnTimKiemBill";
+			this.btnTimKiemBill.Size = new System.Drawing.Size(179, 45);
+			this.btnTimKiemBill.TabIndex = 57;
+			this.btnTimKiemBill.Text = "FIND";
+			this.btnTimKiemBill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnTimKiemBill.UseVisualStyleBackColor = false;
+			this.btnTimKiemBill.UseWaitCursor = true;
 			// 
 			// btnMenu
 			// 
@@ -786,160 +908,52 @@
 			this.btnAdd_Bill.UseWaitCursor = true;
 			this.btnAdd_Bill.Click += new System.EventHandler(this.btnAdd_Bill_Click);
 			// 
-			// label20
+			// btnSua
 			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(1126, 753);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(45, 23);
-			this.label20.TabIndex = 57;
-			this.label20.Text = "USD";
-			this.label20.UseWaitCursor = true;
+			this.btnSua.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnSua.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSua.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnSua.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.refresh_106672;
+			this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnSua.Location = new System.Drawing.Point(759, 127);
+			this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnSua.Name = "btnSua";
+			this.btnSua.Size = new System.Drawing.Size(152, 41);
+			this.btnSua.TabIndex = 53;
+			this.btnSua.Text = "UPDATE";
+			this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnSua, "Edit current selected row");
+			this.btnSua.UseVisualStyleBackColor = false;
+			this.btnSua.UseWaitCursor = true;
+			this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
 			// 
-			// label21
+			// btnThem
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(1126, 685);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(45, 23);
-			this.label21.TabIndex = 65;
-			this.label21.Text = "USD";
-			this.label21.UseWaitCursor = true;
-			// 
-			// txtsum
-			// 
-			this.txtsum.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtsum.Location = new System.Drawing.Point(797, 682);
-			this.txtsum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.txtsum.Name = "txtsum";
-			this.txtsum.ReadOnly = true;
-			this.txtsum.Size = new System.Drawing.Size(323, 30);
-			this.txtsum.TabIndex = 64;
-			this.txtsum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtsum.UseWaitCursor = true;
-			this.txtsum.TextChanged += new System.EventHandler(this.txtsum_TextChanged);
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label22.Location = new System.Drawing.Point(709, 686);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(70, 26);
-			this.label22.TabIndex = 63;
-			this.label22.Text = "Total :";
-			this.label22.UseWaitCursor = true;
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label23.Location = new System.Drawing.Point(969, 721);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(25, 23);
-			this.label23.TabIndex = 66;
-			this.label23.Text = "%";
-			this.label23.UseWaitCursor = true;
-			// 
-			// label24
-			// 
-			this.label24.AutoSize = true;
-			this.label24.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label24.ForeColor = System.Drawing.Color.Red;
-			this.label24.Location = new System.Drawing.Point(554, 640);
-			this.label24.Name = "label24";
-			this.label24.Size = new System.Drawing.Size(361, 25);
-			this.label24.TabIndex = 67;
-			this.label24.Text = "Double click on product rows want delete";
-			this.label24.UseWaitCursor = true;
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label25.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label25.Location = new System.Drawing.Point(33, 786);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(65, 28);
-			this.label25.TabIndex = 68;
-			this.label25.Text = "User: ";
-			this.label25.UseWaitCursor = true;
-			// 
-			// label26
-			// 
-			this.label26.AutoSize = true;
-			this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label26.ForeColor = System.Drawing.Color.LightSeaGreen;
-			this.label26.Location = new System.Drawing.Point(94, 786);
-			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(20, 28);
-			this.label26.TabIndex = 70;
-			this.label26.Text = "_";
-			this.label26.UseWaitCursor = true;
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.btnTimKiemBill);
-			this.groupBox2.Controls.Add(this.combob_findBill);
-			this.groupBox2.Controls.Add(this.label27);
-			this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(15, 612);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(521, 80);
-			this.groupBox2.TabIndex = 68;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Find Bill ";
-			this.groupBox2.UseWaitCursor = true;
-			// 
-			// btnTimKiemBill
-			// 
-			this.btnTimKiemBill.BackColor = System.Drawing.Color.LightSeaGreen;
-			this.btnTimKiemBill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.btnTimKiemBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnTimKiemBill.ForeColor = System.Drawing.Color.GhostWhite;
-			this.btnTimKiemBill.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.find_102325;
-			this.btnTimKiemBill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnTimKiemBill.Location = new System.Drawing.Point(317, 22);
-			this.btnTimKiemBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.btnTimKiemBill.Name = "btnTimKiemBill";
-			this.btnTimKiemBill.Size = new System.Drawing.Size(179, 45);
-			this.btnTimKiemBill.TabIndex = 57;
-			this.btnTimKiemBill.Text = "FIND";
-			this.btnTimKiemBill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnTimKiemBill.UseVisualStyleBackColor = false;
-			this.btnTimKiemBill.UseWaitCursor = true;
-			// 
-			// combob_findBill
-			// 
-			this.combob_findBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.combob_findBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.combob_findBill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.combob_findBill.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.combob_findBill.FormattingEnabled = true;
-			this.combob_findBill.Location = new System.Drawing.Point(123, 29);
-			this.combob_findBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.combob_findBill.Name = "combob_findBill";
-			this.combob_findBill.Size = new System.Drawing.Size(176, 31);
-			this.combob_findBill.TabIndex = 49;
-			this.combob_findBill.UseWaitCursor = true;
-			// 
-			// label27
-			// 
-			this.label27.AutoSize = true;
-			this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label27.Location = new System.Drawing.Point(18, 35);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(79, 25);
-			this.label27.TabIndex = 48;
-			this.label27.Text = "Bill No :";
-			this.label27.UseWaitCursor = true;
+			this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
+			this.btnThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.btnThem.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnThem.ForeColor = System.Drawing.Color.GhostWhite;
+			this.btnThem.Image = global::QLBH_KiemThuPhanMem.Properties.Resources.shopping_basket_add_40507;
+			this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnThem.Location = new System.Drawing.Point(589, 127);
+			this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnThem.Name = "btnThem";
+			this.btnThem.Size = new System.Drawing.Size(152, 41);
+			this.btnThem.TabIndex = 51;
+			this.btnThem.Text = "ADD";
+			this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.toolTip1.SetToolTip(this.btnThem, "Add data into Listview");
+			this.btnThem.UseVisualStyleBackColor = false;
+			this.btnThem.UseWaitCursor = true;
+			this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
 			// 
 			// Frm_Bill
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(1715, 832);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.label26);

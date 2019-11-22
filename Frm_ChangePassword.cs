@@ -229,23 +229,23 @@ namespace QLBH_KiemThuPhanMem
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox1.Checked)
-				txtEpw.UseSystemPasswordChar = true;
-			else
 				txtEpw.UseSystemPasswordChar = false;
+			else
+				txtEpw.UseSystemPasswordChar = true;
 		}
 		private void checkBox2_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox2.Checked)
-				txtNpw.UseSystemPasswordChar = true;
-			else
 				txtNpw.UseSystemPasswordChar = false;
+			else
+				txtNpw.UseSystemPasswordChar = true;
 		}
 		private void checkBox3_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox3.Checked)
-				txtCNpw.UseSystemPasswordChar = true;
-			else
 				txtCNpw.UseSystemPasswordChar = false;
+			else
+				txtCNpw.UseSystemPasswordChar = true;
 		}
 
 		private void txtEpw_Validating(object sender, CancelEventArgs e)
@@ -266,6 +266,36 @@ namespace QLBH_KiemThuPhanMem
 		private void txtNpw_TextChanged(object sender, EventArgs e)
 		{
 
+		}
+
+		private void txtNpw_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(txtEpw.Text))
+			{
+				e.Cancel = true;
+				txtNpw.Focus();
+				errorProvider1.SetError(txtNpw, " Enter the password !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(txtNpw, null);
+			}
+		}
+
+		private void txtCNpw_Validating(object sender, CancelEventArgs e)
+		{
+			if (string.IsNullOrEmpty(txtEpw.Text))
+			{
+				e.Cancel = true;
+				txtCNpw.Focus();
+				errorProvider1.SetError(txtCNpw, " Enter the password !");
+			}
+			else
+			{
+				e.Cancel = false;
+				errorProvider1.SetError(txtCNpw, null);
+			}
 		}
 	}
 }

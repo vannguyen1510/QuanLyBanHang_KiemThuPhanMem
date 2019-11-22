@@ -157,9 +157,10 @@
 			this.txtCNpw.Location = new System.Drawing.Point(230, 116);
 			this.txtCNpw.Multiline = true;
 			this.txtCNpw.Name = "txtCNpw";
-			this.txtCNpw.PasswordChar = '*';
+			this.txtCNpw.ShortcutsEnabled = false;
 			this.txtCNpw.Size = new System.Drawing.Size(295, 40);
 			this.txtCNpw.TabIndex = 4;
+			this.txtCNpw.UseSystemPasswordChar = true;
 			this.txtCNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNpw_Validating);
 			// 
 			// txtNpw
@@ -170,9 +171,10 @@
 			this.txtNpw.Location = new System.Drawing.Point(230, 68);
 			this.txtNpw.Multiline = true;
 			this.txtNpw.Name = "txtNpw";
-			this.txtNpw.PasswordChar = '*';
+			this.txtNpw.ShortcutsEnabled = false;
 			this.txtNpw.Size = new System.Drawing.Size(295, 42);
 			this.txtNpw.TabIndex = 3;
+			this.txtNpw.UseSystemPasswordChar = true;
 			this.txtNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtNpw_Validating);
 			// 
 			// txtUser
@@ -184,6 +186,7 @@
 			this.txtUser.Location = new System.Drawing.Point(230, 18);
 			this.txtUser.Multiline = true;
 			this.txtUser.Name = "txtUser";
+			this.txtUser.ShortcutsEnabled = false;
 			this.txtUser.Size = new System.Drawing.Size(295, 44);
 			this.txtUser.TabIndex = 2;
 			this.txtUser.Text = "User";

@@ -490,7 +490,7 @@ namespace QLBH_KiemThuPhanMem
 			double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
 			txtTotalCost.Text = (total - total * (discount / 100)).ToString();
 			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
-			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
+			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString(); 
 		}
 		private void txtTamTinh_TextChanged(object sender, EventArgs e)
 		{
@@ -513,11 +513,10 @@ namespace QLBH_KiemThuPhanMem
             int counter = 0;
             string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
             string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
-                                                          //double subtotal = 0;
             try
             {
                 // Kiểm tra Mã sản phẩm
-                if (combobPro_No.SelectedValue != "")
+                if ((string)combobPro_No.SelectedValue != "")
                 {
                     //ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm kiếm mã trùng
                     //if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
@@ -665,7 +664,7 @@ namespace QLBH_KiemThuPhanMem
             try
             {
                 // Kiểm tra Mã sản phẩm
-                if (combobPro_No.SelectedValue != "")
+                if ((string)combobPro_No.SelectedValue != "")
                 {
                     // kiểm tra số lượng sản phẩm
                     if (quantity != "" || quantity == "0")
@@ -877,6 +876,11 @@ namespace QLBH_KiemThuPhanMem
 		private void btnPrint_Bill_Click(object sender, EventArgs e)
 		{
 			
+		}
+
+		private void txtTotalInWord_TextChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

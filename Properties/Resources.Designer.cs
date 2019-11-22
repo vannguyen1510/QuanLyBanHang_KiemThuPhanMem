@@ -273,6 +273,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh_106672 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_106672", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap restart_120144 {
             get {
                 object obj = ResourceManager.GetObject("restart_120144", resourceCulture);
@@ -286,6 +296,16 @@ namespace QLBH_KiemThuPhanMem.Properties {
         internal static System.Drawing.Bitmap rotation_102346__1_ {
             get {
                 object obj = ResourceManager.GetObject("rotation_102346 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shopping_basket_add_40507 {
+            get {
+                object obj = ResourceManager.GetObject("shopping-basket-add_40507", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

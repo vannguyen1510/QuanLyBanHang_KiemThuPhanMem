@@ -152,9 +152,11 @@
 			this.txtCNpw.Location = new System.Drawing.Point(266, 158);
 			this.txtCNpw.Multiline = true;
 			this.txtCNpw.Name = "txtCNpw";
-			this.txtCNpw.PasswordChar = '*';
+			this.txtCNpw.ShortcutsEnabled = false;
 			this.txtCNpw.Size = new System.Drawing.Size(242, 40);
 			this.txtCNpw.TabIndex = 8;
+			this.txtCNpw.UseSystemPasswordChar = true;
+			this.txtCNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNpw_Validating);
 			// 
 			// label1
 			// 
@@ -172,10 +174,12 @@
 			this.txtNpw.Location = new System.Drawing.Point(266, 110);
 			this.txtNpw.Multiline = true;
 			this.txtNpw.Name = "txtNpw";
-			this.txtNpw.PasswordChar = '*';
+			this.txtNpw.ShortcutsEnabled = false;
 			this.txtNpw.Size = new System.Drawing.Size(242, 42);
 			this.txtNpw.TabIndex = 6;
+			this.txtNpw.UseSystemPasswordChar = true;
 			this.txtNpw.TextChanged += new System.EventHandler(this.txtNpw_TextChanged);
+			this.txtNpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtNpw_Validating);
 			// 
 			// txtEpw
 			// 
@@ -184,9 +188,10 @@
 			this.txtEpw.Location = new System.Drawing.Point(266, 60);
 			this.txtEpw.Multiline = true;
 			this.txtEpw.Name = "txtEpw";
-			this.txtEpw.PasswordChar = '*';
+			this.txtEpw.ShortcutsEnabled = false;
 			this.txtEpw.Size = new System.Drawing.Size(242, 44);
 			this.txtEpw.TabIndex = 5;
+			this.txtEpw.UseSystemPasswordChar = true;
 			this.txtEpw.Validating += new System.ComponentModel.CancelEventHandler(this.txtEpw_Validating);
 			// 
 			// lbMatKhau

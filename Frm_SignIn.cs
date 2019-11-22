@@ -173,7 +173,9 @@ namespace QLBH_KiemThuPhanMem
 					str += b.ToString("X2");
 				}
 				// Dò tìm SĐT khách hàng và ID nhân viên
-				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS) OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
+				string sql = "SELECT COUNT (*) FROM [KTPM].[dbo].[Info_Secret] "
+								+"WHERE (Phone_Cus=@phone COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)"
+								+"OR (ID_Emp=@id COLLATE SQL_Latin1_General_CP1_CS_AS AND Password=@pass COLLATE SQL_Latin1_General_CP1_CS_AS)";
                 SqlCommand cmd = new SqlCommand(sql, sqlcon);
                 cmd.Parameters.Add(new SqlParameter("@phone", user));
                 cmd.Parameters.Add(new SqlParameter("@id", user));
