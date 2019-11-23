@@ -513,71 +513,73 @@ namespace QLBH_KiemThuPhanMem
             int counter = 0;
             string BillNo = txtBillNo.Text.ToUpper().Trim(); // Mã hóa đơn
             string quantity = txtPro_SoLuong.Text.Trim(); // số lượng sản phẩm
+			double subtotal = 0;
             try
             {
                 // Kiểm tra Mã sản phẩm
                 if ((string)combobPro_No.SelectedValue != "")
                 {
-                    //ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm kiếm mã trùng
-                    //if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
-                    //{
-                    //	foreach(ListViewItem im in listView1.Items)
-                    //	{
-                    //		subtotal += double.Parse(im.SubItems[3].Text);
-                    //	}
+					ListViewItem item1 = listView1.FindItemWithText(combobPro_No.Text); // tìm kiếm mã trùng
+					if (item1 != null) // nếu mã co trong listview thì cộng dồn số lượng sản phẩm
+					{
+						foreach (ListViewItem im in listView1.Items)
+						{
+							subtotal += double.Parse(item1.SubItems[3].Text);
+							subtotal = Convert.ToDouble(im.SubItems[3].Text);
+						}
 
-                    //}
-                    //else // nếu mã không trùng
-                    //{
-                    // kiểm tra số lượng sản phẩm
-                    if (quantity != "")
-                    {
-                        // kiểm tra Mã hóa đơn rỗng
-                        if (BillNo != null)
-                        {
-                            for (counter = 0; counter < listView1.Items.Count; counter++)
-                            {
-                                listView1.Items[counter].Text = (counter + 1).ToString();
+					}
+					else // nếu mã không trùng
+					{
+						// kiểm tra số lượng sản phẩm
+						if (quantity != "")
+						{
+							// kiểm tra Mã hóa đơn rỗng
+							if (BillNo != null)
+							{
+								for (counter = 0; counter < listView1.Items.Count; counter++)
+								{
+									listView1.Items[counter].Text = (counter + 1).ToString();
 
-                            }
-                            string[] data = {(counter + 1).ToString() ,
-                                                combobPro_No.SelectedItem.ToString(),
-                                                txtPro_Name.Text, quantity,
-                                                txtPro_UnitPrice.Text,
-                                                txtTamTinh.Text };
-                            ListViewItem item = new ListViewItem(data);
-                            listView1.Items.Add(item);
-                            double total = 0;
-                            string dis = txtDiscount.Text;
-                            double discount;
-                            foreach (ListViewItem i in listView1.Items)
-                            {
-                                total += double.Parse(i.SubItems[5].Text);
-                            }
-                            double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
-                            txtsum.Text = total.ToString();
-                            txtTotalCost.Text = (total - total * (discount / 100)).ToString();
-                        }
-                        else
-                        {
-                            ADDbill = false;
-                            txtBillNo.Focus();
-                            errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
-                        }
-                    }
-                    else if (quantity == "0")
-                    {
-                        ADDbill = false;
-                        txtPro_SoLuong.Focus();
-                        errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
-                    }
-                    else
-                    {
-                        ADDbill = false;
-                        txtPro_SoLuong.Focus();
-                        errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
-                    }
-                    //}
+								}
+								string[] data = {(counter + 1).ToString() ,
+												combobPro_No.SelectedItem.ToString(),
+												txtPro_Name.Text, quantity,
+												txtPro_UnitPrice.Text,
+												txtTamTinh.Text };
+								ListViewItem item = new ListViewItem(data);
+								listView1.Items.Add(item);
+								double total = 0;
+								string dis = txtDiscount.Text;
+								double discount;
+								foreach (ListViewItem i in listView1.Items)
+								{
+									total += double.Parse(i.SubItems[5].Text);
+								}
+								double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+								txtsum.Text = total.ToString();
+								txtTotalCost.Text = (total - total * (discount / 100)).ToString();
+							}
+							else
+							{
+								ADDbill = false;
+								txtBillNo.Focus();
+								errorProvider1.SetError(txtBillNo, "Do not accept blank field !");
+							}
+						}
+						else if (quantity == "0")
+						{
+							ADDbill = false;
+							txtPro_SoLuong.Focus();
+							errorProvider1.SetError(txtPro_SoLuong, "Do not accept value 0 !");
+						}
+						else
+						{
+							ADDbill = false;
+							txtPro_SoLuong.Focus();
+							errorProvider1.SetError(txtPro_SoLuong, "Do not accept blank field !");
+						}
+					}
                 }
                 else
                 {
