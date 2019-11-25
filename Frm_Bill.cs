@@ -11,8 +11,6 @@ using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
 
 namespace QLBH_KiemThuPhanMem
 {
@@ -23,7 +21,7 @@ namespace QLBH_KiemThuPhanMem
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["QLBH_KiemThuPhanMem.Properties.Settings.KTPMConnectionString"].ToString());
         //SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["Connect"].ToString());
         SqlConnection sqlcon = new SqlConnection("Data Source= VAN;Initial Catalog=KTPM;Integrated Security=True");
-		ReportDocument rep = new ReportDocument();
+		
 
 		//---------------------------------------------------------------------------------------------------------------------------------------------------------
 		// RANDOM BILL NO
@@ -465,8 +463,16 @@ namespace QLBH_KiemThuPhanMem
 				price = Convert.ToDouble(txtPro_UnitPrice.Text);
 			total = quantity * price;
 			txtTamTinh.Text = total.ToString();
-
-
+		}
+		// TOTAL 
+		// Thay đổi sub total thì tính lại TOTAL
+		public void Total()
+		{
+			double total = 0;
+			foreach (ListViewItem i in listView1.Items)
+			{
+				total += double.Parse(i.SubItems[5].Text);
+			}
 		}
 		// TOTAL COST
 		// Thay đổi disount thì tính lại TOTAL COST
@@ -498,8 +504,27 @@ namespace QLBH_KiemThuPhanMem
 			txtTamTinh.Text = temp.ToString("0,0.#");
 			txtTamTinh.Select(txtTamTinh.TextLength, 0);
 		}
+		// Thay đổi total và Discount thì tính lại TOTAL COST
 		private void txtsum_TextChanged(object sender, EventArgs e)
 		{
+			Total();
+			double total = 0, quantity, price, discount;
+			string dis = txtDiscount.Text;
+			if (txtPro_SoLuong.Text == "")
+				quantity = 0;
+			else
+				quantity = Convert.ToDouble(txtPro_SoLuong.Text);
+			if (txtPro_UnitPrice.Text == "")
+				price = 0;
+			else
+				price = Convert.ToDouble(txtPro_UnitPrice.Text);
+			foreach (ListViewItem i in listView1.Items)
+			{
+				total += double.Parse(i.SubItems[5].Text);
+			}
+			txtsum.Text = total.ToString();
+			double.TryParse(dis, NumberStyles.Any, CultureInfo.CurrentCulture, out discount);
+			txtTotalCost.Text = (total - total * (discount / 100)).ToString();
 			Class_ChuyenSoThanhChu ch = new Class_ChuyenSoThanhChu();
 			txtTotalInWord.Text = ch.changeToWords(txtTotalCost.Text).ToString();
 		}
@@ -867,6 +892,7 @@ namespace QLBH_KiemThuPhanMem
 					item3 = this.listView1.SelectedItems[0];
 					item3.SubItems[0].Text = (counter + 1).ToString();
 				}
+				
 			}
 		}
 		// Double click delete data in listview
@@ -881,6 +907,11 @@ namespace QLBH_KiemThuPhanMem
 		}
 
 		private void txtTotalInWord_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void txtTotalCost_TextChanged(object sender, EventArgs e)
 		{
 
 		}
