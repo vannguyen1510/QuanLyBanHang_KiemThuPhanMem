@@ -234,14 +234,20 @@ namespace QLBH_KiemThuPhanMem
 		}
 		public void Add()
 		{
+			string N = txtName.Text.Trim();
+			while (N.IndexOf("  ") != -1)
+				N = N.Replace("  ", " ");
+			string I = txtBillNo.Text.ToUpper().Trim();
+			while (I.IndexOf("  ") != -1)
+				I = I.Replace("  ", " ");
 			try
 			{
 				sqlcon.Open();
 				string sql = "INSERT INTO [KTPM].[dbo].[Products] (ProductID,ProductName,UnitPrice,UnitInStock,UnitOnOrder,Image)"
 							+ "VALUES (@id,@name,@price,@stock,@order,@image)";
 				SqlCommand cmd = new SqlCommand(sql, sqlcon);
-				cmd.Parameters.AddWithValue("@id", txtBillNo.Text.ToUpper().Trim());
-				cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
+				cmd.Parameters.AddWithValue("@id", I);
+				cmd.Parameters.AddWithValue("@name",N);
 				cmd.Parameters.AddWithValue("@price", txtprice.Text);
 				cmd.Parameters.AddWithValue("@stock", txtStock.Text);
 				cmd.Parameters.AddWithValue("@order", "0");

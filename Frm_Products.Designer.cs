@@ -123,6 +123,7 @@
 			this.txtStock.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtStock.Location = new System.Drawing.Point(133, 178);
 			this.txtStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtStock.MaxLength = 4;
 			this.txtStock.Name = "txtStock";
 			this.txtStock.Size = new System.Drawing.Size(226, 31);
 			this.txtStock.TabIndex = 52;
@@ -144,6 +145,7 @@
 			this.txtprice.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtprice.Location = new System.Drawing.Point(133, 129);
 			this.txtprice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.txtprice.MaxLength = 6;
 			this.txtprice.Name = "txtprice";
 			this.txtprice.Size = new System.Drawing.Size(226, 31);
 			this.txtprice.TabIndex = 50;

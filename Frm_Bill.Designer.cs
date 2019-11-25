@@ -989,7 +989,6 @@
 			this.Name = "Frm_Bill";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoice";
-			this.TopMost = true;
 			this.UseWaitCursor = true;
 			this.Load += new System.EventHandler(this.Frm_Bill_Load);
 			this.gb_PerInfo.ResumeLayout(false);

@@ -140,7 +140,7 @@
 			this.checkBox1.Location = new System.Drawing.Point(290, 244);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(181, 22);
-			this.checkBox1.TabIndex = 21;
+			this.checkBox1.TabIndex = 3;
 			this.checkBox1.Text = "Hide / Show Password";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
@@ -152,7 +152,7 @@
 			this.txtMatKhau.Name = "txtMatKhau";
 			this.txtMatKhau.ShortcutsEnabled = false;
 			this.txtMatKhau.Size = new System.Drawing.Size(244, 28);
-			this.txtMatKhau.TabIndex = 20;
+			this.txtMatKhau.TabIndex = 2;
 			this.txtMatKhau.UseSystemPasswordChar = true;
 			// 
 			// pictureBox1
